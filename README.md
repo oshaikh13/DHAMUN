@@ -12,9 +12,11 @@ DHAMUN APP
 
 This is a prototype DHAMUN web app. This is only the client, however. It will is part of a bigger, 3 component application, which includes the following
 
+```
 a) A web client (this repo)
 b) A server (coming soon)
 c) A mobile app (coming soon)
+```
 
 This is going to be a portal for all MUN'ers at any point in the conference.
 Look at the [todo](#todo) below for all the awesome upcoming features.
