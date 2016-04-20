@@ -1,4 +1,4 @@
-DHAMUN APP
+DHAMUN Web-App
 =========================
 
 ## Table of Contents

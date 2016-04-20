@@ -37,7 +37,7 @@ export class TopImage extends Component {
                 speed={700}
                 wait={700}
               >
-                <h1 className="title">
+                <h1 className="title transparent">
                   DHAMUN PORTAL
                 </h1>
               </LoadingOrderAnimation>
