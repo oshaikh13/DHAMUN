@@ -97,3 +97,4 @@ $ npm test
 
 ### Creds
 1. React starter boilerplate is awesome :)
+2. Fuzzy and Shan masala for telling me 'bout "Tech Manager"
