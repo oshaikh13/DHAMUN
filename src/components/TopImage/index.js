@@ -38,7 +38,7 @@ export class TopImage extends Component {
                 wait={700}
               >
                 <h1 className="title">
-                  Redux Easy Boilerplate
+                  DHAMUN PORTAL
                 </h1>
               </LoadingOrderAnimation>
               <LoadingOrderAnimation animation="fade-in"
@@ -48,7 +48,7 @@ export class TopImage extends Component {
                 wait={900}
               >
                 <p>
-                  Start your project easy and fast with modern tools
+                  All things Dhahran MUN. Welcome.
                 </p>
               </LoadingOrderAnimation>
             </div>

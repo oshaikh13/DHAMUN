@@ -6,7 +6,7 @@ import { TopImage } from 'components/TopImage';
 import { Tools } from 'components/Tools';
 
 const metaData = {
-  title: 'DHAMUN Web Portal',
+  title: 'DHAMUN',
   description: 'Get started here',
   canonical: 'http://example.com/path/to/page',
   meta: {

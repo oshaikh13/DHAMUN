@@ -3,6 +3,36 @@
 
   padding: 50px 0;
 
+  p {
+    font-size: 20px;
+  }
+
+  .numberText {
+    padding-top: 1%;
+    padding-left: 25px;
+  }
+
+  .centerAlign {
+    text-align: center;
+  }
+
+  .numberCircle {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+
+    -moz-border-radius: 30px; /* or 50% */
+    border-radius: 30px; /* or 50% */
+
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+  }
+
   .tool {
     text-align: center;
     margin: 30px 0;

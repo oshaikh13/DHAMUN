@@ -3,72 +3,67 @@ import React, { Component } from 'react';
 /* component styles */
 import { styles } from './styles.scss';
 
-/* images */
-const reactjs = require('./files/reactjs.png');
-const redux = require('./files/redux.png');
-const babel = require('./files/babel.png');
-const webpack = require('./files/webpack.png');
-const bootstrap = require('./files/bootstrap.png');
-const mocha = require('./files/mocha.png');
-
 export class Tools extends Component {
   render() {
     return (
       <section className={`${styles}`}>
         <div className="container">
-
+        <hr />
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
               <h2>
-                Boilerplate contains
+                What is this?
               </h2>
             </div>
           </div>
 
           <div className="row">
-            <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2 tool">
-              <img src={reactjs} />
-              <h4>
-                React
-              </h4>
-            </div>
 
-            <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2 tool">
-              <img src={redux} />
-              <h4>
-                Redux
-              </h4>
-            </div>
+            <div className="col-xs-6 col-sm-4">
+              <h3 className="centerAlign">
+                Hello!
+              </h3>
 
-            <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2 tool">
-              <img src={babel} />
-              <h4>
-                Babel
-              </h4>
+              <p>
+                You're probably here because you need something. 
+              </p>
+              <p>
+                This is a concept portal, to address all your MUN needs
+              </p>
             </div>
+            <div className="col-xs-6 col-sm-4"></div>
 
-            <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2 tool">
-              <img src={webpack} />
-              <h4>
-                Webpack
-              </h4>
-            </div>
-
-            <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2 tool">
-              <img src={bootstrap} />
-              <h4>
-                Bootstrap
-              </h4>
-            </div>
-
-            <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2 tool">
-              <img src={mocha} />
-              <h4>
-                Mocha
-              </h4>
+            <div className="col-xs-6 col-sm-4">
+              <h3 className="centerAlign">
+                This is where
+              </h3>
+              <div className="row">
+                <div className="col-md-2">
+                  <div className="numberCircle">1</div>
+                </div>
+                <div className="col-md-10 numberText">
+                  <p>You make a DHAMUN account. This is your key to the conference.</p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-2">
+                  <div className="numberCircle">2</div>
+                </div>
+                <div className="col-md-10 numberText">
+                  <p>You create your resolutions. Share them. Send them to the chairs.</p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-2">
+                  <div className="numberCircle">3</div>
+                </div>
+                <div className="col-md-10 numberText">
+                  <p>You vote. Watch your resolution gain support realtime.</p>
+                </div>
+              </div>
             </div>
           </div>
-
+          <hr />
         </div>
       </section>
     );
