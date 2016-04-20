@@ -4,11 +4,10 @@ import DocumentMeta from 'react-document-meta';
 /* components */
 import { TopImage } from 'components/TopImage';
 import { Tools } from 'components/Tools';
-import { Projects } from 'components/Projects';
 
 const metaData = {
-  title: 'Redux Easy Boilerplate',
-  description: 'Start you project easy and fast with modern tools',
+  title: 'DHAMUN Web Portal',
+  description: 'Get started here',
   canonical: 'http://example.com/path/to/page',
   meta: {
     charset: 'utf-8',
@@ -25,7 +24,6 @@ export class Home extends Component {
         <DocumentMeta {...metaData} />
         <TopImage />
         <Tools />
-        <Projects />
       </section>
     );
   }
