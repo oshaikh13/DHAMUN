@@ -10,7 +10,7 @@ DHAMUN APP
 
 ## About
 
-This is a prototype DHAMUN web app. This is only the client, however. It will is part of a bigger, 3 component application, which includes the following
+This is a prototype DHAMUN web app. This is only the client, however. It is part of a bigger, 3 component application, which will include the following
 
 ```
 a) A web client (this repo)
