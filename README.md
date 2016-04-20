@@ -1,7 +1,5 @@
-Redux Easy Boilerplate
+DHAMUN APP
 =========================
-
-![http://anorudes.github.io/redux-easy-boilerplate/](https://raw.githubusercontent.com/anorudes/redux-easy-boilerplate/569905d1aabc33ce385b1895984141764d364b54/gh/browser.png)
 
 ## Table of Contents
 
@@ -11,22 +9,18 @@ Redux Easy Boilerplate
 - [Build](#build--buildproduction)
 
 ## About
-- [React](https://github.com/facebook/react)
-- [Redux](https://github.com/gaearon/redux)
-- [React Router](https://github.com/rackt/react-router)
-- [Bootstrap-loader](https://github.com/shakacode/bootstrap-loader) (configurable with .bootstraprc)
-- Sass modules ([sass-loader](https://github.com/jtangelder/sass-loader) [css-loader](https://github.com/webpack/css-loader) [style-loader](https://github.com/webpack/style-loader))
-- [react transform](https://github.com/gaearon/react-transform)
-- [redux-logger](https://github.com/fcomb/redux-logger)
-- [react-document-meta](https://github.com/kodyl/react-document-meta)
-- [redux-form](https://github.com/erikras/redux-form)
-- [karma](https://github.com/karma-runner/karma)
-- [mocha](https://github.com/mochajs/mocha)
+
+This is a prototype DHAMUN web app. This is only the client, however. It will is part of a bigger, 3 component application, which includes the following
+
+a) A web client (this repo)
+b) A server (coming soon)
+c) A mobile app (coming soon)
+
+This is going to be a portal for all MUN'ers at any point in the conference.
+Look at the [todo](#todo) below for all the awesome upcoming features.
 
 ## Installation
 ```
-$ git clone https://github.com/anorudes/redux-easy-boilerplate.git
-$ cd redux-easy-boilerplate
 $ npm install
 ```
 
@@ -93,5 +87,11 @@ since react-router is keeping track of the navigation (e.g this can be done with
 $ npm test
 ```
 ## TODO
-1. [ ] Write more tests!
-2. [ ] Server-side rendering
+1. [ ] User Accounts
+2. [ ] User Dashboards
+2. [ ] Admin Accounts
+2. [ ] Admin Dashboard
+3. [ ] Online Resolution Submission
+
+### Creds
+1. React starter boilerplate is awesome :)
