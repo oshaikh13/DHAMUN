@@ -14,12 +14,12 @@ This is a prototype DHAMUN web app. This is only the client, however. It is part
 
 ```
 a) A web client (this repo)
-b) A server (coming soon)
+b) A server (another repo)
 c) A mobile app (coming soon)
 ```
 
 This is going to be a portal for all MUN'ers at any point in the conference.
-Look at the [todo](#todo) below for all the awesome upcoming features.
+Look at the about repo for all the awesome upcoming features.
 
 ## Installation
 ```
@@ -88,13 +88,4 @@ since react-router is keeping track of the navigation (e.g this can be done with
 ```
 $ npm test
 ```
-## TODO
-1. [ ] User Accounts
-2. [ ] User Dashboards
-2. [ ] Admin Accounts
-2. [ ] Admin Dashboard
-3. [ ] Online Resolution Submission
 
-### Creds
-1. React starter boilerplate is awesome :)
-2. Fuzzy and Shan masala for telling me 'bout "Tech Manager"
