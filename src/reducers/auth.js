@@ -43,7 +43,7 @@ export function auth(state = initialState, action) {
         'statusText': 'You have been successfully logged out.'
       });
 
-    default :
+    default:
       return state;
 
   }

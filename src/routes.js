@@ -5,6 +5,7 @@ import { Route, IndexRoute } from 'react-router';
 import { App } from 'containers/App';
 import { Home } from 'containers/Home';
 import { List } from 'containers/List';
+import {requireAuthentication} from 'components/AuthenticatedComponent';
 
 export default (
   <Route path="/" component={App}>
