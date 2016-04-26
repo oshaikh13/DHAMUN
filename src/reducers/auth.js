@@ -10,14 +10,14 @@ const initialState = {
 
 export function auth(state = initialState, action) {
   switch (action.type) {
-    case 'LOGIN_USER_REQUEST' : 
+    case 'LOGIN_USER_REQUEST': 
       // TODO: Use immutable.js
       return Object.assign({}, state, {
         'isAuthenticating': true,
         'statusText': null
-      };
+      });
 
-    case 'LOGIN_USER_FAILURE' : 
+    case 'LOGIN_USER_FAILURE': 
       return Object.assign({}, state, {
         'isAuthenticating': false,
         'isAuthenticated': false,
@@ -42,6 +42,9 @@ export function auth(state = initialState, action) {
         'userName': null,
         'statusText': 'You have been successfully logged out.'
       });
+
+    default :
+      return state;
 
   }
 }
