@@ -1,7 +1,7 @@
 {
-  "name": "redux-easy-boilerplate",
+  "name": "DHAMUN-Web-Client",
   "version": "2.1.0",
-  "description": "Start your project easy and fast with modern tools",
+  "description": "A DHAMUN Web Client",
   "scripts": {
     "clean": "rimraf dist",
     "build": "webpack --progress --verbose --colors --display-error-details --config webpack/common.config.js",
@@ -96,6 +96,7 @@
     "react": "^0.14.6",
     "react-redux": "^4.0.6",
     "react-router": "^2.3.0",
-    "redux": "^3.1.4"
+    "redux": "^3.1.4",
+    "superagent": "^1.8.3"
   }
 }

@@ -3,8 +3,12 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { AuthForm } from 'components/AuthForm'
 
 import DocumentMeta from 'react-document-meta';
+
+import * as actionCreators from 'actions/auth';
+
 
 const metaData = {
   title: 'SignUp',
@@ -18,6 +22,15 @@ const metaData = {
   },
 };
 
+@connect(
+  (state) => ({
+    token: state.auth.token,
+    userName: state.auth.userName,
+    isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticating: state.auth.isAuthenticating
+  }),
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)
 export class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -33,8 +46,12 @@ export class SignUp extends Component {
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
               <h1>
-                DHAMUN
+                Sign up
               </h1>
+            </div>
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
+                            col-md-offset-3 col-lg-offset-3">
+                <AuthForm {...this.props}/>
             </div>
           </div>
         </div>
@@ -42,3 +59,4 @@ export class SignUp extends Component {
     );
   }
 }
+

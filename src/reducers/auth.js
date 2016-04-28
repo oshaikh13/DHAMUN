@@ -31,7 +31,7 @@ export function auth(state = initialState, action) {
         'isAuthenticating': false,
         'isAuthenticated': true,
         'token': action.token,
-        'userName': jwtDecode(action.token).userName,
+        'userName': jwtDecode(action.token).username,
         'statusText': 'You have been successfully logged in.'
       });
 
