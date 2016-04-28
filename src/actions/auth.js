@@ -1,30 +1,21 @@
 import request from "superagent";
 
-const SERVER_URL = 'http://localhost:3000'
+const SERVER_URL = 'http://localhost:8000'
 
-export function logIn (userData) {
+export function signUp (userData) {
   return function (dispatch) {
     dispatch(authRequest());
 
     // Implement form checking here...
-
     request
-      .post(SERVER_URL + '/api/users/login')
+      .post(SERVER_URL + '/api/users/signup')
       .send(userData)
       .end((err, res) => {
+        console.log(res);
         if (err || !res.ok) {
-          dispatch(authFailure(
-            {
-              status: "Some Error Code",
-              statusText: "Something Went Wrong"
-            }
-          ));
+          dispatch(authFailure(res.status, res.statusText));
         } else {
-          dispatch(authSuccess(
-            {
-              token: res.token
-            }
-          ));
+          dispatch(authSuccess(JSON.parse(res.text).token));
         }
       });
 
@@ -37,17 +28,18 @@ export function authRequest () {
   }
 }
 
-export function authFailure (failureInfo) {
+export function authFailure (statusCode, statusText) {
   return {
     type: "LOGIN_USER_FAILURE",
-    failureInfo
+    statusText,
+    statusCode
   }
 }
 
-export function authSuccess (userInfo) {
+export function authSuccess (token) {
   return {
     type: "LOGIN_USER_SUCCESS",
-    userInfo
+    token
   }
 }
 
@@ -62,18 +54,9 @@ export function signIn (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
-          dispatch(authFailure(
-            {
-              status: "Some Error Code",
-              statusText: "Something Went Wrong"
-            }
-          ));
+          dispatch(authFailure(res.status, res.statusText));
         } else {
-          dispatch(authSuccess(
-            {
-              token: res.token
-            }
-          ));
+          dispatch(authSuccess(JSON.parse(res.text).token));
         }
       });
 

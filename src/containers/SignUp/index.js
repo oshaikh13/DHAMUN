@@ -22,6 +22,15 @@ const metaData = {
   },
 };
 
+@connect(
+  (state) => ({
+    token: state.auth.token,
+    userName: state.auth.userName,
+    isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticating: state.auth.isAuthenticating
+  }),
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)
 export class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -51,11 +60,3 @@ export class SignUp extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  token: state.auth.token,
-  userName: state.auth.userName,
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(mapStateToProps)(SignUp);
-// export default SignUp;

@@ -9,7 +9,9 @@ export class AuthForm extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
     fields: React.PropTypes.object.isRequired,
-    isLogin: React.PropTypes.bool
+    isLogin: React.PropTypes.bool,
+    signUp: React.PropTypes.func,
+    signIn: React.PropTypes.func
   };
 
   constructor(props) {
@@ -19,12 +21,17 @@ export class AuthForm extends Component {
   onSubmit = (event) => {
     if (this.props.fields.username.value && this.props.fields.password.value) {
       /* add item*/
+      debugger;
+      const usr = {
+        username: this.props.fields.username.value,
+        password: this.props.fields.password.value
+      }
+      console.log(usr);
       // this.props.addItem(this.props.fields);
       if (this.props.isLogin) {
-        // Dispatch a login event
-        debugger;
+        this.props.signIn(usr);
       } else {
-        // Dispatch a sign in event
+        this.props.signUp(usr);
       }
 
       /* reset form */
@@ -57,7 +64,7 @@ export class AuthForm extends Component {
           />
         </div>
         <div className="form-group">
-          <button className="btn btn-default" onClick={this.onSubmit} >
+          <button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} >
             {this.props.isLogin ? "Login" : "Sign Up"}
           </button>
         </div>
