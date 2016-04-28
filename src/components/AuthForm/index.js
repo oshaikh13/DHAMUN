@@ -9,7 +9,7 @@ export class AuthForm extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
     fields: React.PropTypes.object.isRequired,
-    isLogin: React.PropTypes.boolean
+    isLogin: React.PropTypes.bool
   };
 
   constructor(props) {
@@ -22,7 +22,7 @@ export class AuthForm extends Component {
       // this.props.addItem(this.props.fields);
       if (this.props.isLogin) {
         // Dispatch a login event
-
+        debugger;
       } else {
         // Dispatch a sign in event
       }
