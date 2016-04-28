@@ -21,13 +21,12 @@ export class AuthForm extends Component {
   onSubmit = (event) => {
     if (this.props.fields.username.value && this.props.fields.password.value) {
       /* add item*/
-      debugger;
+
       const usr = {
         username: this.props.fields.username.value,
         password: this.props.fields.password.value
       }
-      console.log(usr);
-      // this.props.addItem(this.props.fields);
+
       if (this.props.isLogin) {
         this.props.signIn(usr);
       } else {
