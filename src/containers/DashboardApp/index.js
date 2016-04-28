@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 /* global styles for app */
-import './styles/homeapp.scss';
+import './styles/dashboardapp.scss';
 
 /* application components */
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
 
-export class HomeApp extends Component {
+export class DashboardApp extends Component {
   static propTypes = {
     children: React.PropTypes.any,
   };
@@ -16,9 +16,9 @@ export class HomeApp extends Component {
     return (
       <section>
         <Header 
-          titleData={["DHAMUN", "/"]}
-          leftLinks={[["Home", "/home"], ["Redux", "/list"], ["Log In", "/login"], ["Sign Up", "/signup"]]} 
-          rightLink={["Dashboard", "/dashboard", true]} 
+          titleData={["Dashboard", "/dashboard"]}
+          leftLinks={[["Resolutions", "/resolutions"], ["Vote", "/vote"], ["Profile", "/profile"]]} 
+          rightLink={["Log out", "/logout", false]} 
         />
         {this.props.children}
         <Footer text="This is DHAMUN Portal" />
