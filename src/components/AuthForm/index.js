@@ -22,6 +22,7 @@ export class AuthForm extends Component {
       // this.props.addItem(this.props.fields);
       if (this.props.isLogin) {
         // Dispatch a login event
+
       } else {
         // Dispatch a sign in event
       }
@@ -56,7 +57,7 @@ export class AuthForm extends Component {
           />
         </div>
         <div className="form-group">
-          <button className="btn btn-default" onClick={this.onSubmit}>
+          <button className="btn btn-default" onClick={this.onSubmit} >
             {this.props.isLogin ? "Login" : "Sign Up"}
           </button>
         </div>

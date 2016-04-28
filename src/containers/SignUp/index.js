@@ -7,6 +7,9 @@ import { AuthForm } from 'components/AuthForm'
 
 import DocumentMeta from 'react-document-meta';
 
+import * as actionCreators from 'actions/auth';
+
+
 const metaData = {
   title: 'SignUp',
   description: 'Sign up for a DHAMUN Account.',
@@ -39,7 +42,7 @@ export class SignUp extends Component {
             </div>
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
-                <AuthForm isLogin = {false} {...this.props}/>
+                <AuthForm {...this.props}/>
             </div>
           </div>
         </div>

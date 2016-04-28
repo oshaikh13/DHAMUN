@@ -7,6 +7,9 @@ import { AuthForm } from 'components/AuthForm'
 
 import DocumentMeta from 'react-document-meta';
 
+import * as actionCreators from 'actions/auth';
+
+
 const metaData = {
   title: 'Login',
   description: 'Login to your DHAMUN Account.',
