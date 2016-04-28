@@ -15,9 +15,13 @@ export class App extends Component {
   render() {
     return (
       <section>
-        <Header />
+        <Header 
+          titleData={["DHAMUN", "/"]}
+          leftLinks={[["Home", "/home"], ["Redux", "/list"]]} 
+          rightLink={["Fork me", "https://github.com/DHAMUN/", false]} 
+        />
         {this.props.children}
-        <Footer />
+        <Footer text="This is DHAMUN Portal" />
       </section>
     );
   }
