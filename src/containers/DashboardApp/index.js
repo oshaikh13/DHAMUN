@@ -12,19 +12,22 @@ export class DashboardApp extends Component {
     children: React.PropTypes.any,
   };
 
-  // React cloneElement allows us to pass props down to childrem/
+  // React cloneElement allows us to pass props down to children
   // Is this an anti-pattern? React does use a "shallow copy" so it's not another "new" element...
 
   render() {
-    console.log(this.props);
     return (
       <section>
         <Header 
           titleData={["Dashboard", "/dashboard"]}
-          leftLinks={[["Resolutions", "/resolutions"], ["Vote", "/vote"], ["Profile", "/profile"]]} 
-          rightLink={["Log out", "/logout", false]} 
+          leftLinks={[
+            ["Resolutions", "/dashboard/resolutions"], 
+            ["Vote", "/dashboard/vote"],
+            ["Profile", "/dashboard/profile"]
+          ]} 
+          rightLink={["Log out", "/dashboard/logout", false]} 
         />
-        {React.cloneElement(this.props.children, { userName: this.props.userName })}
+        { this.props.children && React.cloneElement(this.props.children, { userName: this.props.userName }) }
         <Footer text="This is DHAMUN Portal" />
       </section>
     );

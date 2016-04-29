@@ -19,7 +19,6 @@ const metaData = {
 
 export class DashHome extends Component {
   render() {
-    console.log(this.props);
     return (
       <section>
         <DocumentMeta {...metaData} />

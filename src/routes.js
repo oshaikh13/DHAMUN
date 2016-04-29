@@ -10,6 +10,11 @@ import { Home } from 'containers/Home';
 import { List } from 'containers/List';
 import { Login } from 'containers/Login';
 import { SignUp } from 'containers/SignUp';
+import { Profile } from 'containers/Profile';
+import { Vote } from 'containers/Vote';
+import { Resolutions } from 'containers/Resolutions';
+
+
 
 import { DashHome } from 'containers/DashHome';
 
@@ -29,6 +34,10 @@ export default (
 
     <Route path="/dashboard" component={requireAuthentication(DashboardApp)} >
       <IndexRoute component={DashHome}/>
+      <Route path="/dashboard/profile" component={Profile}/>
+      <Route path="/dashboard/vote" component={Vote}/>
+      <Route path="/dashboard/resolutions" component={Resolutions}/>
+
     </Route>
 
     <Route status={404} path="*" component={HomeApp} />
