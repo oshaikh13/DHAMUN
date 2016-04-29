@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { reset } from 'redux-form';
+import { Link } from 'react-router';
 
 /* component styles */
 import { styles } from './styles.scss';
+
+// Do not render this if logged in. 
+// Instead show a link to the dashboard (yay)
 
 export class AuthForm extends Component {
   static propTypes = {
@@ -21,13 +25,12 @@ export class AuthForm extends Component {
   onSubmit = (event) => {
     if (this.props.fields.username.value && this.props.fields.password.value) {
       /* add item*/
-      debugger;
+
       const usr = {
         username: this.props.fields.username.value,
         password: this.props.fields.password.value
       }
-      console.log(usr);
-      // this.props.addItem(this.props.fields);
+
       if (this.props.isLogin) {
         this.props.signIn(usr);
       } else {
@@ -44,6 +47,13 @@ export class AuthForm extends Component {
     const {
       fields: { username, password },
     } = this.props;
+
+    if (this.props.isAuthenticated) {
+      return (
+        <h3>You're logged in. Go to the <Link to='/dashboard'>dashboard</Link></h3>
+      );
+    }
+
 
     return (
       <form className={styles} onSubmit={this.onAdd}>

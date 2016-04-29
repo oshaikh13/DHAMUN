@@ -67,7 +67,8 @@ In development mode the app uses `hashHistory` (e.g /#/home?_k=x928123) which
 keeps track of your currently location on and the state of the page. It is adviced
 for production to use `browserHistory` instead of `hashHistory`
 
-To make this change edit `src/index.js`
+To make this change edit `src/index.js` and `src/actions/auth.js`
+
 ```
 // before change
 ...

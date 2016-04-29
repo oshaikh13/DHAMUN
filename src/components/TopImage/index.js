@@ -38,7 +38,7 @@ export class TopImage extends Component {
                 wait={700}
               >
                 <h1 className="title transparent">
-                  DHAMUN PORTAL
+                  {this.props.header}
                 </h1>
               </LoadingOrderAnimation>
               <LoadingOrderAnimation animation="fade-in"
@@ -48,7 +48,7 @@ export class TopImage extends Component {
                 wait={900}
               >
                 <p>
-                  All things Dhahran MUN. Welcome.
+                  {this.props.subtitle}
                 </p>
               </LoadingOrderAnimation>
             </div>

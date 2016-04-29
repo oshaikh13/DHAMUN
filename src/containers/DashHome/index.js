@@ -6,8 +6,8 @@ import { TopImage } from 'components/TopImage';
 import { Tools } from 'components/Tools';
 
 const metaData = {
-  title: 'DHAMUN',
-  description: 'Get started here',
+  title: 'Dashboard',
+  description: 'Welcome to the Dashboard',
   canonical: 'http://example.com/path/to/page',
   meta: {
     charset: 'utf-8',
@@ -17,12 +17,12 @@ const metaData = {
   },
 };
 
-export class Home extends Component {
+export class DashHome extends Component {
   render() {
     return (
       <section>
         <DocumentMeta {...metaData} />
-        <TopImage header="DHAMUN" subtitle="A portal for all your needs" />
+        <TopImage header={"Hi " + this.props.userName} subtitle="Welcome to your Dashboard"/>
         <Tools />
       </section>
     );

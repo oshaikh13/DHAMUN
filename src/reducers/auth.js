@@ -1,5 +1,7 @@
 import jwtDecode from 'jwt-decode';
 
+import { hashHistory } from 'react-router'
+
 const initialState = {
   token: null,
   userName: null,

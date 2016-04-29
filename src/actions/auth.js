@@ -1,4 +1,5 @@
 import request from "superagent";
+import { hashHistory } from 'react-router'
 
 const SERVER_URL = 'http://localhost:8000'
 
