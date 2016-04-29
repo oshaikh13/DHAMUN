@@ -19,11 +19,11 @@ const metaData = {
 
 export class DashHome extends Component {
   render() {
-    debugger;
+    console.log(this.props);
     return (
       <section>
         <DocumentMeta {...metaData} />
-        <TopImage />
+        <TopImage header={"Hi " + this.props.userName} subtitle="Welcome to your Dashboard"/>
         <Tools />
       </section>
     );

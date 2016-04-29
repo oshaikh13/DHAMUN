@@ -21,9 +21,9 @@ export default (
 
     <Route path="/home" component={HomeApp}>
       <IndexRoute component={Home}/>
-      <Route path="/list" component={List}/>
-      <Route path="/signup" component={SignUp}/>
-      <Route path="/login" component={Login}/>
+      <Route path="/home/list" component={List}/>
+      <Route path="/home/signup" component={SignUp}/>
+      <Route path="/home/login" component={Login}/>
 
     </Route>
 
