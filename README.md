@@ -19,7 +19,7 @@ c) A mobile app (coming soon)
 ```
 
 This is going to be a portal for all MUN'ers at any point in the conference.
-Look at the about repo for all the awesome upcoming features.
+Look at the about repo for all the awesome upcoming features, and for other important things (like contribution guidelines).
 
 ## Installation
 ```
@@ -32,10 +32,6 @@ $ npm start
 ```
 Runs the project in development mode with hot-reloading of `src` folder.
 Open your browser at [http://localhost:3000](http://localhost:3000).
-
-## Contribution
-
-Before push commit make sure that all modules are added in package.json
 
 ### Try
 ```
