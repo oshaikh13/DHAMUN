@@ -25,6 +25,7 @@ module.exports = {
         NODE_ENV: '"development"',
       },
       __DEVELOPMENT__: true,
+      'SERVER_URL': '"http://localhost:8000"'
     }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.OccurenceOrderPlugin(),

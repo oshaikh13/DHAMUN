@@ -22,7 +22,7 @@ export class DashHome extends Component {
     return (
       <section>
         <DocumentMeta {...metaData} />
-        <TopImage header={"Hi " + this.props.userName} subtitle="Welcome to your Dashboard"/>
+        <TopImage imgType="generalassembly" header={"Hi " + this.props.userName} subtitle="Welcome to your Dashboard"/>
         <Tools />
       </section>
     );
