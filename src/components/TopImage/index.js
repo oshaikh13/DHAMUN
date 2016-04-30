@@ -5,7 +5,11 @@ import LoadingOrderAnimation from 'react-loading-order-with-animation';
 import { setParallax } from '../../utils/parallax';
 
 /* component styles */
-import { styles } from './styles.scss';
+// Both these styles are the same, except for the image. 
+// TODO: Find a better way to do this.
+import { styles as outsideStyles } from './outsideStyles.scss';
+import { styles as insideStyles } from './insideStyles.scss';
+
 
 export class TopImage extends Component {
 
@@ -26,6 +30,13 @@ export class TopImage extends Component {
   };
 
   render() {
+    var styles;
+    if (this.props.imgType === "outsideun") {
+      styles = outsideStyles;
+    } else if (this.props.imgType === "generalassembly") {
+      styles = insideStyles;
+    }
+
     return (
       <section className={`${styles}`} ref="parallax">
         <div className="container">
