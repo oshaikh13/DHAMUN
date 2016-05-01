@@ -1,26 +1,6 @@
 import request from "superagent";
 import { hashHistory } from 'react-router'
 
-export function signUp (userData) {
-  return function (dispatch) {
-    dispatch(authRequest());
-
-    // Implement form checking here...
-    request
-      .post(SERVER_URL + '/api/users/signup')
-      .send(userData)
-      .end((err, res) => {
-        console.log(res);
-        if (err || !res.ok) {
-          dispatch(authFailure(res.status, res.statusText));
-        } else {
-          dispatch(authSuccess(JSON.parse(res.text).token));
-        }
-      });
-
-  }
-}
-
 export function authRequest () {
   return {
     type: "LOGIN_USER_REQUEST"
