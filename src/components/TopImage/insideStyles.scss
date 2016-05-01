@@ -1,0 +1,36 @@
+@import '../../../src/containers/HomeApp/styles/screens';
+
+:local(.styles) {
+  position: relative;
+
+  background: url(files/general-assembly.jpg);
+  background-size: 100% auto;
+
+
+  height: 100%;
+
+  .transparent{
+    background: rgba(51, 51, 51, 0.5);
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    height: 340px;
+  }
+
+  @media (#{ $phone }) {
+    height: 320px;
+  }
+
+  h1.title {
+    color: #FFF;
+    font-size: 60px;
+
+    margin-top: 20%;
+  }
+
+  p {
+    color: #FFF;
+  }
+}

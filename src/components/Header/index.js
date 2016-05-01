@@ -24,7 +24,7 @@ export class Header extends Component {
               <nav>
                 {
                   leftLinks.map((link, indx) => 
-                    <Link to={link[1]} activeClassName="active" key={indx}>
+                    <Link to={link[1]} activeClassName="active" onlyActiveOnIndex={true} key={indx}>
                       {link[0]}
                     </Link>
                   )
@@ -36,7 +36,7 @@ export class Header extends Component {
 
               {!rightLink[2] && <a href={rightLink[1]}>{rightLink[0]}</a>}
               {rightLink[2] &&
-                <Link to={rightLink[1]} activeClassName="active">
+                <Link to={rightLink[1]} activeClassName="active" onlyActiveOnIndex={true} >
                   {rightLink[0]}
                 </Link>        
               }

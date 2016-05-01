@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 /* global styles for app */
-import './styles/dashboardapp.scss';
+import '../HomeApp/styles/homeapp.scss';
 
 /* application components */
 import { Header } from 'components/Header';

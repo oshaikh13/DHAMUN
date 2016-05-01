@@ -23,6 +23,7 @@ module.exports = {
         NODE_ENV: '"production"',
       },
       __DEVELOPMENT__: false,
+      'SERVER_URL': '"https://dhamun.herokuapp.com"'
     }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.DedupePlugin(),
