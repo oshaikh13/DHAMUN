@@ -16,7 +16,7 @@ describe('Auth reducer:', () => {
     ).toEqual(initialState);
   });
 
-  it('should handle a login user request' () => {
+  it('should handle a login user request', () => {
 
   });
 
