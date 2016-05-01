@@ -70,20 +70,13 @@ describe('Auth reducer:', () => {
   });
 
   it('should handle logging a user out', () => {
-    const initialState = {
-      token: null,
-      userName: null,
-      isAuthenticated: false,
-      statusText: null
-    };
-
-
     const stateAfter = {
         'isAuthenticated': false,
+        'isAuthenticating': false,
         'token': null,
         'userName': null,
         'statusText': 'You have been successfully logged out.'
-    };
+    }
 
     expect(
       auth(initialState, {
