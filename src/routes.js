@@ -9,7 +9,6 @@ import { DashboardApp } from 'containers/DashboardApp';
 import { Home } from 'containers/Home';
 import { List } from 'containers/List';
 import { Login } from 'containers/Login';
-import { SignUp } from 'containers/SignUp';
 import { Profile } from 'containers/Profile';
 import { Vote } from 'containers/Vote';
 import { Resolutions } from 'containers/Resolutions';
@@ -27,7 +26,6 @@ export default (
     <Route path="/home" component={HomeApp}>
       <IndexRoute component={Home}/>
       <Route path="/home/list" component={List}/>
-      <Route path="/home/signup" component={SignUp}/>
       <Route path="/home/login" component={Login}/>
 
     </Route>

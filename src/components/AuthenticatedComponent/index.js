@@ -38,7 +38,11 @@ export function requireAuthentication(Component) {
 
   const mapStateToProps = (state) => ({
     token: state.auth.token,
-    userName: state.auth.userName,
+    firstName: state.auth.firstName,
+    lastName: state.auth.lastName,
+    committee: state.auth.committee,
+    userLevel: state.auth.userLevel,
+    school: state.auth.school,
     isAuthenticated: state.auth.isAuthenticated,
     isAuthenticating: state.auth.isAuthenticating
   });

@@ -29,11 +29,16 @@ export function auth(state = initialState, action) {
       });
 
     case 'LOGIN_USER_SUCCESS' : 
+      const usrObject = jwtDecode(action.token);
       return Object.assign({}, state, {
         'isAuthenticating': false,
         'isAuthenticated': true,
         'token': action.token,
-        'userName': jwtDecode(action.token).username,
+        'firstName': usrObject.firstName,
+        'lastName': usrObject.lastName,
+        'committee': usrObject.committee,
+        'userLevel': usrObject.userLevel,
+        'school': usrObject.school,
         'statusText': 'You have been successfully logged in.'
       });
 

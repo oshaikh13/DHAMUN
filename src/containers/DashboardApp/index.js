@@ -27,7 +27,12 @@ export class DashboardApp extends Component {
           ]} 
           rightLink={["Log out", "/dashboard/logout", false]} 
         />
-        { this.props.children && React.cloneElement(this.props.children, { userName: this.props.userName }) }
+        { this.props.children && React.cloneElement(this.props.children, 
+          { 
+            firstName: this.props.firstName, 
+            lastName: this.props.lastName 
+          }) 
+        }
         <Footer text="This is DHAMUN Portal" />
       </section>
     );
