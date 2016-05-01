@@ -1,6 +1,8 @@
 import request from "superagent";
 import { hashHistory } from 'react-router'
 
+//Test
+
 const SERVER_URL = 'http://localhost:8000'
 
 export function signUp (userData) {
