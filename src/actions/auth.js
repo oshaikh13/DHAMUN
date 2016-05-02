@@ -22,11 +22,16 @@ export function authSuccess (token) {
   }
 }
 
+export function logOut () {
+  hashHistory.push('/home');
+  return {
+    type: "LOGOUT_USER"
+  }
+}
+
 export function signIn (userData) {
   return function (dispatch) {
     dispatch(authRequest());
-    console.log("Signing In!")
-    console.log(userData);
 
     request
       .post(SERVER_URL + '/api/users/signin')
@@ -45,8 +50,6 @@ export function signIn (userData) {
 export function signUp (userData) {
   return function (dispatch) {
     dispatch(authRequest());
-    console.log("Signing Up!")
-    console.log(userData);
 
     request
       .post(SERVER_URL + '/api/users/signup')
