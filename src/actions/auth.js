@@ -25,8 +25,8 @@ export function authSuccess (token) {
 export function signIn (userData) {
   return function (dispatch) {
     dispatch(authRequest());
-
-    // Implement form checking here...
+    console.log("Signing In!")
+    console.log(userData);
 
     request
       .post(SERVER_URL + '/api/users/signin')
@@ -39,5 +39,24 @@ export function signIn (userData) {
         }
       });
 
+  }
+}
+
+export function signUp (userData) {
+  return function (dispatch) {
+    dispatch(authRequest());
+    console.log("Signing Up!")
+    console.log(userData);
+
+    request
+      .post(SERVER_URL + '/api/users/signup')
+      .send(userData)
+      .end((err, res) => {
+        if (err || !res.ok) {
+          dispatch(authFailure(res.status, res.statusText));
+        } else {
+          dispatch(authSuccess(JSON.parse(res.text).token));
+        }
+      });
   }
 }
