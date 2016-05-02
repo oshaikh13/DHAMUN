@@ -25,7 +25,7 @@ export class DashboardApp extends Component {
             ["Vote", "/dashboard/vote"],
             ["Profile", "/dashboard/profile"]
           ]} 
-          rightLink={["Log out", "/dashboard/logout", false]} 
+          rightLink={["Log out", "/dashboard/logout", true]} 
         />
         { this.props.children && React.cloneElement(this.props.children, 
           { 

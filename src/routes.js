@@ -9,6 +9,8 @@ import { DashboardApp } from 'containers/DashboardApp';
 import { Home } from 'containers/Home';
 import { List } from 'containers/List';
 import { Login } from 'containers/Login';
+import { Logout } from 'containers/Logout';
+
 import { SignUp } from 'containers/SignUp';
 import { Profile } from 'containers/Profile';
 import { Vote } from 'containers/Vote';
@@ -38,7 +40,7 @@ export default (
       <Route path="/dashboard/profile" component={Profile}/>
       <Route path="/dashboard/vote" component={Vote}/>
       <Route path="/dashboard/resolutions" component={Resolutions}/>
-
+      <Route path="/dashboard/logout" component={Logout}/>
     </Route>
 
     <Route status={404} path="*" component={HomeApp} />
