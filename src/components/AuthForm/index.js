@@ -23,24 +23,46 @@ export class AuthForm extends Component {
   }
 
   onSubmit = (event) => {
-    if (this.props.fields.DHAMUNCode.value) {
-      /* add item*/
+    event.preventDefault();
 
-      const usr = {
-        hashCode: this.props.fields.DHAMUNCode.value
+    const hasUsernameAndPassword = this.props.fields.username.value && this.props.fields.password.value; 
+    
+    if (this.props.isLogin) {
+
+      if (hasUsernameAndPassword) {
+        /* add item*/
+
+        const usr = {
+          username: this.props.fields.username.value,
+          password: this.props.fields.password.value
+        }
+
+        this.props.signIn(usr);
+
+        /* reset form */
+        this.props.dispatch(reset('authForm'));
+      } else {
+        // Dispatch error.
       }
 
-      this.props.signIn(usr);
+    } else {
+      if (hasUsernameAndPassword && this.props.fields.DHAMUNCode.value) {
+        const usr = {
+          hashCode: this.props.fields.DHAMUNCode.value,
+          username: this.props.fields.username.value,
+          password: this.props.fields.password.value
+        }
 
-      /* reset form */
-      this.props.dispatch(reset('authForm'));
+        this.props.signUp(usr);
+
+      }
     }
-    event.preventDefault();
+
   };
 
   render() {
     const {
-      fields: { DHAMUNCode },
+      fields: { DHAMUNCode, username, password },
     } = this.props;
 
     if (this.props.isAuthenticated) {
@@ -52,17 +74,25 @@ export class AuthForm extends Component {
 
     return (
       <form className={styles} onSubmit={this.onAdd}>
+
         <div className="form-group">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="DHAMUN Code"
-            {...DHAMUNCode}
-          />
+          <input type="text" className="form-control" placeholder="Username" {...username}/>
         </div>
+
+        <div className="form-group">
+          <input type="password" className="form-control" placeholder="Password" {...password}/>
+        </div>
+        
+        { 
+          !this.props.isLogin && 
+          <div className="form-group">
+            <input type="text" className="form-control" placeholder="DHAMUN Code" {...DHAMUNCode}/>
+          </div>
+        }
+
         <div className="form-group">
           <button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} >
-            Login
+            {this.props.isLogin ? "Login" : "Sign Up"}
           </button>
         </div>
       </form>
@@ -72,7 +102,7 @@ export class AuthForm extends Component {
 
 AuthForm = reduxForm({
   form: 'authForm',
-  fields: ['DHAMUNCode'],
+  fields: ['DHAMUNCode', 'username', 'password'],
   destroyOnUnmount: false,
 })(AuthForm);
 
