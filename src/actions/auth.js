@@ -7,11 +7,11 @@ export function authRequest () {
   }
 }
 
-export function authFailure (statusCode, statusText) {
+export function authFailure (status, statusText) {
   return {
     type: "LOGIN_USER_FAILURE",
     statusText,
-    statusCode
+    status
   }
 }
 
@@ -38,7 +38,7 @@ export function signIn (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
-          dispatch(authFailure(res.status, res.statusText));
+          dispatch(authFailure(res.status, res.body.error, true));
         } else {
           dispatch(authSuccess(JSON.parse(res.text).token));
         }
@@ -56,7 +56,7 @@ export function signUp (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
-          dispatch(authFailure(res.status, res.statusText));
+          dispatch(authFailure(res.status, res.body.error));
         } else {
           dispatch(authSuccess(JSON.parse(res.text).token));
         }

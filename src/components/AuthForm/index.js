@@ -38,11 +38,6 @@ export class AuthForm extends Component {
         }
 
         this.props.signIn(usr);
-
-        /* reset form */
-        this.props.dispatch(reset('authForm'));
-      } else {
-        // Dispatch error.
       }
 
     } else {
@@ -57,6 +52,8 @@ export class AuthForm extends Component {
 
       }
     }
+
+    this.props.dispatch(reset('authForm'));
 
   };
 
@@ -73,7 +70,14 @@ export class AuthForm extends Component {
 
 
     return (
+
       <form className={styles} onSubmit={this.onAdd}>
+        {
+          this.props.statusText &&         
+          <div className="form-group">
+            <p className="error-text">{this.props.statusText}</p>
+          </div>
+        }
 
         <div className="form-group">
           <input type="text" className="form-control" placeholder="Username" {...username}/>
