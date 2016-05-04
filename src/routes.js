@@ -30,7 +30,7 @@ export default (
       <IndexRoute component={Home}/>
       <Route path="/home/list" component={List}/>
       <Route path="/home/login" component={Login}/>
-      <Route path="/home/signup" component={SignUp}/>
+      <Route path="/home/signup/:hash/" component={SignUp}/>
 
 
     </Route>

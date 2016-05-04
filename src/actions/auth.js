@@ -7,7 +7,7 @@ export function authRequest () {
   }
 }
 
-export function authFailure (status, statusText) {
+export function loginFailure (status, statusText) {
   return {
     type: "LOGIN_USER_FAILURE",
     statusText,
@@ -15,10 +15,24 @@ export function authFailure (status, statusText) {
   }
 }
 
-export function authSuccess (token) {
+export function loginSuccess (token) {
   return {
     type: "LOGIN_USER_SUCCESS",
     token
+  }
+}
+
+export function signUpFailure (status, statusText) {
+  return {
+    type: "SIGNUP_USER_FAILURE",
+    statusText,
+    status
+  }
+}
+
+export function signUpSuccess () {
+  return {
+    type: "SIGNUP_USER_SUCCESS"
   }
 }
 
@@ -38,9 +52,9 @@ export function signIn (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
-          dispatch(authFailure(res.status, res.body.error, true));
+          dispatch(loginFailure(res.status, res.body.error, true));
         } else {
-          dispatch(authSuccess(JSON.parse(res.text).token));
+          dispatch(loginSuccess(res.body.token));
         }
       });
 
@@ -56,9 +70,9 @@ export function signUp (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
-          dispatch(authFailure(res.status, res.body.error));
+          dispatch(signUpFailure(res.status, res.body.error));
         } else {
-          dispatch(authSuccess(JSON.parse(res.text).token));
+          dispatch(signUpSuccess(JSON.parse(res.text).token));
         }
       });
   }
