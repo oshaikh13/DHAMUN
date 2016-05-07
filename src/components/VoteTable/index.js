@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { socket } from '../../utils/socket.js';
+import { Link } from 'react-router';
 
 export class VoteTable extends Component {
 
@@ -37,7 +38,11 @@ export class VoteTable extends Component {
               <tr key={index}>
                 <td>{item}</td>
                 <td>{votes[item].creator}</td>
-                <td><button type="button" className="btn btn-primary" disabled={votes[item].closed}>Vote</button></td>
+                <td><button type="button" className="btn btn-primary" disabled={votes[item].closed}>
+                  <Link to={'/dashboard/delegate/vote/' + encodeURIComponent(item)} style={{color: "white"}}>
+                    Vote
+                  </Link>
+                </button></td>
               </tr>
             )
           }

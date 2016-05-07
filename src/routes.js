@@ -38,6 +38,8 @@ export default (
         <IndexRoute component={DelegateDashboardHome}/>
         <Route path="/dashboard/delegate/profile" component={Profile}/>
         <Route path="/dashboard/delegate/vote" component={Vote}/>
+
+
         <Route path="/dashboard/delegate/resolutions" component={Resolutions}/>
       </Route>
       
