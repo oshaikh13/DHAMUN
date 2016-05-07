@@ -1,5 +1,6 @@
-import request from "superagent";
+import request from 'superagent';
 import { hashHistory } from 'react-router'
+import { socket } from '../../src/utils/socket.js';
 
 export function authRequest () {
   return {
@@ -16,6 +17,7 @@ export function loginFailure (status, statusText) {
 }
 
 export function loginSuccess (token) {
+  socket.emit("subscribe", {token: token});
   return {
     type: "LOGIN_USER_SUCCESS",
     token
@@ -36,7 +38,8 @@ export function signUpSuccess () {
   }
 }
 
-export function logOut () {
+export function logOut (token) {
+  socket.emit('logout', {token: token});
   hashHistory.push('/home');
   return {
     type: "LOGOUT_USER"

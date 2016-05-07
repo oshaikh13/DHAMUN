@@ -43,9 +43,11 @@ export class LoginForm extends Component {
     } = this.props;
 
     if (this.props.isAuthenticated) {
-      return (
-        <h3>You're logged in. Go to the <Link to='/dashboard'>dashboard</Link></h3>
-      );
+      if (this.props.userLevel === "Delegate") {       
+        return (
+          <h3>You're logged in. Go to the <Link to='/dashboard/delegate'>dashboard</Link></h3>
+        );
+      }
     }
 
 

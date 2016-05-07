@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-export function requireAuthentication(Component) {
+export function requireAuthentication(Component, userLevel) {
 
   class AuthenticatedComponent extends Component {
 
@@ -14,7 +14,7 @@ export function requireAuthentication(Component) {
     }
 
     checkAuth() {
-      if (!this.props.isAuthenticated) {
+      if (!this.props.isAuthenticated || this.props.userLevel !== userLevel) {
         this.context.router.push(`/home/login`);
       }
     }

@@ -7,7 +7,7 @@ import '../HomeApp/styles/homeapp.scss';
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
 
-export class DashboardApp extends Component {
+export class DelegateDashboardApp extends Component {
   static propTypes = {
     children: React.PropTypes.any,
   };
@@ -19,11 +19,11 @@ export class DashboardApp extends Component {
     return (
       <section>
         <Header 
-          titleData={["Dashboard", "/dashboard"]}
+          titleData={["Dashboard", "/dashboard/delegate"]}
           leftLinks={[
-            ["Resolutions", "/dashboard/resolutions"], 
-            ["Vote", "/dashboard/vote"],
-            ["Profile", "/dashboard/profile"]
+            ["Resolutions", "/dashboard/delegate/resolutions"], 
+            ["Vote", "/dashboard/delegate/vote"],
+            ["Profile", "/dashboard/delegate/profile"]
           ]} 
           rightLink={["Log out", "/dashboard/logout", true]} 
         />
