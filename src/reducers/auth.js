@@ -1,6 +1,10 @@
 import jwtDecode from 'jwt-decode';
 
+import {REHYDRATE} from 'redux-persist/constants'
+
 import { hashHistory } from 'react-router'
+
+import { socket } from '../utils/socket';
 
 const initialState = {
   token: null,
@@ -9,12 +13,25 @@ const initialState = {
   isAuthenticating: false,
   loginStatusText: null,
   signUpStatusText: null,
-  hasSignedUp: false
+  hasSignedUp: false,
+  committee: null,
+  firstName: null,
+  lastName: null,
+  school: null,
+  userLevel: null
 };
 
 export function auth(state = initialState, action) {
-  let usrObject;
+
   switch (action.type) {
+    case REHYDRATE: 
+      const incoming = action.payload.auth;
+      if (incoming && incoming.token) {
+        socket.emit("subscribe", {token: incoming.token})
+        return {...state, ...incoming}
+      } 
+      return state;
+
     case 'LOGIN_USER_REQUEST': 
       // TODO: Use immutable.js
       return Object.assign({}, state, {
@@ -26,7 +43,6 @@ export function auth(state = initialState, action) {
         'isAuthenticating': false,
         'isAuthenticated': false,
         'token': null,
-        'userName': null,
         'loginStatusText': `Authentication Error: ${action.status} ${action.statusText}`
       });
 
@@ -64,13 +80,7 @@ export function auth(state = initialState, action) {
       });
 
     case 'LOGOUT_USER' : 
-      return Object.assign({}, state, {
-        'isAuthenticated': false,
-        'token': null,
-        'userName': null,
-        'loginStatusText': null,
-        'signUpStatusText': null
-      });
+      return Object.assign({}, state, initialState);
 
     default:
       return state;

@@ -2,6 +2,7 @@ import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
+import {persistStore, autoRehydrate} from 'redux-persist'
 
 export default function configureStore(initialState) {
   const logger = createLogger({
@@ -12,7 +13,8 @@ export default function configureStore(initialState) {
 
   const middleware = applyMiddleware(thunkMiddleware, logger);
 
-  const store = middleware(createStore)(rootReducer, initialState);
+  const store = middleware(createStore)(rootReducer, initialState, autoRehydrate());
+  persistStore(store);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

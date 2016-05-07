@@ -4,7 +4,7 @@ import { Route, IndexRoute, IndexRedirect } from 'react-router';
 /* containers */
 import { App } from 'containers/App';
 import { HomeApp } from 'containers/HomeApp';
-import { DashboardApp } from 'containers/DashboardApp';
+import { DelegateDashboardApp } from 'containers/DelegateDashboardApp';
 
 import { Home } from 'containers/Home';
 import { List } from 'containers/List';
@@ -16,10 +16,7 @@ import { Profile } from 'containers/Profile';
 import { Vote } from 'containers/Vote';
 import { Resolutions } from 'containers/Resolutions';
 
-
-
-import { DashHome } from 'containers/DashHome';
-
+import { DelegateDashboardHome } from 'containers/DelegateDashboardHome';
 import { requireAuthentication } from 'components/AuthenticatedComponent';
 
 export default (
@@ -35,13 +32,19 @@ export default (
 
     </Route>
 
-    <Route path="/dashboard" component={requireAuthentication(DashboardApp)} >
-      <IndexRoute component={DashHome}/>
-      <Route path="/dashboard/profile" component={Profile}/>
-      <Route path="/dashboard/vote" component={Vote}/>
-      <Route path="/dashboard/resolutions" component={Resolutions}/>
+    <Route path="/dashboard">
+      <IndexRedirect to="/home"/>
+      <Route path="/dashboard/delegate" component={requireAuthentication(DelegateDashboardApp, "Delegate")}>
+        <IndexRoute component={DelegateDashboardHome}/>
+        <Route path="/dashboard/delegate/profile" component={Profile}/>
+        <Route path="/dashboard/delegate/vote" component={Vote}/>
+        <Route path="/dashboard/delegate/resolutions" component={Resolutions}/>
+      </Route>
+      
       <Route path="/dashboard/logout" component={Logout}/>
+
     </Route>
+
 
     <Route status={404} path="*" component={HomeApp} />
   </Route>

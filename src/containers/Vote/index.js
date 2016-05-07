@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-/* components */
-import { TopImage } from 'components/TopImage';
-import { Tools } from 'components/Tools';
+import { VoteTable } from 'components/VoteTable';
+import * as actionCreators from 'actions/votes';
 
 const metaData = {
   title: 'DHAMUN',
@@ -17,7 +18,15 @@ const metaData = {
   },
 };
 
+@connect(
+  (state) => ({
+    token: state.auth.token,
+    votes: state.votes.items
+  }),
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)
 export class Vote extends Component {
+
   render() {
     return (
       <section>
@@ -31,9 +40,7 @@ export class Vote extends Component {
               </h1>
             </div>
 
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-            </div>
+            <VoteTable {...this.props} />
           </div>
         </div>
       </section>

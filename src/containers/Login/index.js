@@ -26,7 +26,9 @@ const metaData = {
   (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     isAuthenticating: state.auth.isAuthenticating,
-    loginStatusText: state.auth.loginStatusText
+    loginStatusText: state.auth.loginStatusText,
+    userLevel: state.auth.userLevel,
+    token: state.auth.token
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )

@@ -17,7 +17,9 @@ const metaData = {
 };
 
 @connect(
-  (state) => ({}),
+  (state) => ({
+    token: state.auth.token
+  }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
 

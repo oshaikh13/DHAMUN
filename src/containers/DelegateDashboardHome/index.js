@@ -17,7 +17,7 @@ const metaData = {
   },
 };
 
-export class DashHome extends Component {
+export class DelegateDashboardHome extends Component {
   render() {
     return (
       <section>
