@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from 'actions/auth';
+
+import { VotePicker } from 'components/VotePicker';
+import { VoteChart } from 'components/VoteChart';
+
+import * as actionCreators from 'actions/votes';
 
 const metaData = {
-  title: 'Logging out',
+  title: 'DHAMUN',
   description: 'Get started here',
   canonical: 'http://example.com/path/to/page',
   meta: {
@@ -18,37 +22,43 @@ const metaData = {
 
 @connect(
   (state) => ({
-    token: state.auth.token
+    token: state.auth.token,
+    votes: state.votes.items,
+    country: state.auth.country
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
+export class VoteAction extends Component {
 
-export class Logout extends Component {
-
-  constructor (props) {
-    super(props);
-  }
-
-  render () {
-    this.props.logOut(this.props.token);
+  render() {
     return (
       <section>
-        <DocumentMeta {...metaData} />
         <div className="container">
 
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
               <h1>
-                Logging Out
+                Vote for {this.props.params.name}
               </h1>
+              <VotePicker {...this.props} />
             </div>
+
+          </div>
+          <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
+                            col-md-offset-3 col-lg-offset-3">
+              <h1>
+                Stats for {this.props.params.name}
+              </h1>
+
+              <VoteChart {...this.props} />
+
+            </div>
+
           </div>
         </div>
       </section>
-    )
+    );
   }
-
 }
-
-

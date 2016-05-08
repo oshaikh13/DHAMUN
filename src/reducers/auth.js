@@ -18,7 +18,9 @@ const initialState = {
   firstName: null,
   lastName: null,
   school: null,
-  userLevel: null
+  userLevel: null,
+  country: null,
+  partner: null
 };
 
 export function auth(state = initialState, action) {
@@ -58,6 +60,8 @@ export function auth(state = initialState, action) {
         'userLevel': usrObject.userLevel,
         'school': usrObject.school,
         'email': usrObject.email,
+        'country': usrObject.country,
+        'partner': usrObject.partner,
         'loginStatusText': 'You have been successfully logged in.'
       });
 
