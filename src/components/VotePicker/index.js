@@ -18,7 +18,7 @@ export class VotePicker extends Component {
     }
   }
 
-  selector (name) {
+  selector (name, change) {
 
     const title = decodeURIComponent(this.props.params.name);
 
@@ -30,7 +30,9 @@ export class VotePicker extends Component {
       this.setState({pass: false, abstain: false, reject: true});
     }
 
-    socket.emit("vote add", {token: this.props.token, type: name, title: title})
+    if (change) {
+      socket.emit("vote add", {token: this.props.token, type: name, title: title});
+    }
 
   }
 
@@ -50,9 +52,9 @@ export class VotePicker extends Component {
     const { votes } = this.props;
     return (
       <div className="btn-group" role="group">
-        <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('pass')} disabled={this.state.pass}>Pass</button>
-        <button type="button" className="btn btn-default btn-lg" onClick={() => this.selector('abstain')} disabled={this.state.abstain}>Abstain</button>
-        <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('reject')} disabled={this.state.reject}>Reject</button>
+        <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('pass', true)} disabled={this.state.pass}>Pass</button>
+        <button type="button" className="btn btn-default btn-lg" onClick={() => this.selector('abstain', true)} disabled={this.state.abstain}>Abstain</button>
+        <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('reject'), true} disabled={this.state.reject}>Reject</button>
       </div>
     );
   }
