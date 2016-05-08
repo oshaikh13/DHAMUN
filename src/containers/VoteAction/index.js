@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { VotePicker } from 'components/VotePicker';
+import { VoteChart } from 'components/VoteChart';
+
 import * as actionCreators from 'actions/votes';
 
 const metaData = {
@@ -21,7 +23,8 @@ const metaData = {
 @connect(
   (state) => ({
     token: state.auth.token,
-    votes: state.votes.items
+    votes: state.votes.items,
+    country: state.auth.country
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
@@ -48,6 +51,8 @@ export class VoteAction extends Component {
               <h1>
                 Stats for {this.props.params.name}
               </h1>
+
+              <VoteChart {...this.props} />
 
             </div>
 

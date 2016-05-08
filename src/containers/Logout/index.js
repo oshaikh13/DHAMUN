@@ -30,7 +30,7 @@ export class Logout extends Component {
   }
 
   render () {
-    this.props.logOut();
+    this.props.logOut(this.props.token);
     return (
       <section>
         <DocumentMeta {...metaData} />
