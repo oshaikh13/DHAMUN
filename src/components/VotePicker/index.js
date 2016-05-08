@@ -54,7 +54,7 @@ export class VotePicker extends Component {
       <div className="btn-group" role="group">
         <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('pass', true)} disabled={this.state.pass}>Pass</button>
         <button type="button" className="btn btn-default btn-lg" onClick={() => this.selector('abstain', true)} disabled={this.state.abstain}>Abstain</button>
-        <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('reject'), true} disabled={this.state.reject}>Reject</button>
+        <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('reject', true)} disabled={this.state.reject}>Reject</button>
       </div>
     );
   }
