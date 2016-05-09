@@ -3,9 +3,8 @@
 :local(.styles) {
   position: relative;
 
-  background: url(files/general-assembly.jpg);
-  background-size: 100% auto;
-
+  background: url(files/general-assembly.jpg) no-repeat fixed center;
+  background-size: 100% auto cover;
 
   height: 100%;
 

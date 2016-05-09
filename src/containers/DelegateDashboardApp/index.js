@@ -21,9 +21,9 @@ export class DelegateDashboardApp extends Component {
         <Header 
           titleData={["Dashboard", "/dashboard/delegate"]}
           leftLinks={[
+            ["Home", "/dashboard/delegate/"], 
             ["Resolutions", "/dashboard/delegate/resolutions"], 
-            ["Vote", "/dashboard/delegate/vote"],
-            ["Profile", "/dashboard/delegate/profile"]
+            ["Vote", "/dashboard/delegate/vote"]
           ]} 
           rightLink={["Log out", "/dashboard/logout", true]} 
         />
