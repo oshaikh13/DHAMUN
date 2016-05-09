@@ -38,11 +38,7 @@ export class VoteTable extends Component {
               <tr key={index}>
                 <td>{item}</td>
                 <td>{votes[item].creator}</td>
-                <td><button type="button" className="btn btn-primary" disabled={votes[item].closed}>
-                  <Link to={'/dashboard/delegate/vote/' + encodeURIComponent(item)} style={{color: "white"}}>
-                    Vote
-                  </Link>
-                </button></td>
+                <td><a type="button" className="btn btn-primary" href={'/#/dashboard/delegate/vote/' + encodeURIComponent(item)} disabled={votes[item].closed}>Vote</a></td>
               </tr>
             )
           }

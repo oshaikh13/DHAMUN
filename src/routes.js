@@ -12,7 +12,6 @@ import { Login } from 'containers/Login';
 import { Logout } from 'containers/Logout';
 
 import { SignUp } from 'containers/SignUp';
-import { Profile } from 'containers/Profile';
 import { Vote } from 'containers/Vote';
 import { VoteAction } from 'containers/VoteAction';
 
@@ -38,7 +37,6 @@ export default (
       <IndexRedirect to="/home"/>
       <Route path="/dashboard/delegate" component={requireAuthentication(DelegateDashboardApp, "Delegate")}>
         <IndexRoute component={DelegateDashboardHome}/>
-        <Route path="/dashboard/delegate/profile" component={Profile}/>
         <Route path="/dashboard/delegate/vote" component={Vote}/>
         <Route path="/dashboard/delegate/vote/:name" component={VoteAction}/>
 
