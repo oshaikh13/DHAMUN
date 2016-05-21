@@ -3,6 +3,7 @@ import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { Socket } from 'components/Socket';
 import { VotePicker } from 'components/VotePicker';
 import { VoteChart } from 'components/VoteChart';
 
@@ -33,6 +34,7 @@ export class VoteAction extends Component {
   render() {
     return (
       <section>
+        <Socket {...this.props} />
         <div className="container">
 
           <div className="row">

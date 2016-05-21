@@ -38,10 +38,11 @@ export class VoteChart extends Component {
         }
     }
 
+    const closed = votes[resName].closed;
 
-
-    return (
+    if (closed) return (
       <PieChart height="300" width="500" data={moreData}/>
     );
+    return (<h3>Wait till the session is closed to see stats</h3>)
   }
 }

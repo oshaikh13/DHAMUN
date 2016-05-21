@@ -3,7 +3,9 @@ import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { Socket } from 'components/Socket';
 import { VoteTable } from 'components/VoteTable';
+
 import * as actionCreators from 'actions/votes';
 
 const metaData = {
@@ -30,6 +32,7 @@ export class Vote extends Component {
   render() {
     return (
       <section>
+        <Socket {...this.props} />
         <div className="container">
 
           <div className="row">
