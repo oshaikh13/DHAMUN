@@ -9,13 +9,18 @@ export class VotePicker extends Component {
     this.state = {pass: false, abstain: false, reject: false};
   }
 
-  updateVoteStore (data) {
-    this.props.updateVotes(data, this.props.votes);
-    const name = decodeURIComponent(this.props.params.name);
+  // ComponentPassedProps or something like that...
+  componentWillReceiveProps (newProps) {
+    // PassProps, data is a field in props. 
+
+    const name = decodeURIComponent(newProps.params.name);
+
+    const data = newProps.votes;
 
     if (data[name] && data[name].votes[this.props.country] && !this.state[data[name].votes[this.props.country].type]) {
       this.selector(data[name].votes[this.props.country].type);
     }
+
   }
 
   selector (name, change) {
@@ -36,26 +41,22 @@ export class VotePicker extends Component {
 
   }
 
-  componentDidMount () {
-    socket.on("vote update", function (data) {
-      this.updateVoteStore.call(this, data);
-    }.bind(this));
-
-    socket.emit("vote get", {token: this.props.token})
-  }
-
-  componentWillUnmount () {
-    socket.removeAllListeners("vote update");
-  }
-
   render() {
     const { votes } = this.props;
-    return (
+    const closed = votes[decodeURIComponent(this.props.params.name)].closed;
+
+    if (!closed) return (
       <div className="btn-group" role="group">
         <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('pass', true)} disabled={this.state.pass}>Pass</button>
         <button type="button" className="btn btn-default btn-lg" onClick={() => this.selector('abstain', true)} disabled={this.state.abstain}>Abstain</button>
         <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('reject', true)} disabled={this.state.reject}>Reject</button>
-      </div>
+      </div> 
+    );
+
+    return (
+      <h3>Voting session is closed</h3>
     );
   }
 }
+
+
