@@ -6,9 +6,6 @@ import { Link } from 'react-router';
 /* component styles */
 import { styles } from './styles.scss';
 
-// Do not render this if logged in. 
-// Instead show a link to the dashboard (yay)
-
 export class LoginForm extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
@@ -43,10 +40,18 @@ export class LoginForm extends Component {
     } = this.props;
 
     if (this.props.isAuthenticated) {
-      if (this.props.userLevel === "Delegate") {       
+      if (this.props.userLevel === "Delegate") {   
+
         return (
           <h3>You're logged in. Go to the <Link to='/dashboard/delegate'>dashboard</Link></h3>
         );
+
+      } else if (this.props.userLevel === "Chair") {
+
+        return (
+          <h3>You're logged in. Go to the <Link to='/dashboard/chair'>dashboard</Link></h3>
+        );
+
       }
     }
 
