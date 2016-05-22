@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-import {REHYDRATE} from 'redux-persist/constants'
+import { REHYDRATE } from 'redux-persist/constants'
 
 import { hashHistory } from 'react-router'
 

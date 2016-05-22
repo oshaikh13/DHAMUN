@@ -5,19 +5,22 @@ import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import { App } from 'containers/App';
 import { HomeApp } from 'containers/HomeApp';
 import { DelegateDashboardApp } from 'containers/DelegateDashboardApp';
+import { ChairDashboardApp } from 'containers/ChairDashboardApp';
 
 import { Home } from 'containers/Home';
 import { List } from 'containers/List';
 import { Login } from 'containers/Login';
 import { Logout } from 'containers/Logout';
-
 import { SignUp } from 'containers/SignUp';
 import { Vote } from 'containers/Vote';
-import { VoteAction } from 'containers/VoteAction';
+import { ChairVote } from 'containers/ChairVote';
 
+import { VoteAction } from 'containers/VoteAction';
 import { Resolutions } from 'containers/Resolutions';
 
 import { DelegateDashboardHome } from 'containers/DelegateDashboardHome';
+import { ChairDashboardHome } from 'containers/ChairDashboardHome';
+
 import { requireAuthentication } from 'components/AuthenticatedComponent';
 
 export default (
@@ -43,6 +46,13 @@ export default (
 
 
         <Route path="/dashboard/delegate/resolutions" component={Resolutions}/>
+      </Route>
+
+      <Route path="/dashboard/chair" component={requireAuthentication(ChairDashboardApp, "Chair")}>
+        <IndexRoute component={ChairDashboardHome}/>
+        <Route path="/dashboard/chair/vote" component={ChairVote}/>
+        <Route path="/dashboard/chair/vote/:name" component={VoteAction}/>
+        <Route path="/dashboard/chair/resolutions" component={Resolutions}/>
       </Route>
       
       <Route path="/dashboard/logout" component={Logout}/>

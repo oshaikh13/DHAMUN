@@ -18,7 +18,7 @@ export class HomeApp extends Component {
         <Header 
           titleData={["DHAMUN", "/"]}
           leftLinks={[["Home", "/home/"], ["Log In", "/home/login/"]]} 
-          rightLink={["Dashboard", "/dashboard", true]} 
+          rightLink={["Dashboard", "/home/login/", true]} 
         />
         {this.props.children}
         <Footer text="This is DHAMUN Portal" />
