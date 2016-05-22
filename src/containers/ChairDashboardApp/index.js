@@ -33,7 +33,7 @@ export class ChairDashboardApp extends Component {
             lastName: this.props.lastName 
           }) 
         }
-        <Footer text="This is DHAMUN Portal" />
+        <Footer text="This is DHAMUN Portal." />
       </section>
     );
   }

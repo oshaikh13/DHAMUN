@@ -13,6 +13,8 @@ import { Login } from 'containers/Login';
 import { Logout } from 'containers/Logout';
 import { SignUp } from 'containers/SignUp';
 import { Vote } from 'containers/Vote';
+import { ChairVote } from 'containers/ChairVote';
+
 import { VoteAction } from 'containers/VoteAction';
 import { Resolutions } from 'containers/Resolutions';
 
@@ -48,7 +50,7 @@ export default (
 
       <Route path="/dashboard/chair" component={requireAuthentication(ChairDashboardApp, "Chair")}>
         <IndexRoute component={ChairDashboardHome}/>
-        <Route path="/dashboard/chair/vote" component={Vote}/>
+        <Route path="/dashboard/chair/vote" component={ChairVote}/>
         <Route path="/dashboard/chair/vote/:name" component={VoteAction}/>
         <Route path="/dashboard/chair/resolutions" component={Resolutions}/>
       </Route>

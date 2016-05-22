@@ -23,6 +23,7 @@ const metaData = {
 @connect(
   (state) => ({
     token: state.auth.token,
+    userLevel: state.auth.userLevel,
     votes: state.votes.items
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)

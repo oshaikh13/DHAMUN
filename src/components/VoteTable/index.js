@@ -5,6 +5,7 @@ export class VoteTable extends Component {
 
   render() {
     const { votes } = this.props;
+
     return (
       <table className="table table-hover">
         <thead>
@@ -23,7 +24,7 @@ export class VoteTable extends Component {
                 <td>{item}</td>
                 <td>{votes[item].closed ? "Closed" : "Open"}</td>
                 <td>{votes[item].creator}</td>
-                <td><a type="button" className="btn btn-primary" href={'/#/dashboard/delegate/vote/' + encodeURIComponent(item)}>Vote</a></td>
+                <td><a type="button" className="btn btn-primary" href={'/#/dashboard/' + this.props.userLevel + '/vote/' + encodeURIComponent(item)}>Vote</a></td>
               </tr>
             )
           }

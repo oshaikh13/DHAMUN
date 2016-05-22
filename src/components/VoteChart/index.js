@@ -43,6 +43,17 @@ export class VoteChart extends Component {
     if (closed) return (
       <PieChart height="300" width="500" data={moreData}/>
     );
+
+    if (this.props.userLevel !== "Delegate") return (
+        <div>
+            <h3>Pie Chart</h3>
+            <PieChart height="300" width="500" data={moreData}/>
+            <h3>Polar Chart</h3>
+            
+        </div>
+    );
+    
+
     return (<h3>Wait till the session is closed to see stats</h3>)
   }
 }
