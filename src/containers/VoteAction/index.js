@@ -25,7 +25,8 @@ const metaData = {
   (state) => ({
     token: state.auth.token,
     votes: state.votes.items,
-    country: state.auth.country
+    country: state.auth.country,
+    userLevel: state.auth.userLevel
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
