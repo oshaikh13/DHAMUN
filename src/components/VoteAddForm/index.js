@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { reset } from 'redux-form';
 import { Link } from 'react-router';
-import { Socket } from 'components/Socket';
+import { socket } from 'utils/socket';
 
 
 /* component styles */
@@ -16,8 +16,14 @@ export class VoteAddForm extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    if (this.props.name && this.props.creator) {
-      console.log(name, creator);
+
+    if (this.props.fields.name && this.props.fields.creator) {
+      const {
+        fields: { name, creator },
+      } = this.props;
+      
+      socket.emit("vote create", {token: this.props.token, voteName: name.value, creator: creator.value});
+
     }
   };
 

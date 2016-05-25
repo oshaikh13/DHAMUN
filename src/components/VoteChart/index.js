@@ -97,15 +97,17 @@ export class VoteChart extends Component {
 
     const closed = votes[resName].closed;
 
-    if (this.props.userLevel !== "Delegate") return (
-        <div>
-            <h3>Pie Chart</h3>
-            <BarChart height="300" width="500" data={barData}/>
-            <h3>Radar Chart</h3>
-            <RadarChart height="300" width="500" data={radarData}/>
-            
-        </div>
-    );
+    if (this.props.userLevel !== "Delegate" && radarData.datasets.length) {
+      return (
+            <div>
+                <h3>Pie Chart</h3>
+                <BarChart height="300" width="500" data={barData}/>
+                <h3>Radar Chart</h3>
+                <RadarChart height="300" width="500" data={radarData}/>
+                
+            </div>
+        )  
+    }  else if (this.props.userLevel !== "Delegate") return (<h3>No one has voted yet</h3>);
     
     if (closed) return (
       <BarChart height="300" width="500" data={barData}/>
