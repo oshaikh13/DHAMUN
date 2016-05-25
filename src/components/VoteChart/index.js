@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-var PieChart = require("react-chartjs").Bar;
+
+var BarChart = require("react-chartjs").Bar;
+var RadarChart = require("react-chartjs").Radar;
 
 import { schoolKeyColor } from 'utils/schoolKeyColor.js';
 
@@ -21,12 +23,9 @@ export class VoteChart extends Component {
             datasets: [
                 {
                     label: "Votes",
-                    fillColor: "rgba(255,100,100,.7)",
-                    strokeColor: "rgba(255,220,220,1)",
-                    pointColor: "rgba(255,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    fillColor: schoolKeyColor[1].fillColor,
+                    strokeColor: schoolKeyColor[1].strokeColor,
+                    pointColor: schoolKeyColor[1].pointColor,
                     data: [0, 0, 0]
                 }
             ]
@@ -63,9 +62,6 @@ export class VoteChart extends Component {
                 fillColor: schoolKeyColor[idx].fillColor,
                 strokeColor: schoolKeyColor[idx].strokeColor,
                 pointColor: schoolKeyColor[idx].pointColor,
-                pointStrokeColor: schoolKeyColor[idx].pointStrokeColor,
-                pointHighlightFill: schoolKeyColor[idx].pointHighlightFill,
-                pointHighlightStroke: schoolKeyColor[idx].pointHighlightStroke,
                 data: [0, 0, 0]
             };
 
@@ -88,25 +84,32 @@ export class VoteChart extends Component {
 
     }
 
-    debugger;
 
+    var radarData = {
+        labels: barData.labels,
+        datasets: [
+            ...indivSchoolVotes
+        ]
+    }
+
+    console.log(radarData);
     // Polar chart data setup.
 
     const closed = votes[resName].closed;
 
-    if (closed) return (
-      <PieChart height="300" width="500" data={barData}/>
-    );
-
     if (this.props.userLevel !== "Delegate") return (
         <div>
             <h3>Pie Chart</h3>
-            <PieChart height="300" width="500" data={barData}/>
-            <h3>Polar Chart</h3>
+            <BarChart height="300" width="500" data={barData}/>
+            <h3>Radar Chart</h3>
+            <RadarChart height="300" width="500" data={radarData}/>
             
         </div>
     );
     
+    if (closed) return (
+      <BarChart height="300" width="500" data={barData}/>
+    );
 
     return (<h3>Wait till the session is closed to see stats</h3>)
   }
