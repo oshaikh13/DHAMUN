@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Socket } from 'components/Socket';
+import { VoteAddForm } from 'components/VoteAddForm';
 import { VoteTable } from 'components/VoteTable';
 
 import * as actionCreators from 'actions/votes';
@@ -36,6 +37,7 @@ export class Vote extends Component {
         <Socket {...this.props} />
         <div className="container">
 
+
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
@@ -45,6 +47,9 @@ export class Vote extends Component {
             </div>
 
             <VoteTable {...this.props} />
+            { this.props.userLevel === "Chair" &&
+              <VoteAddForm {...this.props} />
+            } 
           </div>
         </div>
       </section>
