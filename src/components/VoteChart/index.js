@@ -92,7 +92,6 @@ export class VoteChart extends Component {
         ]
     }
 
-    console.log(radarData);
     // Polar chart data setup.
 
     const closed = votes[resName].closed;
