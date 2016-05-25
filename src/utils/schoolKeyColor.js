@@ -2,14 +2,14 @@
 export const schoolKeyColor = {
     //Teal
     0: {
-        fillColor: "rgba(26, 188, 156, 0.1)",
-        strokeColor: "rgb(26, 188, 156)",
+        fillColor: "rgba(231, 76, 60, 0.1)",
+        strokeColor: "rgb(231, 76, 60)",
         pointColor: "rgba(255,220,220,1)",
     },
     //Red
     1: {
-        fillColor: "rgba(231, 76, 60, 0.1)",
-        strokeColor: "rgb(231, 76, 60)",
+        fillColor: "rgba(26, 188, 156, 0.1)",
+        strokeColor: "rgb(26, 188, 156)",
         pointColor: "rgba(255,220,220,1)",
     },
     //Orange

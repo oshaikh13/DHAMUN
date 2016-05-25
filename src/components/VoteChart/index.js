@@ -23,9 +23,9 @@ export class VoteChart extends Component {
             datasets: [
                 {
                     label: "Votes",
-                    fillColor: schoolKeyColor[1].fillColor,
-                    strokeColor: schoolKeyColor[1].strokeColor,
-                    pointColor: schoolKeyColor[1].pointColor,
+                    fillColor: schoolKeyColor[0].fillColor,
+                    strokeColor: schoolKeyColor[0].strokeColor,
+                    pointColor: schoolKeyColor[0].pointColor,
                     data: [0, 0, 0]
                 }
             ]
