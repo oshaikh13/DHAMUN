@@ -99,7 +99,7 @@ export class VoteChart extends Component {
     if (this.props.userLevel !== "Delegate" && radarData.datasets.length) {
       return (
             <div>
-                <h3>Pie Chart</h3>
+                <h3>Bar Chart</h3>
                 <BarChart height="300" width="500" data={barData}/>
                 <h3>Radar Chart</h3>
                 <RadarChart height="300" width="500" data={radarData}/>
