@@ -27,6 +27,7 @@ export class ChairVote extends Component {
   render() {
     return (
       <Vote />
+
     );
   }
 }

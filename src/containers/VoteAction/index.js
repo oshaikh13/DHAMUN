@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Socket } from 'components/Socket';
 import { VotePicker } from 'components/VotePicker';
 import { VoteChart } from 'components/VoteChart';
+import { VoteDisabler } from 'components/VoteDisabler';
 
 import * as actionCreators from 'actions/votes';
 
@@ -59,6 +60,10 @@ export class VoteAction extends Component {
               </h1>
 
               <VoteChart {...this.props} />
+
+              { this.props.userLevel === "Chair" &&
+                <VoteDisabler {...this.props} />
+              } 
 
             </div>
 
