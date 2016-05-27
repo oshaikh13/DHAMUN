@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { Socket } from 'components/Socket';
 import { VoteAddForm } from 'components/VoteAddForm';
+
 import { VoteTable } from 'components/VoteTable';
 
 import * as actionCreators from 'actions/votes';
@@ -47,9 +48,12 @@ export class Vote extends Component {
             </div>
 
             <VoteTable {...this.props} />
+
             { this.props.userLevel === "Chair" &&
               <VoteAddForm {...this.props} />
             } 
+
+
           </div>
         </div>
       </section>
