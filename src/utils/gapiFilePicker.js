@@ -8,7 +8,6 @@ var initFilePicker = function() {
   console.log("INIT GAPI");
   window.FilePicker = function(options) {
     // Config
-    console.log("IVE BEEN PICKED");
     this.apiKey = options.apiKey;
     this.clientId = options.clientId;
     this.appId = options.appId;
@@ -34,7 +33,6 @@ var initFilePicker = function() {
      */
     open: function() {    
       // Check if the user has already authenticated
-      console.log("OPENED");
       var token = gapi.auth.getToken();
       if (token) {
         this._showPicker();
