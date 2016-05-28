@@ -6,6 +6,7 @@ import configureStore from './store/configureStore';
 import { hashHistory } from 'react-router';
 // Change this to hashHistory for dev if needed. Not really needed lol.
 import routes from './routes';
+require('./utils/gapiFilePicker')();
 
 const store = configureStore();
 
