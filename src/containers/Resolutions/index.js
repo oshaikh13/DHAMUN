@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
 
 /* components */
-import { TopImage } from 'components/TopImage';
-import { Tools } from 'components/Tools';
+import { ResolutionSubmit } from 'components/ResolutionSubmit';
 
 const metaData = {
   title: 'DHAMUN',
@@ -29,6 +28,11 @@ export class Resolutions extends Component {
               <h1>
                 View Resolutions
               </h1>
+            </div>
+
+            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
+                            col-md-offset-3 col-lg-offset-3">
+              <ResolutionSubmit />
             </div>
 
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6

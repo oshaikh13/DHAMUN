@@ -106,6 +106,7 @@
     "react-router": "^2.3.0",
     "redux": "^3.1.4",
     "redux-persist": "^3.0.3",
+    "scriptjs": "^2.5.8",
     "socket.io-client": "^1.4.6",
     "superagent": "^1.8.3"
   }

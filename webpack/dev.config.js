@@ -28,9 +28,9 @@ module.exports = {
       },
       __DEVELOPMENT__: true,
       'SERVER_URL': '"http://localhost:8000"',
-      'GAPI_CLIENT_ID': process.env.GAPI_CLIENT_ID,
-      'GAPI_DEV_KEY': process.env.GAPI_DEV_KEY,
-      'GAPI_APP_ID': process.env.GAPI_APP_ID
+      'GAPI_CLIENT_ID': '"' + process.env.GAPI_CLIENT_ID + '"',
+      'GAPI_DEV_KEY': '"' + process.env.GAPI_DEV_KEY + '"',
+      'GAPI_APP_ID': '"' + process.env.GAPI_APP_ID + '"'
     }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.OccurenceOrderPlugin(),
