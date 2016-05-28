@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+require('dotenv').config();
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -25,7 +27,10 @@ module.exports = {
         NODE_ENV: '"development"',
       },
       __DEVELOPMENT__: true,
-      'SERVER_URL': '"http://localhost:8000"'
+      'SERVER_URL': '"http://localhost:8000"',
+      'GAPI_CLIENT_ID': '"' + process.env.GAPI_CLIENT_ID + '"',
+      'GAPI_DEV_KEY': '"' + process.env.GAPI_DEV_KEY + '"',
+      'GAPI_APP_ID': '"' + process.env.GAPI_APP_ID + '"'
     }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.OccurenceOrderPlugin(),
