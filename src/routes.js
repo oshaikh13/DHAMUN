@@ -42,9 +42,6 @@ export default (
         <IndexRoute component={DelegateDashboardHome}/>
         <Route path="/dashboard/delegate/vote" component={Vote}/>
         <Route path="/dashboard/delegate/vote/:name" component={VoteAction}/>
-
-
-
         <Route path="/dashboard/delegate/resolutions" component={Resolutions}/>
       </Route>
 
