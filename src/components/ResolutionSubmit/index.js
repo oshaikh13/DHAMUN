@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
-var scriptjs = require('scriptjs');
 
 /* components */
 
