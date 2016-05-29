@@ -97,7 +97,6 @@ var initFilePicker = function() {
      * @private
      */
     _driveApiLoaded: function() {
-      debugger;
       this._doAuth(true);
     },
     
@@ -106,7 +105,6 @@ var initFilePicker = function() {
      * @private
      */
     _doAuth: function(immediate, callback) {
-      debugger;  
       window.gapi.auth.authorize({
         client_id: this.clientId,
         scope: 'https://www.googleapis.com/auth/drive.readonly',
