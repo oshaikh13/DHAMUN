@@ -3,6 +3,8 @@ import { reducer as formReducer } from 'redux-form';
 import { items } from './items';
 import { auth } from './auth';
 import { votes } from './votes';
+import { resolutions } from './resolutions';
+
 
 
 const rootReducer = combineReducers({
@@ -10,6 +12,7 @@ const rootReducer = combineReducers({
   /* your reducers */
   items,
   auth,
+  resolutions,
   votes
 });
 

@@ -4,16 +4,16 @@ const initialState = {
   }
 }
 
-export function votes(state = initialState, action) {
+export function resolutions(state = initialState, action) {
   switch (action.type) {
 
-  case 'REPLACE_VOTE_ITEMS': 
+  case 'REPLACE_RESOLUTION_ITEMS': 
     return {
       items : {
-        ...action.votes
+        ...action.resolutions
       }
     }
-  case 'KEEP_VOTE_ITEMS': {
+  case 'KEEP_RESOLUTION_ITEMS': {
     return {
       items: {
         ...state.items
