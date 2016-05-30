@@ -17,6 +17,8 @@ import { ChairVote } from 'containers/ChairVote';
 
 import { VoteAction } from 'containers/VoteAction';
 import { Resolutions } from 'containers/Resolutions';
+import { ResolutionsAction } from 'containers/ResolutionsAction';
+
 
 import { DelegateDashboardHome } from 'containers/DelegateDashboardHome';
 import { ChairDashboardHome } from 'containers/ChairDashboardHome';
@@ -43,6 +45,7 @@ export default (
         <Route path="/dashboard/delegate/vote" component={Vote}/>
         <Route path="/dashboard/delegate/vote/:name" component={VoteAction}/>
         <Route path="/dashboard/delegate/resolutions" component={Resolutions}/>
+        <Route path="/dashboard/delegate/resolutions/:name" component={ResolutionsAction}/>
       </Route>
 
       <Route path="/dashboard/chair" component={requireAuthentication(ChairDashboardApp, "Chair")}>
@@ -50,6 +53,7 @@ export default (
         <Route path="/dashboard/chair/vote" component={ChairVote}/>
         <Route path="/dashboard/chair/vote/:name" component={VoteAction}/>
         <Route path="/dashboard/chair/resolutions" component={Resolutions}/>
+        <Route path="/dashboard/chair/resolutions/:name" component={ResolutionsAction}/>
       </Route>
       
       <Route path="/dashboard/logout" component={Logout}/>
