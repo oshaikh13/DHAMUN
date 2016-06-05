@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Socket } from 'components/Socket';
-import { VotePicker } from 'components/VotePicker';
-import { VoteChart } from 'components/VoteChart';
-import { VoteDisabler } from 'components/VoteDisabler';
+import { ResolutionPicker } from 'components/ResolutionPicker';
 
 import * as actionCreators from 'actions/votes';
 
@@ -58,11 +56,11 @@ export class ResolutionsAction extends Component {
               <h1>
                 Sign {this.props.params.name}
               </h1>
-
             </div>
 
           </div>
         </div>
+        <ResolutionPicker {...this.props} />
       </section>
     );
   }
