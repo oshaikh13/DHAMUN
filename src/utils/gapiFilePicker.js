@@ -107,7 +107,7 @@ var initFilePicker = function() {
     _doAuth: function(immediate, callback) {
       window.gapi.auth.authorize({
         client_id: this.clientId,
-        scope: 'https://www.googleapis.com/auth/drive.readonly',
+        scope: ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.metadata'],
         immediate: immediate
       }, callback);
     }

@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { Socket } from 'components/Socket';
 import { ResolutionPicker } from 'components/ResolutionPicker';
+import { ResolutionStats } from 'components/ResolutionStats';
+
 
 import * as actionCreators from 'actions/votes';
 
@@ -35,6 +37,7 @@ export class ResolutionsAction extends Component {
     return (
 
       <section>
+
         <Socket {...this.props} />
         <div className="container">
 
@@ -48,7 +51,8 @@ export class ResolutionsAction extends Component {
             </div>
 
           </div>   
-          
+          <ResolutionStats {...this.props} />
+       
 
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
@@ -58,9 +62,12 @@ export class ResolutionsAction extends Component {
               </h1>
             </div>
 
+
           </div>
+          <ResolutionPicker {...this.props} />  
+             
         </div>
-        <ResolutionPicker {...this.props} />
+
       </section>
     );
   }

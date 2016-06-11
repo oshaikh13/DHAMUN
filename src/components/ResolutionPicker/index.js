@@ -30,10 +30,13 @@ export class ResolutionPicker extends Component {
 
   render() {
     const { resolutions } = this.props;
-    const approved = resolutions[decodeURIComponent(this.props.params.name)].approved;
+    const currentRes = resolutions[decodeURIComponent(this.props.params.name)];
+    const approved = currentRes.approved;
+    const requested = currentRes.requests[this.props.country];
 
-    if (!approved) return (
-      <div className="container">
+    debugger;
+    if (!approved || !requested) return (
+
         <div className="row">
           <div className="col-md-3">
           </div>
@@ -50,12 +53,25 @@ export class ResolutionPicker extends Component {
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('cosub', true)} disabled={this.state.cosub}>Co submittor</button>
           </div>
         </div>
+
+    );
+
+    if (approved) return (
+      <div className="row">
+        <h3>This resolution has been approved.</h3>
       </div>
     );
 
-    return (
-      <h3>This resolution has been approved.</h3>
+    if (requested) return (
+      <div className="row">
+        <h3>You've already submitted a request.</h3>
+        <div className="col-md-3">
+          <p>Revoke all requests</p>
+          <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('signat', true)} disabled={this.state.signat}>Signator</button>
+        </div>
+      </div>
     );
+
   }
 }
 

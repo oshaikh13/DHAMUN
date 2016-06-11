@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
+import { socket } from 'utils/socket';
 
 /* components */
 
@@ -17,17 +18,31 @@ const metaData = {
 
 export class ResolutionSubmit extends Component {
 
+  onFileSelect(file) {
+    debugger;
+    gapi.client.drive.permissions
+      .create({fileId: file.id, role: "commenter", type: "anyone"})
+      .execute(function(res){
+
+      })
+
+    gapi.client.drive.files
+      .get({fileId: file.id, fields: ["webViewLink"]})
+      .execute(function(res){
+
+      })
+
+  }
+
   componentDidMount() {
+    var _this = this;
     function initPicker() {
       var picker = new FilePicker({
         apiKey: GAPI_DEV_KEY,
         clientId: GAPI_CLIENT_ID,
         appId: GAPI_APP_ID,
         buttonEl: document.getElementById('resButton'),
-        onSelect: function(file) {
-          console.log(file);
-          alert('Selected ' + file.name);
-        }
+        onSelect: _this.onFileSelect
       }); 
     }
     initPicker();
