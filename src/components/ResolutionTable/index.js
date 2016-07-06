@@ -20,7 +20,7 @@ export class ResolutionTable extends Component {
           {
             Object.keys(resolutions).map((item, index) => 
               {
-                return (pending ? resolutions[item].approved : !resolutions[item].approved) && 
+                return (pending ? !resolutions[item].approved : resolutions[item].approved) && 
                 <tr key={index}>
                   <td className="col-md-4">{item}</td>
                   <td className="col-md-4">{resolutions[item].original}</td>

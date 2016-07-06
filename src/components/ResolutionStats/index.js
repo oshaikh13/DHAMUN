@@ -21,7 +21,7 @@ export class ResolutionStats extends Component {
     return (
 
       <div className="row">
-        <h1>GG</h1>
+    
       </div>
 
     );

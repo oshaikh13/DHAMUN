@@ -19,7 +19,7 @@ const metaData = {
 export class ResolutionSubmit extends Component {
 
   onFileSelect(file) {
-    debugger;
+    var _this = this;
     gapi.client.drive.permissions
       .create({fileId: file.id, role: "commenter", type: "anyone"})
       .execute(function(res){
@@ -29,7 +29,7 @@ export class ResolutionSubmit extends Component {
     gapi.client.drive.files
       .get({fileId: file.id, fields: ["webViewLink"]})
       .execute(function(res){
-
+        socket.emit('resolution create', {link: res.webViewLink, name: file.name, token: _this.props.token})
       })
 
   }
@@ -42,7 +42,7 @@ export class ResolutionSubmit extends Component {
         clientId: GAPI_CLIENT_ID,
         appId: GAPI_APP_ID,
         buttonEl: document.getElementById('resButton'),
-        onSelect: _this.onFileSelect
+        onSelect: _this.onFileSelect.bind(_this)
       }); 
     }
     initPicker();
