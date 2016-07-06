@@ -24,7 +24,21 @@ export class ResolutionPicker extends Component {
 
     const title = decodeURIComponent(this.props.params.name);
 
+    // TODO create the hash and set props to true/false, then set state with hash.
+    // Cleaner. too lazy rn
+    if (name === "signat") {
+      this.setState({signat: true, mainsub: false, cosub: false})
+    } else if (name === "mainsub") {
+      this.setState({signat: false, mainsub: true, cosub: false})
+    } else if (name === "cosub") {
+      this.setState({signat: false, mainsub: false, cosub: true});
+    } else if (name === "revoke") {
+      this.setState({signat: false, mainsub: false, cosub: false});
+    }
 
+    if (change) {
+      socket.emit("resolution sign request", {token: this.props.token, type: name, title: title});
+    }
 
   }
 
@@ -34,7 +48,18 @@ export class ResolutionPicker extends Component {
     const approved = currentRes.approved;
     const requested = currentRes.requests[this.props.country];
 
-    debugger;
+    if (this.props.country === currentRes.original) {
+      return (
+        <div className="row">
+          <div className="col-md-3">
+          </div>
+          <div className="col-md-3">
+            <p>You cannot vote on your own resolution</p>
+          </div>
+        </div>
+      )
+    }
+
     if (!approved || !requested) return (
 
         <div className="row">
@@ -67,7 +92,7 @@ export class ResolutionPicker extends Component {
         <h3>You've already submitted a request.</h3>
         <div className="col-md-3">
           <p>Revoke all requests</p>
-          <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('signat', true)} disabled={this.state.signat}>Signator</button>
+          <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('revoke', true)} disabled={this.state.signat}>Signator</button>
         </div>
       </div>
     );
