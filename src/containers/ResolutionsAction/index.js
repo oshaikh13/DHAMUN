@@ -8,7 +8,7 @@ import { ResolutionPicker } from 'components/ResolutionPicker';
 import { ResolutionStats } from 'components/ResolutionStats';
 
 
-import * as actionCreators from 'actions/votes';
+import * as actionCreators from 'actions/resolutions';
 
 const metaData = {
   title: 'DHAMUN',

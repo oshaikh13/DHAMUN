@@ -37,7 +37,7 @@ export class ResolutionPicker extends Component {
     }
 
     if (change) {
-      socket.emit("resolution sign request", {token: this.props.token, type: name, title: title});
+      socket.emit("resolution sign request", {token: this.props.token, signType: name, name: title});
     }
 
   }
@@ -60,8 +60,14 @@ export class ResolutionPicker extends Component {
       )
     }
 
-    if (!approved || !requested) return (
+    if (approved) return (
+      <div className="row">
+        <h3>This resolution has been approved.</h3>
+      </div>
+    );
 
+    return (
+      <div>
         <div className="row">
           <div className="col-md-3">
           </div>
@@ -79,23 +85,19 @@ export class ResolutionPicker extends Component {
           </div>
         </div>
 
-    );
+        <br />
 
-    if (approved) return (
-      <div className="row">
-        <h3>This resolution has been approved.</h3>
-      </div>
-    );
-
-    if (requested) return (
-      <div className="row">
-        <h3>You've already submitted a request.</h3>
-        <div className="col-md-3">
-          <p>Revoke all requests</p>
-          <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('revoke', true)} disabled={this.state.signat}>Signator</button>
+        <div className="row">
+          <div className="col-md-3">
+          </div>
+          <div className="col-md-3">
+            <p>Revoke all requests</p>
+            <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('revoke', true)}>Revoke</button>
+          </div>
         </div>
       </div>
     );
+
 
   }
 }
