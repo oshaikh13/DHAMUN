@@ -28,6 +28,12 @@ export class ResolutionStats extends Component {
         </div>
         <div className="col-md-9">
 
+          <h3>
+            <a target="_blank" class="btn btn-default" href={currentRes.publicLink} role="button">View Document</a>
+          </h3>
+          
+
+
           <h3>Main submittors</h3>
           <ResolutionStatsTable tableElements={currentRes.mainsub} type="Main Submittor"/>
 
