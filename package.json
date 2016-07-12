@@ -1,7 +1,7 @@
 {
-  "name": "DHAMUN-Web-Client",
+  "name": "Referendum-Web-Client",
   "version": "2.1.0",
-  "description": "A DHAMUN Web Client",
+  "description": "A Referendum Web Client. Personalized for DHAMUN",
   "scripts": {
     "clean": "rimraf dist",
     "build": "webpack --progress --verbose --colors --display-error-details --config webpack/common.config.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DHAMUN/Web-Client"
+    "url": "https://github.com/Referendum/Referendum"
   },
   "keywords": [
     "react",

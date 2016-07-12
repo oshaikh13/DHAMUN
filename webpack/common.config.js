@@ -2,6 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const postcssImport = require('postcss-import');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 
 const development = require('./dev.config.js');
 const production = require('./prod.config.js');
@@ -20,6 +21,14 @@ process.env.BABEL_ENV = TARGET;
 const common = {
   entry: [
     PATHS.app,
+  ],
+
+  plugins: [
+    new webpack.DefinePlugin({
+      'GAPI_CLIENT_ID': '"' + process.env.GAPI_CLIENT_ID + '"',
+      'GAPI_DEV_KEY': '"' + process.env.GAPI_DEV_KEY + '"',
+      'GAPI_APP_ID': '"' + process.env.GAPI_APP_ID + '"'
+    }),
   ],
 
   output: {
