@@ -10,7 +10,7 @@ Referendum Web Client
 
 ## About
 
-This is a prototype Referendum app. This is only the client, however. It is part of a bigger, 3 component application, which will include the following
+This is a prototype Referendum web app. It has been modified to suit DHAMUN specifically. It shouldn't be too difficult to edit the app so it suits another conference. This is only the client, however. It is part of a bigger, 3 component application, which will (hopefully) include the following
 
 ```
 a) A web client (this repo)

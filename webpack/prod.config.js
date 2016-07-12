@@ -24,10 +24,7 @@ module.exports = {
         NODE_ENV: '"production"',
       },
       __DEVELOPMENT__: false,
-      'SERVER_URL': '"https://dhamun.herokuapp.com"',
-      'GAPI_CLIENT_ID': '"' + process.env.GAPI_CLIENT_ID + '"',
-      'GAPI_DEV_KEY': '"' + process.env.GAPI_DEV_KEY + '"',
-      'GAPI_APP_ID': '"' + process.env.GAPI_APP_ID + '"'
+      'SERVER_URL': '"https://dhamun.herokuapp.com"'
     }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.DedupePlugin(),

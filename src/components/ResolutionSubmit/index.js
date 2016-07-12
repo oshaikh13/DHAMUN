@@ -20,6 +20,7 @@ export class ResolutionSubmit extends Component {
 
   onFileSelect(file) {
     var _this = this;
+    
     gapi.client.drive.permissions
       .create({fileId: file.id, role: "commenter", type: "anyone"})
       .execute(function(res){
