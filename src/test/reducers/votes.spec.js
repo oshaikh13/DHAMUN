@@ -27,11 +27,26 @@ describe("Votes Reducers:", function(){
 
 		var initialState = { items : { bar : "foo" }}
 
-		var expectedState = { items : {foo : "bar"}}
+		var expectedState = { items : {bar : "foo"}}
 
 		var resultedState = votes(initialState, action)
 
-		assert.equal(JSON.stringify(initialState), JSON.stringify(resultedState))
+		assert.equal(JSON.stringify(resultedState), JSON.stringify(expectedState))
+	})
+
+	it("Should return the initial state", function(){
+		var action = {
+			type : "foobar",
+			resolutions : null
+		}
+
+		var initialState = { Object : "McObjectFace" }
+
+		var expectedState = initialState
+
+		var resultedState = votes(initialState, action)
+
+		assert.equal(JSON.stringify(resultedState), JSON.stringify(expectedState))
 	})
 
 }) 
