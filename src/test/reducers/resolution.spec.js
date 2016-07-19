@@ -3,23 +3,6 @@ import { resolutions } from 'reducers/resolutions'
 
 var assert = chai.assert;
 
-const initialState = {
-  token: null,
-  email: null,
-  isAuthenticated: false,
-  isAuthenticating: false,
-  loginStatusText: null,
-  signUpStatusText: null,
-  hasSignedUp: false,
-  committee: null,
-  firstName: null,
-  lastName: null,
-  school: null,
-  userLevel: null,
-  country: null,
-  partner: null, 
-};
-
 describe('Resolutions Reducers: ', function(){
 
 	it("Should replace resolutions", function(){
@@ -51,6 +34,5 @@ describe('Resolutions Reducers: ', function(){
 
     assert.equal(JSON.stringify(initialState), JSON.stringify(resultedState))
   })
-
 
 })
