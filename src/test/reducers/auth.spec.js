@@ -17,7 +17,8 @@ const initialState = {
   school: null,
   userLevel: null,
   country: null,
-  partner: null
+  partner: null,
+  admins: null
 };
 
 describe('Authentication Reducers :' , function(){
@@ -56,22 +57,27 @@ describe('Authentication Reducers :' , function(){
   it("Should handle user login success", function(){
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCcnVjZSIsImxhc3ROYW1lIjoiV2F5bmUiLCJjb21taXR0ZWUiOiJOYW4iLCJ1c2VyTGV2ZWwiOiJuYW4iLCJzY2hvb2wiOiJuYW4iLCJlbWFpbCI6Im5hbiIsImNvdW50cnkiOiJuYW4iLCJwYXJ0bmVyIjoiQmF0bWFuISJ9.mLiMAMX_4EpJVtmM9NAQgjcI_NyySS5VPJ8Px1Iss4Q';
 
-    const stateAfter = JSON.stringify({
-      'isAuthenticating': false,
-      'isAuthenticated': true,
-      'token': token,
-      "firstName": "Bruce",
-      "lastName": "Wayne",
-      "committee": "GA",
-      "userLevel": "69",
-      "school": "Some school",
-      "email": "wallah_not_batman@gmail.com",
-      "country": "USA",
-      "partner": "none",
-      'loginStatusText': 'You have been successfully logged in.'
-    });
+    const stateAfter = JSON.stringify(
+      {
+        "isAuthenticating":false,
+        "isAuthenticated":true,
+        "token": token,
+        "firstName":"Bruce",
+        "lastName":"Wayne",
+        "committee":"Nan",
+        "userLevel":"nan",
+        "school":"nan",
+        "email":"nan",
+        "country":"nan",
+        "partner":"Batman!",
+        "loginStatusText":"You have been successfully logged in."
+      }
+    );
 
     const result = JSON.stringify(auth({}, {type: 'LOGIN_USER_SUCCESS', token : token}));
+
+    assert.equal(stateAfter, result);
+
 
   })
 
