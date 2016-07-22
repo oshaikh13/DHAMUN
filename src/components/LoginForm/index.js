@@ -3,6 +3,11 @@ import { reduxForm } from 'redux-form';
 import { reset } from 'redux-form';
 import { Link } from 'react-router';
 
+//Material UI imports
+import { Button } from 'react-toolbox/lib/button';
+import { Card } from 'react-toolbox/lib/card';
+import Input from 'react-toolbox/lib/input';
+
 /* component styles */
 import { styles } from './styles.scss';
 
@@ -58,29 +63,35 @@ export class LoginForm extends Component {
 
     return (
 
-      <form className={styles} onSubmit={this.onAdd}>
+    <div className={styles}>
+      <form  onSubmit={this.onAdd}>
 
-        {
-          this.props.loginStatusText &&         
+        <Card className="card">
+
+          {
+            this.props.loginStatusText &&         
+            <div className="form-group">
+              <p className="error-text">{this.props.loginStatusText}</p>
+            </div>
+          }
+
           <div className="form-group">
-            <p className="error-text">{this.props.loginStatusText}</p>
+            <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
           </div>
-        }
 
-        <div className="form-group">
-          <input type="text" className="form-control" placeholder="Email" {...email}/>
-        </div>
+          <div className="form-group">
+            <Input label="Password" type="password" className="input" style={{top: 100}} {...password}/>
+          </div>
 
-        <div className="form-group">
-          <input type="password" className="form-control" placeholder="Password" {...password}/>
-        </div>
+          <div className="form-group">
+            <Button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} primary>
+              Login
+            </Button>
+          </div>
 
-        <div className="form-group">
-          <button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} >
-            Login
-          </button>
-        </div>
+        </Card>  
       </form>
+    </div>  
     );
   }
 }

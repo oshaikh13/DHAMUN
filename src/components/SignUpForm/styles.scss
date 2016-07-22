@@ -6,4 +6,28 @@
   .error-text {
     color: #ff0000;
   }
+
+  .btn{
+  	margin-top : 40px;
+  	text-algin: center;	
+  }
+
+  .card, form{
+  	display:flex;
+  	justify-content:center;
+  	align-items:center; 
+  }
+
+  form{
+    width : 100%;
+  }
+
+  .card{
+    width : 500px;
+    height: 300px;
+  }
+
+  .form-group{
+  	height: 45px;
+  }
 }
