@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import { reset } from 'redux-form';
 import { Link } from 'react-router';
 
-//Material UI imports
+/* material UI components */
 import { Button } from 'react-toolbox/lib/button';
 import { Card } from 'react-toolbox/lib/card';
 import Input from 'react-toolbox/lib/input';

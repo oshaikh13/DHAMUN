@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { socket } from 'utils/socket';
+import { Button } from 'react-toolbox/lib/button';
 
 /* components */
 
@@ -58,9 +59,9 @@ export class ResolutionSubmit extends Component {
     return (
       <section>
         <div className="container">
-          <button id="resButton" className="btn btn-default" disabled={this.props.isAuthenticating} >
+          <Button id="resButton" className="btn btn-default" disabled={this.props.isAuthenticating} >
             Submit Resolution
-          </button>
+          </Button>
         </div>
       </section>
     );
