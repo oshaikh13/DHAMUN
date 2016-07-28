@@ -3,6 +3,7 @@ const autoprefixer = require('autoprefixer');
 const postcssImport = require('postcss-import');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const development = require('./dev.config.js');
 const production = require('./prod.config.js');
@@ -37,12 +38,13 @@ const common = {
   },
 
   resolve: {
-    extensions: ['', '.jsx', '.js', '.json', '.scss'],
+    extensions: ['', '.jsx', '.js', '.json', '.scss', '.css'],
     modulesDirectories: ['node_modules', PATHS.app],
   },
 
   module: {
-    loaders: [{
+    loaders: [
+    {
       test: /bootstrap-sass\/assets\/javascripts\//,
       loader: 'imports?jQuery=jquery',
     }, {
@@ -85,6 +87,11 @@ const common = {
         addDependencyTo: webpack,
       }),
     ];
+  },
+
+  sassLoader: { 
+    data: '@import "utils/theme.scss";',
+    includePaths: [PATHS.app]
   },
 };
 
