@@ -10,6 +10,12 @@ import { VoteTable } from 'components/VoteTable';
 
 import * as actionCreators from 'actions/votes';
 
+/* material UI components */
+import { Card } from 'react-toolbox/lib/card';
+
+/* container styles */
+import { styles } from './styles/styles.scss';
+
 const metaData = {
   title: 'DHAMUN',
   description: 'Get started here',
@@ -34,7 +40,7 @@ export class Vote extends Component {
 
   render() {
     return (
-      <section>
+      <section className={styles}>
         <Socket {...this.props} />
         <div className="container">
 
@@ -47,13 +53,14 @@ export class Vote extends Component {
               </h1>
             </div>
 
-            <VoteTable {...this.props} />
+            <Card className="card">
+              <VoteTable {...this.props} />
 
-            { this.props.userLevel === "Chair" &&
-              <VoteAddForm {...this.props} />
-            } 
+              { this.props.userLevel === "Chair" &&
+                <VoteAddForm {...this.props} />
+              } 
 
-
+            </Card>
           </div>
         </div>
       </section>
