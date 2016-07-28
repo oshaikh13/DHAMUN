@@ -48,13 +48,25 @@ export class LoginForm extends Component {
       if (this.props.userLevel === "Delegate") {   
 
         return (
-          <h3>You're logged in. Go to the <Link to='/dashboard/delegate'>dashboard</Link></h3>
+          <div className={styles}>
+            <div className="centerMe">
+            <Card className="card">
+              <h3>You're logged in. Go to the <Link to='/dashboard/delegate'>dashboard</Link></h3>
+            </Card>
+            </div>
+          </div>
         );
 
       } else if (this.props.userLevel === "Chair") {
 
         return (
-          <h3>You're logged in. Go to the <Link to='/dashboard/chair'>dashboard</Link></h3>
+          <div className={styles}>
+            <div className="centerMe">
+            <Card className="card">
+              <h3>You're logged in. Go to the <Link to='/dashboard/chair'>dashboard</Link></h3>
+            </Card>
+            </div>
+          </div>
         );
 
       }
