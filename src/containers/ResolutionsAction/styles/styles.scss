@@ -1,7 +1,18 @@
 :local(.styles) {
 
+  .title{
+    text-align : center;
+    margin-top: 80;
+  }
+
   h1 {
     text-align : center;
+    margin-top: 80;
+  }
+
+  .limit{
+    height: 600px;
+    width: 600px;
   }
 
  .container, .centerMe{
@@ -24,14 +35,11 @@
   }
 
   .btn{
-    padding: 0px 10px 0px 10px;
+    padding : 0px;
   }
 
-  form{
-    width : 100%;
+  .centerText{
+    text-align : center;
   }
 
-  .form-group{
-  	height: 45px;
-  }
 }

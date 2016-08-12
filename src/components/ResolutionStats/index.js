@@ -24,30 +24,25 @@ export class ResolutionStats extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-3">
-        </div>
-        <div className="col-md-9">
 
-          <h3>
+          <h3 className="centerText">
             <a target="_blank" class="btn btn-default" href={currentRes.publicLink} role="button">View Document</a>
           </h3>
           
+          <div className="container limit">
+            <h3>Main submittors</h3>
+            <ResolutionStatsTable tableElements={currentRes.mainsub} type="Main Submittor"/>
 
+            <h3>Co submittors</h3>
+            <ResolutionStatsTable tableElements={currentRes.cosub} type="Co Submittor"/>
 
-          <h3>Main submittors</h3>
-          <ResolutionStatsTable tableElements={currentRes.mainsub} type="Main Submittor"/>
+            <h3>Signators</h3>
+            <ResolutionStatsTable tableElements={currentRes.signat} type="Signator"/>
 
-          <h3>Co submittors</h3>
-          <ResolutionStatsTable tableElements={currentRes.cosub} type="Co Submittor"/>
+            <h3>Requests</h3>
+            <ResolutionStatsTable tableElements={currentRes.requests} type="Signator"/>
+          </div>
 
-          <h3>Signators</h3>
-          <ResolutionStatsTable tableElements={currentRes.signat} type="Signator"/>
-
-          <h3>Requests</h3>
-          <ResolutionStatsTable tableElements={currentRes.requests} type="Signator"/>
-
-
-        </div>
       </div>    
     );
   }

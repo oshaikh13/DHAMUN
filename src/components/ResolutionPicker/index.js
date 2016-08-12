@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import { socket } from '../../utils/socket.js';
 import { Link } from 'react-router';
 
-export class ResolutionPicker extends Component {
+/* component styles */
+import { styles } from './styles.scss';
 
+/* material UI components */
+import Button from 'react-toolbox/lib/button';
+import Tooltip from 'react-toolbox/lib/tooltip';
+
+const TooltipButton = Tooltip(Button);
+
+export class ResolutionPicker extends Component {
   constructor (props) {
     super(props);
     this.state = {signat: false, mainsub: false, cosub: false};
@@ -50,50 +58,36 @@ export class ResolutionPicker extends Component {
 
     if (this.props.country === currentRes.original) {
       return (
-        <div className="row">
-          <div className="col-md-3">
-          </div>
-          <div className="col-md-3">
-            <p>You cannot vote on your own resolution</p>
-          </div>
+        <div className={styles}>
+          <h3>You cannot vote on your own resolution</h3>
         </div>
       )
     }
 
     if (approved) return (
-      <div className="row">
+      <div className={styles}>
         <h3>This resolution has been approved.</h3>
       </div>
     );
 
     return (
-      <div>
-        <div className="row">
-          <div className="col-md-3">
+      <div className={styles}>
+        <div className="buttons">
+          <div>
+            <TooltipButton label='Signator' tooltip='Request to be a signator' type="button" className="btn" onClick={() => this.selector('signat', true)} disabled={this.state.signat} raised primary/>
           </div>
-          <div className="col-md-3">
-            <p>Request to be a signator</p>
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('signat', true)} disabled={this.state.signat}>Signator</button>
+          <div>
+            <TooltipButton label="Main submittor" tooltip="Request to be a main submittor" type="button" className="btn" onClick={() => this.selector('mainsub', true)} disabled={this.state.mainsub}raised primary/>
           </div>
-          <div className="col-md-3">
-            <p>Request to be a main submittor</p>
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('mainsub', true)} disabled={this.state.mainsub}>Main submittor</button>
-          </div>
-          <div className="col-md-3">
-            <p>Request to be a co submittor</p>
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('cosub', true)} disabled={this.state.cosub}>Co submittor</button>
+          <div>
+            <TooltipButton label="Co submittor" tooltip="Request to be a co submittor" type="button" className="btn" onClick={() => this.selector('cosub', true)} disabled={this.state.cosub}raised primary/>
           </div>
         </div>
 
-        <br />
+        <br/>
 
-        <div className="row">
-          <div className="col-md-3">
-          </div>
-          <div className="col-md-3">
-            <p>Revoke all requests</p>
-            <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('revoke', true)}>Revoke</button>
-          </div>
+        <div className="buttons">
+            <TooltipButton label="Revoke" tooltip="Revoke all requests" type="button" className="btn danger" style={{background : "#f44336"}} onClick={() => this.selector('revoke', true)} primary raised/>
         </div>
       </div>
     );

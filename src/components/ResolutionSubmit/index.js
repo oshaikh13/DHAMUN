@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { socket } from 'utils/socket';
+
+/* material UI components */
 import { Button } from 'react-toolbox/lib/button';
 
-/* components */
+/* component styles */
+import { styles } from './styles.scss';
 
 const metaData = {
   title: 'DHAMUN',
@@ -57,7 +60,7 @@ export class ResolutionSubmit extends Component {
 
   render() {
     return (
-      <section>
+      <section className={styles}>
         <div className="container">
           <Button id="resButton" className="btn btn-default" disabled={this.props.isAuthenticating} >
             Submit Resolution
