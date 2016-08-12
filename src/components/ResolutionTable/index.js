@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+/* material UI components */
+import { Button } from 'react-toolbox/lib/button';
+
+/* component styles */
+import { styles } from './styles.scss';
+
 export class ResolutionTable extends Component {
 
   render() {
@@ -15,7 +21,7 @@ export class ResolutionTable extends Component {
             <th>Opened by</th>   
           </tr>
         </thead>
-        <tbody>
+        <tbody className={styles}>
 
           {
             Object.keys(resolutions).map((item, index) => 
@@ -24,7 +30,9 @@ export class ResolutionTable extends Component {
                 <tr key={index}>
                   <td className="col-md-4">{item}</td>
                   <td className="col-md-4">{resolutions[item].original}</td>
-                  <td className="col-md-4"><a type="button" className="btn btn-primary" href={'/#/dashboard/' + this.props.userLevel + '/resolutions/' + encodeURIComponent(item)}>View</a></td>
+                  <td className="col-md-4">
+                      <Button label="View" className="btn centerMe" href={'/#/dashboard/' + this.props.userLevel + '/resolutions/' + encodeURIComponent(item)} primary/>
+                  </td>
                 </tr>
               }
             )

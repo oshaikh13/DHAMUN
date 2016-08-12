@@ -11,6 +11,12 @@ import { Socket } from 'components/Socket';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+/* material UI components */
+import { Card } from 'react-toolbox/lib/card';
+
+/* container styles */
+import { styles } from './styles/styles.scss';
+
 const metaData = {
   title: 'DHAMUN',
   description: 'Get started here',
@@ -34,7 +40,7 @@ const metaData = {
 export class Resolutions extends Component {
   render() {
     return (
-      <section>
+      <section className={styles}>
         <Socket {...this.props} />
         <div className="container">
 
@@ -46,11 +52,13 @@ export class Resolutions extends Component {
               </h1>
             </div>
 
-            <div className="col-lg-6">
+            <Card className="card">
+              <div className="col-lg-6">
               <ResolutionTables {...this.props}/>
               
               <ResolutionSubmit {...this.props}/>
-            </div>
+              </div>
+            </Card>
 
           </div>
         </div>

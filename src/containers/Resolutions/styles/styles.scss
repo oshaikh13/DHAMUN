@@ -1,0 +1,37 @@
+:local(.styles) {
+
+  h1 {
+    text-align : center;
+  }
+
+ .container, .centerMe{
+  	display:flex;
+  	justify-content:center;
+  	align-items:center; 
+  }
+
+  .card .container {
+    display: block;
+  }
+
+  //Work around to center the button
+  .card section .container{
+    display: flex;
+  }
+
+  .card *{
+    padding: 10px;
+  }
+
+  .btn{
+    padding: 0px 10px 0px 10px;
+  }
+
+  form{
+    width : 100%;
+  }
+
+  .form-group{
+  	height: 45px;
+  }
+}

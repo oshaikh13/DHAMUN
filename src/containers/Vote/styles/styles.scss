@@ -1,10 +1,7 @@
 :local(.styles) {
-  button {
-    margin-right: 10px;
-  }
 
-  .error-text {
-    color: #ff0000;
+  h1 {
+    text-align : center;
   }
 
   .btn{
@@ -12,19 +9,18 @@
   	text-algin: center;	
   }
 
-  .card, form{
+ .container{
   	display:flex;
   	justify-content:center;
   	align-items:center; 
   }
 
-  form{
-    width : 100%;
+  .card{
+    padding: 50px;
   }
 
-  .card{
-    width : 500px;
-    height: 300px;
+  form{
+    width : 100%;
   }
 
   .form-group{

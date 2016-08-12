@@ -3,6 +3,11 @@ import { reduxForm } from 'redux-form';
 import { reset } from 'redux-form';
 import { Link } from 'react-router';
 
+//Material UI imports
+import { Button } from 'react-toolbox/lib/button';
+import { Card } from 'react-toolbox/lib/card';
+import Input from 'react-toolbox/lib/input';
+
 /* component styles */
 import { styles } from './styles.scss';
 
@@ -55,28 +60,35 @@ export class SignUpForm extends Component {
 
     return (
 
-      <form className={styles} onSubmit={this.onAdd}>
-        {
+    <div className={styles}>
+      <form  onSubmit={this.onAdd}>
+
+        <Card className="card">
+
+         {
           this.props.signUpStatusText &&         
           <div className="form-group">
             <p className="error-text">{this.props.signUpStatusText}</p>
           </div>
         }
 
-        <div className="form-group">
-          <input type="password" className="form-control" placeholder="Password" {...password}/>
-        </div>
+          <div className="form-group">
+            <Input label="Password" type="text" className="input" {...password}/>
+          </div>
 
-        <div className="form-group">
-          <input type="password" className="form-control" placeholder="Confirm Password" {...validatePassword}/>
-        </div>
-        
-        <div className="form-group">
-          <button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} >
-            Sign Up
-          </button>
-        </div>
+          <div className="form-group">
+            <Input label="Confirm Password" type="password" className="input" {...validatePassword}/>
+          </div>
+
+          <div className="form-group">
+            <Button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} primary>
+              Login
+            </Button>
+          </div>
+
+        </Card>  
       </form>
+    </div>  
     );
   }
 }

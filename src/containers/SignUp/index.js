@@ -9,6 +9,8 @@ import DocumentMeta from 'react-document-meta';
 
 import * as actionCreators from 'actions/auth';
 
+/* container styles */
+import { styles } from './styles/styles.scss';
 
 const metaData = {
   title: 'Sign Up',
@@ -39,20 +41,12 @@ export class SignUp extends Component {
     return (
       <section>
         <DocumentMeta {...metaData} />
-        <div className="container">
-
+        <div className={styles}>
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <h1>
-                Sign Up
-              </h1>
-            </div>
-
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <SignUpForm {...this.props}/>
-            </div>
+            <h1>
+              Sign Up
+            </h1>
+            <SignUpForm {...this.props}/>
           </div>
         </div>
       </section>

@@ -7,6 +7,11 @@ import { Socket } from 'components/Socket';
 import { ResolutionPicker } from 'components/ResolutionPicker';
 import { ResolutionStats } from 'components/ResolutionStats';
 
+/* material UI components */
+import { Card } from 'react-toolbox/lib/card';
+
+/* container styles */
+import { styles } from './styles/styles.scss';
 
 import * as actionCreators from 'actions/resolutions';
 
@@ -36,7 +41,7 @@ export class ResolutionsAction extends Component {
   render() {
     return (
 
-      <section>
+      <section className={styles}>
 
         <Socket {...this.props} />
         <div className="container">
@@ -44,30 +49,30 @@ export class ResolutionsAction extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
-              <h1>
+              <h1 className="title">
                 Stats for {this.props.params.name}
               </h1>
 
             </div>
 
-          </div>   
-          <ResolutionStats {...this.props} />
-       
+             <Card className="card">   
+              <ResolutionStats {...this.props} />
 
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <h1>
-                Sign {this.props.params.name}
-              </h1>
-            </div>
+              <div className="">
 
+                  <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
+                                  col-md-offset-3 col-lg-offset-3">
+                    <h1>
+                      Sign {this.props.params.name}
+                    </h1>
+
+                  </div>
+              </div>
+              <ResolutionPicker {...this.props} />  
+          </Card>    
 
           </div>
-          <ResolutionPicker {...this.props} />  
-             
         </div>
-
       </section>
     );
   }

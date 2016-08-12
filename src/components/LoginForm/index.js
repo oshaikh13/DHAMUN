@@ -3,6 +3,11 @@ import { reduxForm } from 'redux-form';
 import { reset } from 'redux-form';
 import { Link } from 'react-router';
 
+/* material UI components */
+import { Button } from 'react-toolbox/lib/button';
+import { Card } from 'react-toolbox/lib/card';
+import Input from 'react-toolbox/lib/input';
+
 /* component styles */
 import { styles } from './styles.scss';
 
@@ -43,13 +48,25 @@ export class LoginForm extends Component {
       if (this.props.userLevel === "Delegate") {   
 
         return (
-          <h3>You're logged in. Go to the <Link to='/dashboard/delegate'>dashboard</Link></h3>
+          <div className={styles}>
+            <div className="centerMe">
+            <Card className="card">
+              <h3>You're logged in. Go to the <Link to='/dashboard/delegate'>dashboard</Link></h3>
+            </Card>
+            </div>
+          </div>
         );
 
       } else if (this.props.userLevel === "Chair") {
 
         return (
-          <h3>You're logged in. Go to the <Link to='/dashboard/chair'>dashboard</Link></h3>
+          <div className={styles}>
+            <div className="centerMe">
+            <Card className="card">
+              <h3>You're logged in. Go to the <Link to='/dashboard/chair'>dashboard</Link></h3>
+            </Card>
+            </div>
+          </div>
         );
 
       }
@@ -58,29 +75,35 @@ export class LoginForm extends Component {
 
     return (
 
-      <form className={styles} onSubmit={this.onAdd}>
+    <div className={styles}>
+      <form  onSubmit={this.onAdd}>
 
-        {
-          this.props.loginStatusText &&         
+        <Card className="card">
+
+          {
+            this.props.loginStatusText &&         
+            <div className="form-group">
+              <p className="error-text">{this.props.loginStatusText}</p>
+            </div>
+          }
+
           <div className="form-group">
-            <p className="error-text">{this.props.loginStatusText}</p>
+            <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
           </div>
-        }
 
-        <div className="form-group">
-          <input type="text" className="form-control" placeholder="Email" {...email}/>
-        </div>
+          <div className="form-group">
+            <Input label="Password" type="password" className="input" style={{top: 100}} {...password}/>
+          </div>
 
-        <div className="form-group">
-          <input type="password" className="form-control" placeholder="Password" {...password}/>
-        </div>
+          <div className="form-group">
+            <Button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} primary>
+              Login
+            </Button>
+          </div>
 
-        <div className="form-group">
-          <button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} >
-            Login
-          </button>
-        </div>
+        </Card>  
       </form>
+    </div>  
     );
   }
 }

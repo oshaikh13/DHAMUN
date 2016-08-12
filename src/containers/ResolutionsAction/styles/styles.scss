@@ -1,0 +1,45 @@
+:local(.styles) {
+
+  .title{
+    text-align : center;
+    margin-top: 80;
+  }
+
+  h1 {
+    text-align : center;
+    margin-top: 80;
+  }
+
+  .limit{
+    height: 600px;
+    width: 600px;
+  }
+
+ .container, .centerMe{
+  	display:flex;
+  	justify-content:center;
+  	align-items:center; 
+  }
+
+  .card .container {
+    display: block;
+  }
+
+  //Work around to center the button
+  .card section .container{
+    display: flex;
+  }
+
+  .card *{
+    padding: 10px;
+  }
+
+  .btn{
+    padding : 0px;
+  }
+
+  .centerText{
+    text-align : center;
+  }
+
+}
