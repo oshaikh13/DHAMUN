@@ -72,9 +72,6 @@ export class LoginForm extends Component {
       }
     }
 
-    console.log(email);
-    console.log(password);
-
     return (
 
       <div className={styles}>

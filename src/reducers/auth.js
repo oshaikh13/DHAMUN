@@ -50,6 +50,7 @@ export function auth(state = initialState, action) {
       });
 
     case 'LOGIN_USER_SUCCESS': 
+
       const usrObject = jwtDecode(action.token);
       return Object.assign({}, state, {
         'isAuthenticating': false,

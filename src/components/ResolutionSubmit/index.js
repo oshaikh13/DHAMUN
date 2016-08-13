@@ -42,9 +42,12 @@ export class ResolutionSubmit extends Component {
   onFileSelect(file) {
     var _this = this;
     
-    this.props.admins.forEach(function(admin){
-      _this.addAdminPermissions(file, admin);
-    });
+    if (this.props.admins) {    
+      this.props.admins.forEach(function(admin){
+        _this.addAdminPermissions(file, admin);
+      });
+    }
+
 
     gapi.client.drive.permissions
       .create({fileId: file.id, role: "commenter", type: "anyone"})

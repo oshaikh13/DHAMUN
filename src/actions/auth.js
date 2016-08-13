@@ -55,6 +55,17 @@ export function signIn (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
+
+          if (!res) {
+            res = {
+              status: 500,
+              body: {
+                error: "Server is down. Alert a staff member."
+              }
+            }
+            // shit
+          }
+
           dispatch(loginFailure(res.status, res.body.error, true));
         } else {
           dispatch(loginSuccess(res.body.token));
@@ -73,6 +84,17 @@ export function signUp (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
+
+          if (!res) {
+            res = {
+              status: 500,
+              body: {
+                error: "Server is down. Alert a staff member."
+              }
+            }
+            // shit
+          }
+
           dispatch(signUpFailure(res.status, res.body.error));
         } else {
           dispatch(signUpSuccess(JSON.parse(res.text).token));
