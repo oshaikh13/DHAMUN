@@ -22,9 +22,30 @@ const metaData = {
 
 export class ResolutionSubmit extends Component {
 
+  addAdminPermissions(file, admin) {
+
+    gapi.client.drive.permissions
+      .create({
+        fileId: file.id, 
+        role: "writer", 
+        type: "user", 
+        emailAddress: admin.email,
+        sendNotificationEmail: true,
+        emailMessage: this.props.country + "'s Resolution"
+      })
+      .execute(function(res){
+
+      });
+
+  }
+
   onFileSelect(file) {
     var _this = this;
     
+    this.props.admins.forEach(function(admin){
+      _this.addAdminPermissions(file, admin);
+    });
+
     gapi.client.drive.permissions
       .create({fileId: file.id, role: "commenter", type: "anyone"})
       .execute(function(res){
