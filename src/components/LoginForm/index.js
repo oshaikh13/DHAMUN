@@ -72,38 +72,40 @@ export class LoginForm extends Component {
       }
     }
 
+    console.log(email);
+    console.log(password);
 
     return (
 
-    <div className={styles}>
-      <form  onSubmit={this.onAdd}>
+      <div className={styles}>
+        <form  onSubmit={this.onAdd}>
 
-        <Card className="card">
+          <Card className="card">
 
-          {
-            this.props.loginStatusText &&         
+            {
+              this.props.loginStatusText &&         
+              <div className="form-group">
+                <p className="error-text">{this.props.loginStatusText}</p>
+              </div>
+            }
+
             <div className="form-group">
-              <p className="error-text">{this.props.loginStatusText}</p>
+              <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
             </div>
-          }
 
-          <div className="form-group">
-            <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
-          </div>
+            <div className="form-group">
+              <Input label="Password" type="password" className="input" style={{top: 100}} {...password}/>
+            </div>
 
-          <div className="form-group">
-            <Input label="Password" type="password" className="input" style={{top: 100}} {...password}/>
-          </div>
+            <div className="form-group">
+              <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
+                Login
+              </Button>
+            </div>
 
-          <div className="form-group">
-            <Button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} primary>
-              Login
-            </Button>
-          </div>
-
-        </Card>  
-      </form>
-    </div>  
+          </Card>  
+        </form>
+      </div>  
     );
   }
 }

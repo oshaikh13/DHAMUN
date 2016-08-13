@@ -81,7 +81,7 @@ export class SignUpForm extends Component {
           </div>
 
           <div className="form-group">
-            <Button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} primary>
+            <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
               Login
             </Button>
           </div>
