@@ -53,42 +53,49 @@ export class SignUpForm extends Component {
 
     if (this.props.hasSignedUp) {
       return (
-        <h3>You've signed up. Go <Link to='/home/login'>login</Link></h3>
+        <div className={styles}> 
+          <div className='centerMe'>     
+          <Card className="card">
+            <h3>You've signed up. Go <Link to='/home/login'>login</Link></h3>
+          </Card>  
+          </div>
+        </div>
       );
     }
 
 
     return (
 
-    <div className={styles}>
-      <form  onSubmit={this.onAdd}>
+      <div className={styles}>
+        <form  onSubmit={this.onAdd}>
 
-        <Card className="card">
+          <Card className="card">
 
-         {
-          this.props.signUpStatusText &&         
-          <div className="form-group">
-            <p className="error-text">{this.props.signUpStatusText}</p>
-          </div>
-        }
+            {
+              this.props.signUpStatusText &&         
+              <div className="form-group">
+                <p className="error-text">{this.props.signUpStatusText}</p>
+              </div>
+            }
 
-          <div className="form-group">
-            <Input label="Password" type="password" className="input" {...password}/>
-          </div>
+            <div className="form-group">
+              <Input label="Password" type="password" className="input" {...password}/>
+            </div>
 
-          <div className="form-group">
-            <Input label="Confirm Password" type="password" className="input" {...validatePassword}/>
-          </div>
+            <div className="form-group">
+              <Input label="Confirm Password" type="password" className="input" {...validatePassword}/>
+            </div>
 
-          <div className="form-group">
-            <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
-              Login
-            </Button>
-          </div>
+            <div className="form-group">
+              <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
+                Login
+              </Button>
+            </div>
 
-        </Card>  
-      </form>
-    </div>  
+          </Card>  
+        </form>
+      </div>  
+
     );
   }
 }
