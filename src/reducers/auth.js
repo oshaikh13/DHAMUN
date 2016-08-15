@@ -30,6 +30,10 @@ export function auth(state = initialState, action) {
     case REHYDRATE: 
       const incoming = action.payload.auth;
 
+      // We don't want old error messages.
+      incoming.loginStatusText = null;
+      incoming.actionStatusText = null;
+
       if (incoming && incoming.token) {
         socket.emit("subscribe", {token: incoming.token})
         return {...state, ...incoming}
