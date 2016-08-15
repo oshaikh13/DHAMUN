@@ -7,6 +7,8 @@ import { Link } from 'react-router';
 import { Button } from 'react-toolbox/lib/button';
 import { Card } from 'react-toolbox/lib/card';
 import Input from 'react-toolbox/lib/input';
+import Dialog from 'react-toolbox/lib/dialog';
+
 
 /* component styles */
 import { styles } from './styles.scss';
@@ -19,6 +21,28 @@ export class LoginForm extends Component {
     signUp: React.PropTypes.func,
     signIn: React.PropTypes.func
   };
+
+  state = {
+    active: false
+  };
+
+  handleToggle = (e) => {
+    e.preventDefault();
+    this.setState({active: !this.state.active});
+  }
+
+  sendReset = (e) => {
+    e.preventDefault();
+    this.setState({active: !this.state.active});
+    this.props.resetPassword(this.props.fields.email.value);
+
+  }
+
+  actions = [
+    { label: "Cancel", onClick: this.handleToggle },
+    { label: "Send", onClick: this.sendReset}
+  ];
+
 
   constructor(props) {
     super(props);
@@ -99,6 +123,20 @@ export class LoginForm extends Component {
                 Login
               </Button>
             </div>
+
+            <Dialog
+              actions={this.actions}
+              active={this.state.active}
+              onEscKeyDown={this.handleToggle}
+              onOverlayClick={this.handleToggle}
+              title='Reset Password'
+            >
+              <p>Enter the affiliated email address, and if it exists, we'll send you a password reset email.</p>
+              <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
+
+            </Dialog>
+
+            <Button className="btn" label='Forgot Password?' onClick={this.handleToggle} />
 
           </Card>  
         </form>

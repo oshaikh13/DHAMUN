@@ -86,6 +86,24 @@ export function auth(state = initialState, action) {
         'signUpStatusText': `Authentication Error: ${action.status} ${action.statusText}`
       });
 
+    case 'LOGIN_PASSWORD_RESET_FAILURE': 
+      return Object.assign({}, state, {
+        'isAuthenticating': false,
+        'isAuthenticated': false,
+        'token': null,
+        'hasSignedUp': false,
+        'loginStatusText': `We couldn't find your email address. Talk to an admin!`
+      });
+
+    case 'LOGIN_PASSWORD_RESET_SUCCESS': 
+      return Object.assign({}, state, {
+        'isAuthenticating': false,
+        'isAuthenticated': false,
+        'token': null,
+        'hasSignedUp': false,
+        'loginStatusText': `Check your email for password reset intructions`
+      });
+
     case 'LOGOUT_USER' : 
       return Object.assign({}, state, initialState);
 

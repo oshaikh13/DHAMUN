@@ -73,7 +73,7 @@ export class SignUpForm extends Component {
         }
 
           <div className="form-group">
-            <Input label="Password" type="text" className="input" {...password}/>
+            <Input label="Password" type="password" className="input" {...password}/>
           </div>
 
           <div className="form-group">
