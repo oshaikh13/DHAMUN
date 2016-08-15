@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { socket } from '../../utils/socket.js';
 import { Link } from 'react-router';
 
+import { Button } from 'react-toolbox/lib/button';
+
+import { styles } from './styles.scss';
+
 export class VotePicker extends Component {
 
   constructor (props) {
@@ -27,13 +31,13 @@ export class VotePicker extends Component {
 
     const title = decodeURIComponent(this.props.params.name);
 
-    if (name === "pass") {
-      this.setState({pass: true, abstain: false, reject: false})
-    } else if (name === "abstain") {
-      this.setState({pass: false, abstain: true, reject: false})
-    } else if (name === "reject") {
-      this.setState({pass: false, abstain: false, reject: true});
-    }
+    var newState = {
+      pass: name === "pass",
+      abstain: name === "abstain",
+      reject: name === "reject"
+    };
+
+    this.setState(newState);
 
     if (change) {
       socket.emit("vote add", {token: this.props.token, type: name, title: title});
@@ -45,12 +49,19 @@ export class VotePicker extends Component {
     const { votes } = this.props;
     const closed = votes[decodeURIComponent(this.props.params.name)].closed;
 
+
     if (!closed) return (
-      <div className="btn-group" role="group">
-        <button type="button" className="btn btn-primary btn-lg" onClick={() => this.selector('pass', true)} disabled={this.state.pass}>Pass</button>
-        <button type="button" className="btn btn-default btn-lg" onClick={() => this.selector('abstain', true)} disabled={this.state.abstain}>Abstain</button>
-        <button type="button" className="btn btn-danger btn-lg" onClick={() => this.selector('reject', true)} disabled={this.state.reject}>Reject</button>
-      </div> 
+      <div className={`${styles}` + ' text-center'} >
+        <Button className="btn" onClick={() => this.selector('pass', true)} disabled={this.state.pass} raised primary>
+          Pass
+        </Button>
+        <Button className="btn center-vote-button" onClick={() => this.selector('abstain', true)} disabled={this.state.abstain} raised primary>
+          Abstain
+        </Button>
+        <Button className="btn" onClick={() => this.selector('reject', true)} disabled={this.state.reject} raised primary>
+          Reject
+        </Button>
+      </div>
     );
 
     return (

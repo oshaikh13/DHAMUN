@@ -7,6 +7,8 @@ import { Link } from 'react-router';
 import { Button } from 'react-toolbox/lib/button';
 import { Card } from 'react-toolbox/lib/card';
 import Input from 'react-toolbox/lib/input';
+import Dialog from 'react-toolbox/lib/dialog';
+
 
 /* component styles */
 import { styles } from './styles.scss';
@@ -19,6 +21,28 @@ export class LoginForm extends Component {
     signUp: React.PropTypes.func,
     signIn: React.PropTypes.func
   };
+
+  state = {
+    active: false
+  };
+
+  handleToggle = (e) => {
+    e.preventDefault();
+    this.setState({active: !this.state.active});
+  }
+
+  sendReset = (e) => {
+    e.preventDefault();
+    this.setState({active: !this.state.active});
+    this.props.resetPassword(this.props.fields.email.value);
+
+  }
+
+  actions = [
+    { label: "Cancel", onClick: this.handleToggle },
+    { label: "Send", onClick: this.sendReset}
+  ];
+
 
   constructor(props) {
     super(props);
@@ -72,38 +96,51 @@ export class LoginForm extends Component {
       }
     }
 
-
     return (
 
-    <div className={styles}>
-      <form  onSubmit={this.onAdd}>
+      <div className={styles}>
+        <form  onSubmit={this.onAdd}>
 
-        <Card className="card">
+          <Card className="card">
 
-          {
-            this.props.loginStatusText &&         
+            {
+              this.props.loginStatusText &&         
+              <div className="form-group">
+                <p className="error-text">{this.props.loginStatusText}</p>
+              </div>
+            }
+
             <div className="form-group">
-              <p className="error-text">{this.props.loginStatusText}</p>
+              <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
             </div>
-          }
 
-          <div className="form-group">
-            <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
-          </div>
+            <div className="form-group">
+              <Input label="Password" type="password" className="input" style={{top: 100}} {...password}/>
+            </div>
 
-          <div className="form-group">
-            <Input label="Password" type="password" className="input" style={{top: 100}} {...password}/>
-          </div>
+            <div className="form-group">
+              <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
+                Login
+              </Button>
+            </div>
 
-          <div className="form-group">
-            <Button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} primary>
-              Login
-            </Button>
-          </div>
+            <Dialog
+              actions={this.actions}
+              active={this.state.active}
+              onEscKeyDown={this.handleToggle}
+              onOverlayClick={this.handleToggle}
+              title='Reset Password'
+            >
+              <p>Enter the affiliated email address, and if it exists, we'll send you a password reset email.</p>
+              <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
 
-        </Card>  
-      </form>
-    </div>  
+            </Dialog>
+
+            <Button className="btn" label='Forgot Password?' onClick={this.handleToggle} />
+
+          </Card>  
+        </form>
+      </div>  
     );
   }
 }

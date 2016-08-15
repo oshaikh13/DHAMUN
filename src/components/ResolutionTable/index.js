@@ -31,7 +31,7 @@ export class ResolutionTable extends Component {
                   <td className="col-md-4">{item}</td>
                   <td className="col-md-4">{resolutions[item].original}</td>
                   <td className="col-md-4">
-                      <Button label="View" className="btn centerMe" href={'/#/dashboard/' + this.props.userLevel + '/resolutions/' + encodeURIComponent(item)} primary/>
+                    <Button label="View" className="btn centerMe" href={'/#/dashboard/' + this.props.userLevel + '/resolutions/' + encodeURIComponent(item)} primary/>
                   </td>
                 </tr>
               }

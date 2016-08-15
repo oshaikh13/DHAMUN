@@ -73,7 +73,7 @@ export class SignUpForm extends Component {
         }
 
           <div className="form-group">
-            <Input label="Password" type="text" className="input" {...password}/>
+            <Input label="Password" type="password" className="input" {...password}/>
           </div>
 
           <div className="form-group">
@@ -81,7 +81,7 @@ export class SignUpForm extends Component {
           </div>
 
           <div className="form-group">
-            <Button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} primary>
+            <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
               Login
             </Button>
           </div>

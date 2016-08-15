@@ -22,9 +22,33 @@ const metaData = {
 
 export class ResolutionSubmit extends Component {
 
+  addAdminPermissions(file, admin) {
+
+    gapi.client.drive.permissions
+      .create({
+        fileId: file.id, 
+        role: "writer", 
+        type: "user", 
+        emailAddress: admin.email,
+        sendNotificationEmail: true,
+        emailMessage: this.props.country + "'s Resolution"
+      })
+      .execute(function(res){
+
+      });
+
+  }
+
   onFileSelect(file) {
     var _this = this;
     
+    if (this.props.admins) {    
+      this.props.admins.forEach(function(admin){
+        _this.addAdminPermissions(file, admin);
+      });
+    }
+
+
     gapi.client.drive.permissions
       .create({fileId: file.id, role: "commenter", type: "anyone"})
       .execute(function(res){
@@ -62,7 +86,7 @@ export class ResolutionSubmit extends Component {
     return (
       <section className={styles}>
         <div className="container">
-          <Button id="resButton" className="btn btn-default" disabled={this.props.isAuthenticating} >
+          <Button id="resButton" className="btn" disabled={this.props.isAuthenticating} >
             Submit Resolution
           </Button>
         </div>

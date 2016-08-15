@@ -38,6 +38,18 @@ export function signUpSuccess () {
   }
 }
 
+export function passwordResetSuccess () {
+  return {
+    type: "LOGIN_PASSWORD_RESET_SUCCESS"
+  }
+}
+
+export function passwordResetFailure () {
+  return {
+    type: "LOGIN_PASSWORD_RESET_FAILURE"
+  }
+}
+
 export function logOut (token) {
   socket.emit('logout', {token: token});
   hashHistory.push('/home');
@@ -55,12 +67,55 @@ export function signIn (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
+
+          if (!res) {
+            res = {
+              status: 500,
+              body: {
+                error: "Server is down. Alert a staff member."
+              }
+            }
+            // shit
+          }
+
           dispatch(loginFailure(res.status, res.body.error, true));
         } else {
           dispatch(loginSuccess(res.body.token));
         }
       });
 
+  }
+}
+
+export function resetPassword (userEmail) {
+  return function (dispatch) {
+    request
+      .post(SERVER_URL + '/api/mails/send')
+      .send({
+        recipient: "SINGLE",
+        type: "FORGOT_PASS",
+        email: userEmail
+      })
+      .end((err, res) => {
+        if (err || !res.ok) {
+
+          if (!res) {
+            res = {
+              status: 500,
+              body: {
+                error: "Server is down. Alert a staff member."
+              }
+            }
+            // shit
+          }
+
+          // TODO: Dispatch failure
+          // dispatch(loginFailure(res.status, res.body.error, true));
+          dispatch(passwordResetFailure());
+        } else {
+          dispatch(passwordResetSuccess());
+        }
+      })
   }
 }
 
@@ -73,6 +128,17 @@ export function signUp (userData) {
       .send(userData)
       .end((err, res) => {
         if (err || !res.ok) {
+
+          if (!res) {
+            res = {
+              status: 500,
+              body: {
+                error: "Server is down. Alert a staff member."
+              }
+            }
+            // shit
+          }
+
           dispatch(signUpFailure(res.status, res.body.error));
         } else {
           dispatch(signUpSuccess(JSON.parse(res.text).token));
