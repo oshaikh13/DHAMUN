@@ -31,8 +31,10 @@ export function auth(state = initialState, action) {
       const incoming = action.payload.auth;
 
       // We don't want old error messages.
-      incoming.loginStatusText = null;
-      incoming.actionStatusText = null;
+      if (incoming) {      
+        incoming.loginStatusText = null;
+        incoming.signUpStatusText = null;
+      }
 
       if (incoming && incoming.token) {
         socket.emit("subscribe", {token: incoming.token})
