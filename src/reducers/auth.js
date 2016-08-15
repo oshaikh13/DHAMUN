@@ -29,6 +29,7 @@ export function auth(state = initialState, action) {
   switch (action.type) {
     case REHYDRATE: 
       const incoming = action.payload.auth;
+
       if (incoming && incoming.token) {
         socket.emit("subscribe", {token: incoming.token})
         return {...state, ...incoming}

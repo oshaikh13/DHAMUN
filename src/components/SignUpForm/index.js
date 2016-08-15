@@ -53,7 +53,9 @@ export class SignUpForm extends Component {
 
     if (this.props.hasSignedUp) {
       return (
-        <h3>You've signed up. Go <Link to='/home/login'>login</Link></h3>
+        <Card className="card">
+          <h3 className='text-center'>You've signed up. Go <Link to='/home/login'>login</Link></h3>
+        </Card>  
       );
     }
 
