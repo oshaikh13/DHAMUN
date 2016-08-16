@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { socket } from 'utils/socket';
 
+import { Button } from 'react-toolbox/lib/button';
+
 /* component styles */
 
 export class VoteDisabler extends Component {
@@ -21,10 +23,10 @@ export class VoteDisabler extends Component {
     const resName = decodeURIComponent(this.props.params.name);
     const closed = votes[resName].closed;
     return (
-      <div className="form-group">
-        <button className="btn btn-default" onClick={(e) => this.onSubmit(e)} disabled={closed}>
-          Disable Session
-        </button>
+      <div>
+        <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={closed} raised primary>
+          Disable
+        </Button>
       </div>
     );
   }

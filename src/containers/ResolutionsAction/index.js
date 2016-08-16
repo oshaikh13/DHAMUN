@@ -39,6 +39,9 @@ const metaData = {
 export class ResolutionsAction extends Component {
 
   render() {
+    const { resolutions } = this.props;
+    const currentRes = resolutions[decodeURIComponent(this.props.params.name)];
+
     return (
 
       <section className={styles}>
@@ -47,28 +50,30 @@ export class ResolutionsAction extends Component {
         <div className="container">
 
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <h1 className="title">
+            <div className="col-md-12">
+              <h1 className="title" >
                 Stats for {this.props.params.name}
               </h1>
 
             </div>
 
              <Card className="card">   
-              <ResolutionStats {...this.props} />
+              <ResolutionStats {...this.props} currentRes={currentRes} name={decodeURIComponent(this.props.params.name)} token={this.props.token} />
 
-              <div className="">
+              { this.props.userLevel === "Delegate" &&
+                <div>
+                  <div>
 
-                  <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                                  col-md-offset-3 col-lg-offset-3">
-                    <h1>
-                      Sign {this.props.params.name}
-                    </h1>
+                      <div className="col-md-12">
+                        <h2 className="text-center">
+                          Sign {this.props.params.name}
+                        </h2>
 
+                      </div>
                   </div>
-              </div>
-              <ResolutionPicker {...this.props} />  
+                  <ResolutionPicker {...this.props} currentRes={currentRes} />  
+                </div>
+              } 
           </Card>    
 
           </div>

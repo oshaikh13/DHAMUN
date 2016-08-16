@@ -8,6 +8,9 @@ import { socket } from 'utils/socket';
 /* component styles */
 import { styles } from '../LoginForm/styles.scss';
 
+import { Button } from 'react-toolbox/lib/button';
+import Input from 'react-toolbox/lib/input';
+
 export class VoteAddForm extends Component {
 
   constructor(props) {
@@ -23,6 +26,7 @@ export class VoteAddForm extends Component {
       } = this.props;
       
       socket.emit("vote create", {token: this.props.token, voteName: name.value, creator: creator.value});
+      this.props.dispatch(reset('voteAddForm'));
 
     }
   };
@@ -37,17 +41,17 @@ export class VoteAddForm extends Component {
 
       <form className={styles} onSubmit={this.onAdd}>
         <div className="form-group">
-          <input type="text" className="form-control" placeholder="Name" {...name}/>
+          <Input type="text"  placeholder="Name" {...name}/>
         </div>
 
         <div className="form-group">
-          <input type="text" className="form-control" placeholder="Creator" {...creator}/>
+          <Input type="text"  placeholder="Creator" {...creator}/>
         </div>
 
         <div className="form-group">
-          <button className="btn btn-default" onClick={(e) => this.onSubmit(e)} >
+          <Button className="btn" onClick={(e) => this.onSubmit(e)} >
             Create Session
-          </button>
+          </Button>
         </div>
       </form>
 
