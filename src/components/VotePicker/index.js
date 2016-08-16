@@ -13,17 +13,21 @@ export class VotePicker extends Component {
     this.state = {pass: false, abstain: false, reject: false};
   }
 
-  // ComponentPassedProps or something like that...
-  componentWillReceiveProps (newProps) {
-    // PassProps, data is a field in props. 
-
+  editPickerOnPriorSelection(newProps) {
     const name = decodeURIComponent(newProps.params.name);
 
     const data = newProps.votes;
 
-    if (data[name] && data[name].votes[this.props.country] && !this.state[data[name].votes[this.props.country].type]) {
+    if (data[name] && data[name].votes[this.props.country]) {
       this.selector(data[name].votes[this.props.country].type);
-    }
+    }  
+  }
+
+  // ComponentPassedProps or something like that...
+  componentWillReceiveProps (newProps) {
+    // PassProps, data is a field in props. 
+
+    this.editPickerOnPriorSelection(newProps);
 
   }
 
@@ -49,7 +53,7 @@ export class VotePicker extends Component {
     const { votes } = this.props;
     const closed = votes[decodeURIComponent(this.props.params.name)].closed;
 
-
+    
     if (!closed) return (
       <div className={`${styles}` + ' text-center'} >
         <Button className="btn" onClick={() => this.selector('pass', true)} disabled={this.state.pass} raised primary>

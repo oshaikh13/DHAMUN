@@ -5,7 +5,7 @@ import { Button } from 'react-toolbox/lib/button';
 
 /* component styles */
 
-export class VoteDisabler extends Component {
+export class ResolutionApprover extends Component {
 
   constructor(props) {
     super(props);
@@ -14,18 +14,18 @@ export class VoteDisabler extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     const resName = decodeURIComponent(this.props.params.name);
-    socket.emit("vote close", {token: this.props.token, voteName: resName});
+    socket.emit("resolution approve", {token: this.props.token, name: resName});
     
   };
 
   render() {
-    const { votes } = this.props;
+    const { currentRes } = this.props;
     const resName = decodeURIComponent(this.props.params.name);
-    const closed = votes[resName].closed;
+    const approved = currentRes.approved
     return (
-      <div>
-        <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={closed} raised primary>
-          Disable
+      <div className="text-center">
+        <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={approved} raised primary>
+          Approve Resolution
         </Button>
       </div>
     );

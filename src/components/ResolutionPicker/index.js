@@ -25,6 +25,22 @@ export class ResolutionPicker extends Component {
 
     const data = newProps.resolutions;
 
+    const isAffiliated = (
+      data[name].mainsub[newProps.country] || 
+      data[name].cosub[newProps.country] || 
+      data[name].signat[newProps.country] 
+    )
+
+    if (data[name] && data[name].requests[newProps.country]) {
+      this.selector(data[name].requests[newProps.country].type);
+
+    } else if (data[name] && !data[name].requests[newProps.country] && !isAffiliated) {
+      this.selector('ENABLED'); // all buttons should be enabled
+    } else if (data[name] && isAffiliated) {
+
+      this.selector('DISABLED'); // all buttons should be disabled
+    }
+
 
   }
 
@@ -34,41 +50,48 @@ export class ResolutionPicker extends Component {
 
     // TODO create the hash and set props to true/false, then set state with hash.
     // Cleaner. too lazy rn
-    if (name === "signat") {
-      this.setState({signat: true, mainsub: false, cosub: false})
-    } else if (name === "mainsub") {
-      this.setState({signat: false, mainsub: true, cosub: false})
-    } else if (name === "cosub") {
-      this.setState({signat: false, mainsub: false, cosub: true});
-    } else if (name === "revoke") {
-      this.setState({signat: false, mainsub: false, cosub: false});
+    var newState = {
+      signat: name === "signat",
+      mainsub: name === "mainsub",
+      cosub: name === "cosub"
     }
 
+    if (name === 'ENABLED') {
+      newState = {signat: false, mainsub: false, cosub: false};
+    } else if (name === 'DISABLED') {
+      newState = {signat: true, mainsub: true, cosub: true};
+    }
+
+    this.setState(newState);
+    
     if (change) {
-      socket.emit("resolution sign request", {token: this.props.token, signType: name, name: title});
+      if (name === "revoke") {
+        socket.emit("resolution sign revoke", {token: this.props.token, name: title})
+      } else socket.emit("resolution sign request", {token: this.props.token, signType: name, name: title});
     }
 
   }
 
   render() {
-    const { resolutions } = this.props;
-    const currentRes = resolutions[decodeURIComponent(this.props.params.name)];
+    const { currentRes } = this.props;
+    // const currentRes = resolutions[decodeURIComponent(this.props.params.name)];
     const approved = currentRes.approved;
     const requested = currentRes.requests[this.props.country];
-
-    if (this.props.country === currentRes.original) {
-      return (
-        <div className={styles}>
-          <h3>You cannot vote on your own resolution</h3>
-        </div>
-      )
-    }
 
     if (approved) return (
       <div className={styles}>
         <h3>This resolution has been approved.</h3>
       </div>
     );
+
+    if (this.props.country === currentRes.original) {
+      return (
+        <div className={styles}>
+          <h3>You cannot be on your own resolution</h3>
+        </div>
+      )
+    }
+
 
     return (
       <div className={styles}>
