@@ -32,78 +32,103 @@ export class VoteChart extends Component {
         }
 
 
-    var doesContainSchool = function (arr, name) {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i].school === "name") {
-                return true;
-            }
+    var createArray = function(length) {
+        var myArray = [];
+        for (var i = 0; i < length; i++) {
+            myArray.push(0);
         }
 
-        return false;
+        return myArray;
     }
 
-    var schoolKeyMapping = {
+    var schoolKeyMap = {
 
     }
 
-    var idx = 0;
+    var compareChartLabels = [];
+
+
+    for (var key in resolutionVotes) {
+
+        const currentSelection = resolutionVotes[key];
+
+        var schoolIdx = compareChartLabels.indexOf(currentSelection.school)
+
+        if (schoolIdx === -1) {
+            compareChartLabels.push(currentSelection.school);
+            schoolKeyMap[currentSelection.school] = compareChartLabels.length - 1;
+        }
+
+        if (currentSelection.type === "reject") {
+            barData.datasets[0].data[2]++;
+     
+        } else if (currentSelection.type === "pass") {
+            barData.datasets[0].data[0]++;
+
+        } else {
+            barData.datasets[0].data[1]++;
+
+        }
+
+    }
+
+    var compareSchoolData = {
+        labels: compareChartLabels,
+        datasets: [
+
+            {
+                label: "Pass",
+                fillColor: schoolKeyColor[0].fillColor,
+                strokeColor: schoolKeyColor[0].strokeColor,
+                pointColor: schoolKeyColor[0].pointColor,
+                data: createArray(compareChartLabels.length)
+            },
+
+            {
+                label: "Abstain",
+                fillColor: schoolKeyColor[1].fillColor,
+                strokeColor: schoolKeyColor[1].strokeColor,
+                pointColor: schoolKeyColor[1].pointColor,
+                data: createArray(compareChartLabels.length)
+            },
+
+            {
+                label: "Reject",
+                fillColor: schoolKeyColor[2].fillColor,
+                strokeColor: schoolKeyColor[2].strokeColor,
+                pointColor: schoolKeyColor[2].pointColor,
+                data: createArray(compareChartLabels.length)
+            }
+        ]
+    }
 
     for (var key in resolutionVotes) {
         const currentSelection = resolutionVotes[key];
 
-        if (!schoolKeyMapping[currentSelection.school]) {
-            schoolKeyMapping[currentSelection.school] = idx;
-
-            indivSchoolVotes.push([]);
-            
-            
-            indivSchoolVotes[schoolKeyMapping[currentSelection.school]] = {
-                label: currentSelection.school,
-                fillColor: schoolKeyColor[idx].fillColor,
-                strokeColor: schoolKeyColor[idx].strokeColor,
-                pointColor: schoolKeyColor[idx].pointColor,
-                data: [0, 0, 0]
-            };
-
-            idx++;
-        }
-
-        var currentSchoolData = indivSchoolVotes[schoolKeyMapping[currentSelection.school]].data;
-
+        const idx = schoolKeyMap[currentSelection.school];
         if (currentSelection.type === "reject") {
-            barData.datasets[0].data[2]++;
-            currentSchoolData[2]++;
+            compareSchoolData.datasets[2].data[idx]++;
+     
         } else if (currentSelection.type === "pass") {
-            barData.datasets[0].data[0]++;
-            currentSchoolData[0]++;
+            compareSchoolData.datasets[0].data[idx]++;
+
         } else {
-            barData.datasets[0].data[1]++;
-            currentSchoolData[1]++;
-        }
-
-
+            compareSchoolData.datasets[1].data[idx]++;
+        }     
     }
 
-
-    var radarData = {
-        labels: barData.labels,
-        datasets: [
-            ...indivSchoolVotes
-        ]
-    }
-
-    // Polar chart data setup.
+    debugger;
 
     const closed = votes[resName].closed;
 
-    if (this.props.userLevel !== "Delegate" && radarData.datasets.length) {
+    if (this.props.userLevel !== "Delegate" ) {
       return (
             <div>
-                <h3>Bar Chart</h3>
-                <BarChart height="300" width="500" data={barData}/>
-                <h3>Radar Chart</h3>
-                <RadarChart height="300" width="500" data={radarData}/>
-                
+                <h3>General Vote Chart</h3>
+                <BarChart height="350" width="500" data={barData}/>
+                <h3>School Chart</h3>
+                <BarChart height="350" width="500" data={compareSchoolData}/>
+      
             </div>
         )  
     }  else if (this.props.userLevel !== "Delegate") return (<h3>No one has voted yet</h3>);
