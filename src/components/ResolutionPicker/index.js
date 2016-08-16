@@ -26,10 +26,10 @@ export class ResolutionPicker extends Component {
     const data = newProps.resolutions;
 
     const isAffiliated = (
-          data[name].mainsub[newProps.country] || 
-          data[name].cosub[newProps.country] || 
-          data[name].signat[newProps.country] 
-        )
+      data[name].mainsub[newProps.country] || 
+      data[name].cosub[newProps.country] || 
+      data[name].signat[newProps.country] 
+    )
 
     if (data[name] && data[name].requests[newProps.country]) {
       this.selector(data[name].requests[newProps.country].type);
@@ -78,19 +78,20 @@ export class ResolutionPicker extends Component {
     const approved = currentRes.approved;
     const requested = currentRes.requests[this.props.country];
 
-    if (this.props.country === currentRes.original) {
-      return (
-        <div className={styles}>
-          <h3>You cannot vote on your own resolution</h3>
-        </div>
-      )
-    }
-
     if (approved) return (
       <div className={styles}>
         <h3>This resolution has been approved.</h3>
       </div>
     );
+
+    if (this.props.country === currentRes.original) {
+      return (
+        <div className={styles}>
+          <h3>You cannot be on your own resolution</h3>
+        </div>
+      )
+    }
+
 
     return (
       <div className={styles}>

@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { Socket } from 'components/Socket';
 import { ResolutionPicker } from 'components/ResolutionPicker';
+import { ResolutionApprover } from 'components/ResolutionApprover';
+
 import { ResolutionStats } from 'components/ResolutionStats';
 
 /* material UI components */
@@ -72,6 +74,22 @@ export class ResolutionsAction extends Component {
                       </div>
                   </div>
                   <ResolutionPicker {...this.props} currentRes={currentRes} />  
+                </div>
+              }
+
+              {
+                this.props.userLevel != "Delegate" && 
+                <div>
+                  <div>
+
+                      <div className="col-md-12">
+                        <h2 className="text-center">
+                          Approve {this.props.params.name}
+                        </h2>
+
+                        <ResolutionApprover {...this.props} currentRes={currentRes} />  
+                      </div>
+                  </div>
                 </div>
               } 
           </Card>    

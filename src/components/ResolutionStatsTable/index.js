@@ -24,7 +24,7 @@ export class ResolutionStatsTable extends Component {
 
     // Type is unused for now...
     // Just in case we need it later
-    const { tableElements, type, isCreator, country } = this.props;
+    const { tableElements, type, isCreator, country, approved } = this.props;
 
 
     if (!tableElements) {
@@ -42,7 +42,7 @@ export class ResolutionStatsTable extends Component {
         <thead>
           <tr>
             <th>Country</th>
-            {isCreator && 
+            {(isCreator && !approved) && 
               <th>Action</th>
             }
           </tr>
@@ -54,9 +54,9 @@ export class ResolutionStatsTable extends Component {
               {
                 return <tr key={index}>
                   <td className="col-md-10">{item}</td>
-                  { isCreator && 
+                  { (isCreator && !approved) && 
                     <td className="col-md-2">
-                      <Button className="larger-btn btn" onClick={(e) => this.onSubmit(e, item, (type === "requests" ? "Accept" : "Remove"))} raised primary>
+                      <Button className="btn" onClick={(e) => this.onSubmit(e, item, (type === "requests" ? "Accept" : "Remove"))} raised primary>
                         {type === "requests" ? TYPE_MAP[this.props.tableElements[item].type] : "Remove"}
                       </Button>
                     </td>
