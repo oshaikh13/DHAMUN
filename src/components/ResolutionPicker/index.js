@@ -25,6 +25,9 @@ export class ResolutionPicker extends Component {
 
     const data = newProps.resolutions;
 
+    if (data[name] && data[name].requests[newProps.country].type && !this.state[data[name].requests[newProps.country].type]) {
+      this.selector(data[name].requests[newProps.country].type);
+    }
 
   }
 
@@ -45,14 +48,16 @@ export class ResolutionPicker extends Component {
     }
 
     if (change) {
-      socket.emit("resolution sign request", {token: this.props.token, signType: name, name: title});
+      if (name === "revoke") {
+        socket.emit("resolution sign revoke", {token: this.props.token, name: title})
+      } else socket.emit("resolution sign request", {token: this.props.token, signType: name, name: title});
     }
 
   }
 
   render() {
-    const { resolutions } = this.props;
-    const currentRes = resolutions[decodeURIComponent(this.props.params.name)];
+    const { currentRes } = this.props;
+    // const currentRes = resolutions[decodeURIComponent(this.props.params.name)];
     const approved = currentRes.approved;
     const requested = currentRes.requests[this.props.country];
 
