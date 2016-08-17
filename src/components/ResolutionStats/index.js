@@ -26,8 +26,9 @@ export class ResolutionStats extends Component {
       name: this.props.name,
       token: this.props.token,
       country: this.props.country,
-      isCreator: this.props.country === currentRes.original,
-      approved: currentRes.approved
+      hasAccess: currentRes.mainsub[this.props.country] || currentRes.cosub[this.props.country],
+      approved: currentRes.approved,
+      currentRes: this.props.currentRes
     }
 
     return (
