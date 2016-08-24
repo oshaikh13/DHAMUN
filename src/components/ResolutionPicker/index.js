@@ -50,8 +50,6 @@ export class ResolutionPicker extends Component {
     var mainsubKeys = Object.keys(resolution.mainsub).length;
     var cosubKeys = Object.keys(resolution.cosub).length;
 
-    debugger;
-
     // No one cares about requests
     if (resolution.requests[countryName]) return false;
 
@@ -114,7 +112,7 @@ export class ResolutionPicker extends Component {
 
     return (
       <div className={styles}>
-        <div className="buttons">
+        <div className="buttons res-input">
           <div>
             <TooltipButton label='Signator' tooltip='Request to be a signator' type="button" className="btn" onClick={() => this.selector('signat', true)} disabled={this.state.signat} raised primary/>
           </div>

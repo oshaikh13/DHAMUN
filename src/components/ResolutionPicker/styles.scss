@@ -1,22 +1,24 @@
 :local(.styles) {
-  .btn {
-    padding-left: 10px;
-    padding-right: 10px;
+  button {
     height: 35px;
     width: 140px;
   }
 
-  div{
+
+
+  div {
     display: inline;
+    padding-left: 2%;
+    padding-right: 2%;
   }
 
-  .buttons{
+  .buttons {
     display:flex;
     justify-content:center;
     align-items:center; 
   }
 
-  h3{
+  h3 {
     text-align: center;
   }
 }
