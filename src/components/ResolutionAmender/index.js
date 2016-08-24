@@ -17,13 +17,19 @@ export class ResolutionAmender extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    
+    // if (this.props.currentRes.amendments[this.props.fields.title.value]) {
+    //   alert("This title has been taken for another amendment. Pick again!");
+    //   return;
+    // }
+
     // const resName = decodeURIComponent(this.props.params.name);
     // socket.emit("resolution approve", {token: this.props.token, name: resName});
     
   };
 
   render() {
-    const { currentRes, creator, name } = this.props;
+    const { currentRes, title, message } = this.props;
     const resName = decodeURIComponent(this.props.params.name);
     const approved = currentRes.approved;
 
@@ -38,16 +44,16 @@ export class ResolutionAmender extends Component {
     return (
       <form className={styles} >
         <div className="form-group">
-          <Input type="text"  placeholder="Name" {...name}/>
+          <Input type="text"  placeholder="Title" {...title}/>
         </div>
 
         <div className="form-group">
-          <Input type="text"  placeholder="Creator" {...creator}/>
+          <Input type="text"  placeholder="Message (optional)" {...message}/>
         </div>
 
         <div className="form-group">
           <Button className="btn" onClick={(e) => this.onSubmit(e)} >
-            Create Session
+            Create Amendment
           </Button>
         </div>
       </form>
@@ -58,7 +64,7 @@ export class ResolutionAmender extends Component {
 
 ResolutionAmender = reduxForm({
   form: 'resolutionAmender',
-  fields: ['name', 'creator'],
+  fields: ['title', 'message'],
   destroyOnUnmount: false,
 })(ResolutionAmender);
 
