@@ -7,6 +7,8 @@ import { Socket } from 'components/Socket';
 import { VoteAddForm } from 'components/VoteAddForm';
 
 import { VoteTable } from 'components/VoteTable';
+import { VoteRequestTable } from 'components/VoteRequestTable';
+
 
 import * as actionCreators from 'actions/votes';
 
@@ -32,11 +34,14 @@ const metaData = {
   (state) => ({
     token: state.auth.token,
     userLevel: state.auth.userLevel,
-    votes: state.votes.items
+    votes: state.votes.items,
+    resolutions: state.resolutions.items
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class Vote extends Component {
+
+  // TODO: Add component that filters certain resolutions
 
   render() {
     return (
@@ -56,9 +61,11 @@ export class Vote extends Component {
             <Card className="card">
               <VoteTable {...this.props} />
 
-              { this.props.userLevel === "Chair" &&
-                <VoteAddForm {...this.props} />
-              } 
+                { this.props.userLevel === "Chair" &&
+                  <VoteAddForm {...this.props} />
+                } 
+
+
 
             </Card>
           </div>

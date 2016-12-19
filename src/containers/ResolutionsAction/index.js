@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { Socket } from 'components/Socket';
 import { ResolutionPicker } from 'components/ResolutionPicker';
 import { ResolutionApprover } from 'components/ResolutionApprover';
+import { ResolutionAmender } from 'components/ResolutionAmender';
+
 
 import { ResolutionStats } from 'components/ResolutionStats';
 
@@ -92,6 +94,24 @@ export class ResolutionsAction extends Component {
                   </div>
                 </div>
               } 
+
+
+              {
+                (this.props.userLevel === "Delegate") && 
+                <div>
+                  <div>
+
+                      <div className="col-md-12 bottom-pad">
+                        <h2 className="text-center">
+                          Submit an amendment to {this.props.params.name}
+                        </h2>
+
+                        <ResolutionAmender {...this.props} currentRes={currentRes} />  
+                      </div>
+                  </div>
+                </div>
+              } 
+
           </Card>    
 
           </div>

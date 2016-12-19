@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-var BarChart = require("react-chartjs").Bar;
-var RadarChart = require("react-chartjs").Radar;
+import { BarChart, Bar, Brush, Cell, CartesianGrid, ReferenceLine, ReferenceDot,
+  XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 import { schoolKeyColor } from 'utils/schoolKeyColor.js';
 
-export class VoteChart extends Component {
+// TODO: School distribution chart
 
+export class VoteChart extends Component {
 
   render() {
     const { votes } = this.props;
@@ -15,101 +16,53 @@ export class VoteChart extends Component {
     const resName = decodeURIComponent(this.props.params.name);
     const resolutionVotes = votes[resName].votes;
 
-    var indivSchoolVotes = [];
-
-    // Bar chart data setup
-    var barData = {
-            labels: ["Pass", "Abstain", "Reject"],
-            datasets: [
-                {
-                    label: "Votes",
-                    fillColor: schoolKeyColor[0].fillColor,
-                    strokeColor: schoolKeyColor[0].strokeColor,
-                    pointColor: schoolKeyColor[0].pointColor,
-                    data: [0, 0, 0]
-                }
-            ]
-        }
-
-
-    var doesContainSchool = function (arr, name) {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i].school === "name") {
-                return true;
-            }
-        }
-
-        return false;
+    const voteTypeMap = {
+        pass: 0,
+        abstain: 1,
+        reject: 2
     }
 
-    var schoolKeyMapping = {
+    var generalVoteData = [
+        {
+            name: 'pass',
+            value: 0
+        },
+        {
+            name: 'abstain',
+            value: 0
+        },
+        {
+            name: 'reject',
+            value: 0
+        }
+    ];
 
-    }
-
-    var idx = 0;
 
     for (var key in resolutionVotes) {
-        const currentSelection = resolutionVotes[key];
-
-        if (!schoolKeyMapping[currentSelection.school]) {
-            schoolKeyMapping[currentSelection.school] = idx;
-
-            indivSchoolVotes.push([]);
-            
-            
-            indivSchoolVotes[schoolKeyMapping[currentSelection.school]] = {
-                label: currentSelection.school,
-                fillColor: schoolKeyColor[idx].fillColor,
-                strokeColor: schoolKeyColor[idx].strokeColor,
-                pointColor: schoolKeyColor[idx].pointColor,
-                data: [0, 0, 0]
-            };
-
-            idx++;
-        }
-
-        var currentSchoolData = indivSchoolVotes[schoolKeyMapping[currentSelection.school]].data;
-
-        if (currentSelection.type === "reject") {
-            barData.datasets[0].data[2]++;
-            currentSchoolData[2]++;
-        } else if (currentSelection.type === "pass") {
-            barData.datasets[0].data[0]++;
-            currentSchoolData[0]++;
-        } else {
-            barData.datasets[0].data[1]++;
-            currentSchoolData[1]++;
-        }
-
-
+        generalVoteData[voteTypeMap[resolutionVotes[key].type]].value++;
     }
 
-
-    var radarData = {
-        labels: barData.labels,
-        datasets: [
-            ...indivSchoolVotes
-        ]
-    }
-
-    // Polar chart data setup.
 
     const closed = votes[resName].closed;
 
-    if (this.props.userLevel !== "Delegate" && radarData.datasets.length) {
+    if (this.props.userLevel !== "Delegate" ) {
       return (
             <div>
-                <h3>Bar Chart</h3>
-                <BarChart height="300" width="500" data={barData}/>
-                <h3>Radar Chart</h3>
-                <RadarChart height="300" width="500" data={radarData}/>
-                
+                <h3>General Vote Chart</h3>
+                <BarChart width={600} height={400} data={generalVoteData}
+                margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+                   <XAxis dataKey="name"/>
+                   <YAxis allowDecimals={false} />
+                   <Bar dataKey="value" fill="#8884d8" />
+                   <CartesianGrid strokeDasharray="3 3"/>
+                   <Tooltip/>
+                </BarChart>      
             </div>
         )  
     }  else if (this.props.userLevel !== "Delegate") return (<h3>No one has voted yet</h3>);
     
     if (closed) return (
-      <BarChart height="300" width="500" data={barData}/>
+      <BarChart height="350" width="350" data={barData}/>
     );
 
     return (<h3>Wait till the session is closed to see stats</h3>)

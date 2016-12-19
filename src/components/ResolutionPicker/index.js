@@ -44,9 +44,33 @@ export class ResolutionPicker extends Component {
 
   }
 
+
+  // Probs make this a util or a mixin
+  onlyCountry (countryName, resolution) {
+    var mainsubKeys = Object.keys(resolution.mainsub).length;
+    var cosubKeys = Object.keys(resolution.cosub).length;
+
+    // No one cares about requests
+    if (resolution.requests[countryName]) return false;
+
+    // You are a mainsubmittor, the only one, and there is no cosubmittor
+    if (resolution.mainsub[countryName] && mainsubKeys === 1 && cosubKeys === 0) return true;
+
+    // You are a cosubmittor, the only one, and there is no mainsubmittor
+    if (resolution.cosub[countryName] && cosubKeys === 1 && mainsubKeys === 0) return true;
+
+    return false;
+  }
+
   selector (name, change) {
 
     const title = decodeURIComponent(this.props.params.name);
+
+    const onlyCountry = this.onlyCountry(this.props.country, this.props.currentRes);
+    if (onlyCountry && name === "revoke") {
+      alert("You are the only submittor and cannot leave!");
+      return;
+    }
 
     // TODO create the hash and set props to true/false, then set state with hash.
     // Cleaner. too lazy rn
@@ -66,6 +90,8 @@ export class ResolutionPicker extends Component {
     
     if (change) {
       if (name === "revoke") {
+        // check if you're a mainsub / cosub
+
         socket.emit("resolution sign revoke", {token: this.props.token, name: title})
       } else socket.emit("resolution sign request", {token: this.props.token, signType: name, name: title});
     }
@@ -84,18 +110,9 @@ export class ResolutionPicker extends Component {
       </div>
     );
 
-    if (this.props.country === currentRes.original) {
-      return (
-        <div className={styles}>
-          <h3>You cannot be on your own resolution</h3>
-        </div>
-      )
-    }
-
-
     return (
       <div className={styles}>
-        <div className="buttons">
+        <div className="buttons res-input">
           <div>
             <TooltipButton label='Signator' tooltip='Request to be a signator' type="button" className="btn" onClick={() => this.selector('signat', true)} disabled={this.state.signat} raised primary/>
           </div>
@@ -110,7 +127,7 @@ export class ResolutionPicker extends Component {
         <br/>
 
         <div className="buttons">
-            <TooltipButton label="Revoke" tooltip="Revoke all requests" type="button" className="btn danger" style={{background : "#f44336"}} onClick={() => this.selector('revoke', true)} primary raised/>
+          <TooltipButton label="Leave" tooltip="Leave this resolution" type="button" className="btn danger" style={{background : "#f44336"}} onClick={() => this.selector('revoke', true)} primary raised/>
         </div>
       </div>
     );
