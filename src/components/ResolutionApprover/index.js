@@ -23,8 +23,8 @@ export class ResolutionApprover extends Component {
     const resName = decodeURIComponent(this.props.params.name);
     const approved = currentRes.approved
     return (
-      <div className="text-center">
-        <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={approved} raised primary>
+      <div className="text-center" >
+        <Button style={{"margin-bottom": 20}} className="btn" onClick={(e) => this.onSubmit(e)} disabled={approved} raised primary>
           Approve Resolution
         </Button>
       </div>
