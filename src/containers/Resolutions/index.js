@@ -58,7 +58,7 @@ export class Resolutions extends Component {
               <div className="col-lg-6">
               <ResolutionTables {...this.props}/>
               
-              <ResolutionSubmit {...this.props}/>
+              { this.props.userLevel == "Delegate" && <ResolutionSubmit {...this.props}/> }
               </div>
             </Card>
 
