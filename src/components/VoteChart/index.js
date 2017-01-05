@@ -45,8 +45,7 @@ export class VoteChart extends Component {
 
     const closed = votes[resName].closed;
 
-    if (this.props.userLevel !== "Delegate" ) {
-      return (
+    var chart = (
             <div>
                 <h3>General Vote Chart</h3>
                 <BarChart width={600} height={400} data={generalVoteData}
@@ -58,12 +57,13 @@ export class VoteChart extends Component {
                    <Tooltip/>
                 </BarChart>      
             </div>
-        )  
+        )
+
+    if (this.props.userLevel !== "Delegate" ) {
+      return chart;
     }  else if (this.props.userLevel !== "Delegate") return (<h3>No one has voted yet</h3>);
     
-    if (closed) return (
-      <BarChart height="350" width="350" data={barData}/>
-    );
+    if (closed) return chart;
 
     return (<h3>Wait till the session is closed to see stats</h3>)
   }
