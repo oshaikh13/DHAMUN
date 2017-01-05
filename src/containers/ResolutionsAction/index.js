@@ -99,7 +99,7 @@ export class ResolutionsAction extends Component {
 
 
               {
-                (this.props.userLevel === "Delegate") && 
+                currentRes.approved && (this.props.userLevel === "Delegate") && 
                 <div>
                   <div>
 
@@ -114,14 +114,16 @@ export class ResolutionsAction extends Component {
                 </div>
               } 
 
-         
-              <div style={{'padding-left': 30, 'padding-right': 30}}>
-                  <h2 className="text-center">
-                    View amendments for {this.props.params.name}
-                  </h2>
+              { currentRes.approved &&
 
-                  <AmendmentTable currentRes={currentRes} />
-              </div>
+                <div style={{'padding-left': 30, 'padding-right': 30}}>
+                    <h2 className="text-center">
+                      View amendments for {this.props.params.name}
+                    </h2>
+
+                    <AmendmentTable currentRes={currentRes} />
+                </div>
+              }
                 
 
 
