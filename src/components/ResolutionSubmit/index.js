@@ -24,18 +24,20 @@ export class ResolutionSubmit extends Component {
 
   addAdminPermissions(file, admin) {
 
-    gapi.client.drive.permissions
-      .create({
-        fileId: file.id, 
-        role: "writer", 
-        type: "user", 
-        emailAddress: admin.email,
-        sendNotificationEmail: true,
-        emailMessage: this.props.country + "'s Resolution"
-      })
-      .execute(function(res){
+    // TODO: add this in v2 of Referendum
 
-      });
+    // gapi.client.drive.permissions
+    //   .create({
+    //     fileId: file.id, 
+    //     role: "writer", 
+    //     type: "user", 
+    //     emailAddress: admin.email,
+    //     sendNotificationEmail: true,
+    //     emailMessage: this.props.country + "'s Resolution"
+    //   })
+    //   .execute(function(res){
+
+    //   });
 
   }
 
