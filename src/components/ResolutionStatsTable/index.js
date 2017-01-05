@@ -8,20 +8,20 @@ export class ResolutionStatsTable extends Component {
 
   // TODO if admin allow removal.
 
-  onlyCountry (countryName, resolution) {
+  onlyCountry (countryName, resolution, removedCountry) {
     var mainsubKeys = Object.keys(resolution.mainsub).length;
     var cosubKeys = Object.keys(resolution.cosub).length;
 
-    debugger;
-
+    // debugger;
+    
     // No one cares about requests
     if (resolution.requests[countryName]) return false;
 
     // You are a mainsubmittor, the only one, and there is no cosubmittor
-    if (resolution.mainsub[countryName] && mainsubKeys === 1 && cosubKeys === 0) return true;
+    if (removedCountry === countryName && resolution.mainsub[countryName] && mainsubKeys === 1 && cosubKeys === 0) return true;
 
     // You are a cosubmittor, the only one, and there is no mainsubmittor
-    if (resolution.cosub[countryName] && cosubKeys === 1 && mainsubKeys === 0) return true;
+    if (removedCountry === countryName && resolution.cosub[countryName] && cosubKeys === 1 && mainsubKeys === 0) return true;
 
     return false;
   }
@@ -29,7 +29,7 @@ export class ResolutionStatsTable extends Component {
   onSubmit (e, country, type) {
     e.preventDefault();
 
-    if (this.onlyCountry(this.props.country, this.props.currentRes) && type === "Remove") {
+    if (this.onlyCountry(this.props.country, this.props.currentRes, country) && type === "Remove") {
       alert("You are the only submittor and cannot leave!");
     } else if (type === "Accept") {
       socket.emit('resolution sign accept', {token: this.props.token, name: this.props.name, country: country});

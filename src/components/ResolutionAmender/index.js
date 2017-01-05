@@ -28,8 +28,6 @@ export class ResolutionAmender extends Component {
   onSubmit (event) {
     event.preventDefault();
     
-    debugger;
-
     if (!this.props.fields.title.value) {
       alert("Provide a title!");
       return;
