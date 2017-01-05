@@ -7,8 +7,6 @@ import { Socket } from 'components/Socket';
 import { VoteAddForm } from 'components/VoteAddForm';
 
 import { VoteTable } from 'components/VoteTable';
-import { VoteRequestTable } from 'components/VoteRequestTable';
-
 
 import * as actionCreators from 'actions/votes';
 

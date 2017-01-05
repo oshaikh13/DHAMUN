@@ -7,6 +7,8 @@ import { Socket } from 'components/Socket';
 import { ResolutionPicker } from 'components/ResolutionPicker';
 import { ResolutionApprover } from 'components/ResolutionApprover';
 import { ResolutionAmender } from 'components/ResolutionAmender';
+import { AmendmentTable } from 'components/AmendmentTable';
+
 
 
 import { ResolutionStats } from 'components/ResolutionStats';
@@ -111,6 +113,17 @@ export class ResolutionsAction extends Component {
                   </div>
                 </div>
               } 
+
+         
+              <div style={{'padding-left': 30, 'padding-right': 30}}>
+                  <h2 className="text-center">
+                    View amendments for {this.props.params.name}
+                  </h2>
+
+                  <AmendmentTable currentRes={currentRes} />
+              </div>
+                
+
 
           </Card>    
 
