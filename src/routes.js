@@ -8,7 +8,6 @@ import { DelegateDashboardApp } from 'containers/DelegateDashboardApp';
 import { ChairDashboardApp } from 'containers/ChairDashboardApp';
 
 import { Home } from 'containers/Home';
-import { List } from 'containers/List';
 import { Login } from 'containers/Login';
 import { Logout } from 'containers/Logout';
 import { SignUp } from 'containers/SignUp';
@@ -31,7 +30,6 @@ export default (
 
     <Route path="/home" component={HomeApp}>
       <IndexRoute component={Home}/>
-      <Route path="/home/list" component={List}/>
       <Route path="/home/login" component={Login}/>
       <Route path="/home/signup/:hash/" component={SignUp}/>
 
