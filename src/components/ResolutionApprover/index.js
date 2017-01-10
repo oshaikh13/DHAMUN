@@ -25,7 +25,7 @@ export class ResolutionApprover extends Component {
     return (
       <div className="text-center" >
         <Button style={{"margin-bottom": 20}} className="btn" onClick={(e) => this.onSubmit(e)} disabled={approved} raised primary>
-          Approve Resolution
+          Approve Document
         </Button>
       </div>
     );

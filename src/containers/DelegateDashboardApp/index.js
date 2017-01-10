@@ -16,13 +16,16 @@ export class DelegateDashboardApp extends Component {
   // Is this an anti-pattern? React does use a "shallow copy" so it's not another "new" element...
 
   render() {
+
+    const dataType = this.props.committee === "Security Council" ? "Clauses" : "Resolutions";
+
     return (
       <section>
         <Header 
           titleData={["Dashboard", "/dashboard/delegate"]}
           leftLinks={[
             ["Home", "/dashboard/delegate/"], 
-            ["Resolutions", "/dashboard/delegate/resolutions"], 
+            [dataType, "/dashboard/delegate/resolutions"], 
             ["Vote", "/dashboard/delegate/vote"]
           ]} 
           rightLink={["Log out", "/dashboard/logout", true]} 

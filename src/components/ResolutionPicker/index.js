@@ -106,7 +106,7 @@ export class ResolutionPicker extends Component {
 
     if (approved) return (
       <div className={styles}>
-        <h3>This resolution has been approved.</h3>
+        <h3>This document has been approved.</h3>
       </div>
     );
 
@@ -127,7 +127,7 @@ export class ResolutionPicker extends Component {
         <br/>
 
         <div className="buttons">
-          <TooltipButton label="Leave" tooltip="Leave this resolution" type="button" className="btn danger" style={{background : "#f44336"}} onClick={() => this.selector('revoke', true)} primary raised/>
+          <TooltipButton label="Leave" tooltip="Leave this group" type="button" className="btn danger" style={{background : "#f44336"}} onClick={() => this.selector('revoke', true)} primary raised/>
         </div>
       </div>
     );
