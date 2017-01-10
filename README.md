@@ -88,3 +88,17 @@ Also, change environment variables in `webpack/prod.config.js` or `webpack/dev.c
 $ npm test
 ```
 
+## Credits
+
+Thanks to react-redux [boilerplate](https://github.com/anorudes/redux-easy-boilerplate) for making life easy!
+
+Also, thanks to these people for taking their time to find bugs in Referendum!
+
+```
+Yazan Al-Madani (yalmadani)
+Shan Rizvi
+Musab Rashid
+```
+
+
+
