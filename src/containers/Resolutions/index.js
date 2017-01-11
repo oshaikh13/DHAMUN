@@ -35,12 +35,16 @@ const metaData = {
     userLevel: state.auth.userLevel,
     resolutions: state.resolutions.items,
     admins: state.auth.admins,
-    country: state.auth.country
+    country: state.auth.country,
+    committee: state.auth.committee
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class Resolutions extends Component {
   render() {
+
+    const dataType = this.props.committee === "Security Council" ? "Clauses" : "Resolutions";
+
     return (
       <section className={styles}>
         <Socket {...this.props} />
@@ -50,15 +54,15 @@ export class Resolutions extends Component {
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
               <h1>
-                View Resolutions
+                View {dataType}
               </h1>
             </div>
 
             <Card className="card">
               <div className="col-lg-6">
-              <ResolutionTables {...this.props}/>
+              <ResolutionTables dataType={dataType} {...this.props}/>
               
-              { this.props.userLevel == "Delegate" && <ResolutionSubmit {...this.props}/> }
+              { this.props.userLevel == "Delegate" && <ResolutionSubmit dataType={dataType.slice(0, -1)} {...this.props}/> }
               </div>
             </Card>
 

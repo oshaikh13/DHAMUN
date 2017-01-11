@@ -89,7 +89,7 @@ export class ResolutionSubmit extends Component {
       <section className={styles}>
         <div className="container">
           <Button id="resButton" className="btn" disabled={this.props.isAuthenticating} >
-            Submit Resolution
+            Submit {this.props.dataType}
           </Button>
         </div>
       </section>
