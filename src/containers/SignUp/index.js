@@ -46,6 +46,15 @@ export class SignUp extends Component {
             <h1>
               Sign Up
             </h1>
+            <h4>
+              We'd also like to remind you that if anything happens to go wrong while using this portal, please refresh the page first!
+            </h4>
+            <h4>
+              Also, if you happen to use a phone, we highly recommend switching to a laptop.
+            </h4>
+            <h4>
+              Thanks!
+            </h4>
             <SignUpForm {...this.props}/>
           </div>
         </div>
