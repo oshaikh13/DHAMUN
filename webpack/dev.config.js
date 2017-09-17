@@ -19,11 +19,6 @@ module.exports = {
       test: /\.scss$/,
       exclude: /(node_modules)\/react-toolbox/,
       loader: 'style!css?localIdentName=[path][name]--[local]!postcss-loader!sass',
-    }, 
-    {
-      test: /(\.scss|\.css)$/,
-      include : /(node_modules)\/react-toolbox/,
-      loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
     }],
   },
 

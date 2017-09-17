@@ -75,17 +75,21 @@ const common = {
     }, {
       test: /\.jpg$/,
       loader: 'file?name=[name].[ext]',
+    }, {
+      test: /\.css$/,
+      loaders: [
+        'style-loader',
+        'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss?sourceMap&sourceComments',
+      ],
     }],
   },
 
   postcss: (webpack) => {
     return [
-      autoprefixer({
-        browsers: ['last 2 versions'],
-      }),
       postcssImport({
         addDependencyTo: webpack,
       }),
+      require('postcss-cssnext'),
     ];
   },
 

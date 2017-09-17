@@ -111,11 +111,11 @@ export class LoginForm extends Component {
             }
 
             <div className="form-group">
-              <Input label="Email" type="text" className="input" style={{top: -100}} {...email}/>
+              <Input label="Email" type="text" autoCapitalize="off" className="input" style={{top: -100}} {...email}/>
             </div>
 
             <div className="form-group">
-              <Input label="Password" type="password" className="input" style={{top: 100}} {...password}/>
+              <Input label="Password" autoCapitalize="off" type="password" className="input" style={{top: 100}} {...password}/>
             </div>
 
             <div className="form-group">
