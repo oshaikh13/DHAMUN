@@ -68,8 +68,7 @@ export class ResolutionPicker extends Component {
 
     const onlyCountry = this.onlyCountry(this.props.country, this.props.currentRes);
     if (onlyCountry && name === "revoke") {
-      alert("You are the only submittor and cannot leave!");
-      return;
+      alert("This resolution is now dead -- empty");
     }
 
     // TODO create the hash and set props to true/false, then set state with hash.
