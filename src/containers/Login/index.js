@@ -44,7 +44,7 @@ export class Login extends Component {
       <section>
         <DocumentMeta {...metaData} />
         <div className={styles}>
-          <div className="row">
+          <div className="row" style={{'margin': '0px'}}>
               <h1>
                 Log in
               </h1>
