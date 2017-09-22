@@ -40,7 +40,7 @@ export class LoginForm extends Component {
 
   actions = [
     { label: "Cancel", onClick: this.handleToggle },
-    { label: "Send", onClick: this.sendReset}
+    { label: "Create", onClick: this.sendReset}
   ];
 
 
