@@ -10,7 +10,7 @@ function getFbaseToken (userToken, cb) {
       if (err || !res.ok) {
           // panic
       } else {
-          debugger;
+          // debugger;
           cb(res.body.updatedToken);
       }
     });

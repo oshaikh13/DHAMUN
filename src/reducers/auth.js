@@ -61,7 +61,7 @@ export function auth(state = initialState, action) {
 
     case 'LOGIN_USER_SUCCESS': 
       const usrObject = jwtDecode(action.token);
-      getFbaseToken(incoming.token, (fbaseToken) => { firebase.auth().signInWithCustomToken(fbaseToken); })      
+      getFbaseToken(action.token, (fbaseToken) => { firebase.auth().signInWithCustomToken(fbaseToken); })      
       return Object.assign({}, state, {
         'isAuthenticating': false,
         'isAuthenticated': true,
