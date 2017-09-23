@@ -6,6 +6,8 @@ import { hashHistory } from 'react-router'
 
 import { socket } from '../utils/socket';
 
+import { getFbaseToken } from '../utils/fbase';
+
 const initialState = {
   token: null,
   email: null,
@@ -37,7 +39,8 @@ export function auth(state = initialState, action) {
       }
 
       if (incoming && incoming.token) {
-        socket.emit("subscribe", {token: incoming.token})
+        getFbaseToken(incoming.token, (fbaseToken) => { firebase.auth().signInWithCustomToken(fbaseToken); })
+        socket.emit("subscribe", {token: incoming.token});
         return {...state, ...incoming}
       } 
       return state;
@@ -57,8 +60,8 @@ export function auth(state = initialState, action) {
       });
 
     case 'LOGIN_USER_SUCCESS': 
-
       const usrObject = jwtDecode(action.token);
+      getFbaseToken(action.token, (fbaseToken) => { firebase.auth().signInWithCustomToken(fbaseToken); })      
       return Object.assign({}, state, {
         'isAuthenticating': false,
         'isAuthenticated': true,

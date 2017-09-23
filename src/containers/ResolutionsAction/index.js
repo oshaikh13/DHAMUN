@@ -7,9 +7,9 @@ import { Socket } from 'components/Socket';
 import { ResolutionPicker } from 'components/ResolutionPicker';
 import { ResolutionApprover } from 'components/ResolutionApprover';
 import { ResolutionAmender } from 'components/ResolutionAmender';
+import { ResolutionTextEditor } from 'components/ResolutionTextEditor';
+
 import { AmendmentTable } from 'components/AmendmentTable';
-
-
 
 import { ResolutionStats } from 'components/ResolutionStats';
 
@@ -63,67 +63,81 @@ export class ResolutionsAction extends Component {
 
             </div>
 
-             <Card className="card">   
-              <ResolutionStats {...this.props} currentRes={currentRes} name={decodeURIComponent(this.props.params.name)} token={this.props.token} />
+            <Card className="card">   
+            <ResolutionStats {...this.props} currentRes={currentRes} name={decodeURIComponent(this.props.params.name)} token={this.props.token} />
 
-              { this.props.userLevel === "Delegate" &&
-                <div>
-                  <div>
+            <div>
+              <div>
 
-                      <div className="col-md-12">
-                        <h2 className="text-center">
-                          Sign {this.props.params.name}
-                        </h2>
-
-                      </div>
-                  </div>
-                  <ResolutionPicker {...this.props} currentRes={currentRes} />  
-                </div>
-              }
-
-              {
-                this.props.userLevel != "Delegate" && 
-                <div>
-                  <div>
-
-                      <div className="col-md-12">
-                        <h2 className="text-center">
-                          Approve {this.props.params.name}
-                        </h2>
-
-                        <ResolutionApprover {...this.props} currentRes={currentRes} />  
-                      </div>
-                  </div>
-                </div>
-              } 
-
-
-              {
-                currentRes.approved && (this.props.userLevel === "Delegate") && 
-                <div>
-                  <div>
-
-                      <div className="col-md-12 bottom-pad">
-                        <h2 className="text-center">
-                          Submit an amendment to {this.props.params.name}
-                        </h2>
-
-                        <ResolutionAmender {...this.props} currentRes={currentRes} />  
-                      </div>
-                  </div>
-                </div>
-              } 
-
-              { currentRes.approved &&
-
-                <div style={{'padding-left': 30, 'padding-right': 30}}>
+                  <div className="col-md-12">
                     <h2 className="text-center">
-                      View amendments for {this.props.params.name}
+                      View {this.props.params.name}
                     </h2>
 
-                    <AmendmentTable currentRes={currentRes} />
+                  </div>
+              </div>
+              <ResolutionTextEditor {...this.props} currentRes={currentRes} />
+            </div>
+
+
+            { this.props.userLevel === "Delegate" &&
+              <div>
+                <div>
+
+                    <div className="col-md-12">
+                      <h2 className="text-center">
+                        Sign {this.props.params.name}
+                      </h2>
+
+                    </div>
                 </div>
-              }
+                <ResolutionPicker {...this.props} currentRes={currentRes} />  
+              </div>
+            }
+
+            {
+              this.props.userLevel != "Delegate" && 
+              <div>
+                <div>
+
+                    <div className="col-md-12">
+                      <h2 className="text-center">
+                        Approve {this.props.params.name}
+                      </h2>
+
+                      <ResolutionApprover {...this.props} currentRes={currentRes} />  
+                    </div>
+                </div>
+              </div>
+            } 
+
+
+            {
+              currentRes.approved && (this.props.userLevel === "Delegate") && 
+              <div>
+                <div>
+
+                    <div className="col-md-12 bottom-pad">
+                      <h2 className="text-center">
+                        Submit an amendment to {this.props.params.name}
+                      </h2>
+
+                      <ResolutionAmender {...this.props} currentRes={currentRes} />  
+                    </div>
+                </div>
+              </div>
+            } 
+
+            { currentRes.approved &&
+
+              <div style={{'padding-left': 30, 'padding-right': 30}}>
+                  <h2 className="text-center">
+                    View amendments for {this.props.params.name}
+                  </h2>
+
+                  <AmendmentTable currentRes={currentRes} />
+              </div>
+            }
                 
 
 

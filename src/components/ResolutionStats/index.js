@@ -33,10 +33,6 @@ export class ResolutionStats extends Component {
 
     return (
       <div className="row">
-
-          <h3 className="centerText">
-            <a target="_blank" href={currentRes.publicLink} role="button">View Document</a>
-          </h3>
           
           <div className="container limit">
             <h3>Main submittors</h3>

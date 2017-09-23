@@ -6,9 +6,19 @@ import configureStore from './store/configureStore';
 import { hashHistory } from 'react-router';
 // Change this to hashHistory for dev if needed. Not really needed lol.
 import routes from './routes';
-require('./utils/gapiFilePicker')();
 
 const store = configureStore();
+
+var config = {
+  apiKey: "AIzaSyCpdsZyQ3BdUcYmgX7yf1DYScay4lRmQLE",
+  authDomain: "referendum-b0015.firebaseapp.com",
+  databaseURL: "https://referendum-b0015.firebaseio.com",
+  projectId: "referendum-b0015",
+  storageBucket: "referendum-b0015.appspot.com",
+  messagingSenderId: "239754208581"
+};
+
+firebase.initializeApp(config);
 
 ReactDOM.render(
   <Provider store={store}>

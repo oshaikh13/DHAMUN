@@ -24,7 +24,9 @@ export class ResolutionTable extends Component {
         <tbody className={styles}>
 
           {
-            Object.keys(resolutions).map((item, index) => 
+            Object.keys(resolutions).filter((item) => {
+              return !resolutions[item].empty;
+            }).map((item, index) => 
               {
                 return (pending ? !resolutions[item].approved : resolutions[item].approved) && 
                 <tr key={index}>

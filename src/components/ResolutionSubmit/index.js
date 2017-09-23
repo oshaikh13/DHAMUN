@@ -4,6 +4,9 @@ import { socket } from 'utils/socket';
 
 /* material UI components */
 import { Button } from 'react-toolbox/lib/button';
+import Input from 'react-toolbox/lib/input';
+import Dialog from 'react-toolbox/lib/dialog';
+
 
 /* component styles */
 import { styles } from './styles.scss';
@@ -21,78 +24,61 @@ const metaData = {
 };
 
 export class ResolutionSubmit extends Component {
+ 
+  state = {
+    active: false,
+    name: ""
+  };
 
-  addAdminPermissions(file, admin) {
-
-    // TODO: add this in v2 of Referendum
-
-    // gapi.client.drive.permissions
-    //   .create({
-    //     fileId: file.id, 
-    //     role: "writer", 
-    //     type: "user", 
-    //     emailAddress: admin.email,
-    //     sendNotificationEmail: true,
-    //     emailMessage: this.props.country + "'s Resolution"
-    //   })
-    //   .execute(function(res){
-
-    //   });
-
+  handleToggle = (e) => {
+    e.preventDefault();
+    this.setState({active: !this.state.active});
   }
 
-  onFileSelect(file) {
-    var _this = this;
-    
-    if (this.props.admins) {    
-      this.props.admins.forEach(function(admin){
-        _this.addAdminPermissions(file, admin);
-      });
-    }
+  handleChange = (name, value) => {
+    this.setState({...this.state, [name]: value});
+  };
 
-
-    gapi.client.drive.permissions
-      .create({fileId: file.id, role: "commenter", type: "anyone"})
-      .execute(function(res){
-
-      })
-
-    gapi.client.drive.files
-      .get({fileId: file.id, fields: ["webViewLink"]})
-      .execute(function(res){
-        socket.emit('resolution create', {link: res.webViewLink, name: file.name, token: _this.props.token})
-      })
-
+  createResolution = (e) => {
+    e.preventDefault();
+    if (!this.state.name) return;
+    socket.emit('resolution create', {name: this.state.name, token: this.props.token})
+    this.setState({active: !this.state.active});
   }
 
-  componentDidMount() {
-    var _this = this;
-    function initPicker() {
-      var picker = new FilePicker({
-        apiKey: GAPI_DEV_KEY,
-        clientId: GAPI_CLIENT_ID,
-        appId: GAPI_APP_ID,
-        buttonEl: document.getElementById('resButton'),
-        onSelect: _this.onFileSelect.bind(_this)
-      }); 
-    }
-    initPicker();
-  }
-
-  componentWillUnmount() {
-    document.getElementById('resButton').addEventListener("click", null);
-
-  }
+  actions = [
+    { label: "Cancel", onClick: this.handleToggle },
+    { label: "Send", onClick: this.createResolution}
+  ];
 
   render() {
+
+    var _this = this;
+    
     return (
-      <section className={styles}>
-        <div className="container">
-          <Button id="resButton" className="btn" disabled={this.props.isAuthenticating} >
-            Submit {this.props.dataType}
-          </Button>
-        </div>
-      </section>
+      <div>
+
+        <Dialog
+          actions={this.actions}
+          active={this.state.active}
+          onEscKeyDown={this.handleToggle}
+          onOverlayClick={this.handleToggle}
+          title={'New ' + this.props.dataType}
+        >
+          <p>Create a new {this.props.dataType.toLowerCase()} name. Make sure it's unique, or we can't create it.</p>
+          <Input label={this.props.dataType + " X"} type="text" className="input" style={{top: -100}} value={this.state.name} onChange={_this.handleChange.bind(_this, 'name')}/>
+
+        </Dialog>
+
+        <section className={styles}>
+          <div className="container">
+            <Button id="resButton" className="btn" disabled={this.props.isAuthenticating} onClick={this.handleToggle}>
+              Create {this.props.dataType}
+            </Button>
+          </div>
+        </section>
+      </div>
     );
   }
+
 }
