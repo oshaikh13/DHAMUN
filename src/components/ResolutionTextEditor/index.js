@@ -12,34 +12,48 @@ export class ResolutionTextEditor extends Component {
   }
 
   firepad;
+  codeMirror;
+
+  checkReadOnly (currentRes, userLevel, country) {
+    
+    const isAffiliatedChair = (currentRes.approved && userLevel == "Chair");
+
+    const isAffiliatedUser = (
+      (currentRes.mainsub[country] || 
+      currentRes.cosub[country] || 
+      currentRes.signat[country]) && !currentRes.approved
+    ); 
+    
+    return (isAffiliatedChair || isAffiliatedUser) ? undefined : 'nocursor';
+  }
 
   componentDidMount () {
-    const { currentRes, country } = this.props;
+    const { currentRes, country, userLevel } = this.props;
     const resName = decodeURIComponent(this.props.params.name);
 
     var firepadRef = firebase.database().ref('resolutions/' + resName + "/");
-    
-    const isAffiliated = (
-      currentRes.mainsub[country] || 
-      currentRes.cosub[country] || 
-      currentRes.signat[country] 
-    );
-
+    const readOnlyStatus = this.checkReadOnly(currentRes, userLevel, country);
     // Create CodeMirror (with lineWrapping on).
-    var codeMirror = CodeMirror(document.getElementById('firepad'), {
+    this.codeMirror = CodeMirror(document.getElementById('firepad'), {
       lineWrapping: true,
-      readOnly: isAffiliated ? undefined : 'nocursor'
+      readOnly: readOnlyStatus
     });
 
     // Create Firepad (with rich text toolbar and shortcuts enabled).
-    this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+    this.firepad = Firepad.fromCodeMirror(firepadRef, this.codeMirror, {
       richTextShortcuts: true,
       richTextToolbar: true,
       defaultText: 'Hello, World!'
     });
   }
 
-  componentWillUnmount () {
+  componentWillReceiveProps(nextProps) {
+    const { currentRes, country, userLevel } = nextProps;
+    // debugger;
+    this.codeMirror.setOption('readOnly', this.checkReadOnly(currentRes, userLevel, country));
+  }
+
+  componentWillUnmount() {
     this.firepad.dispose();
   }
 

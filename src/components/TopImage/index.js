@@ -45,7 +45,7 @@ export class TopImage extends Component {
               <LoadingOrderAnimation animation="fade-in"
                 move="from-bottom-to-top"
                 distance={30}
-                speed={700}
+                speed={2100}
                 wait={700}
               >
                 <h1 className="title transparent">
@@ -55,8 +55,8 @@ export class TopImage extends Component {
               <LoadingOrderAnimation animation="fade-in"
                 move="from-bottom-to-top"
                 distance={60}
-                speed={700}
-                wait={900}
+                speed={2100}
+                wait={1100}
               >
                 <p>
                   {this.props.subtitle}
