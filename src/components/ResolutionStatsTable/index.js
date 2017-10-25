@@ -30,12 +30,15 @@ export class ResolutionStatsTable extends Component {
     e.preventDefault();
 
     if (this.onlyCountry(this.props.country, this.props.currentRes, country) && type === "Remove") {
-      alert("You are the only submittor and cannot leave!");
-    } else if (type === "Accept") {
+      alert("This resolution is now dead -- empty");
+    } 
+    
+    if (type === "Accept") {
       socket.emit('resolution sign accept', {token: this.props.token, name: this.props.name, country: country});
     } else if (type === "Remove") {
       socket.emit('resolution sign revoke', {token: this.props.token, name: this.props.name, country: country})
     }
+
   }
 
   render() {

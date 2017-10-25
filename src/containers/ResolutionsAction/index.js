@@ -48,6 +48,38 @@ export class ResolutionsAction extends Component {
     const { resolutions } = this.props;
     const currentRes = resolutions[decodeURIComponent(this.props.params.name)];
 
+    // this is currently unused
+    const amendmentJSX = (
+      <div>
+        {
+          currentRes.approved && (this.props.userLevel === "Delegate") && 
+          <div>
+            <div>
+
+                <div className="col-md-12 bottom-pad">
+                  <h2 className="text-center">
+                    Submit an amendment to {this.props.params.name}
+                  </h2>
+
+                  <ResolutionAmender {...this.props} currentRes={currentRes} />  
+                </div>
+            </div>
+          </div>
+        } 
+
+        { currentRes.approved &&
+
+          <div style={{'padding-left': 30, 'padding-right': 30}}>
+              <h2 className="text-center">
+                View amendments for {this.props.params.name}
+              </h2>
+
+              <AmendmentTable currentRes={currentRes} />
+          </div>
+        }
+      </div>
+    );
+
     return (
 
       <section className={styles}>
@@ -110,36 +142,6 @@ export class ResolutionsAction extends Component {
                 </div>
               </div>
             } 
-
-
-            {
-              currentRes.approved && (this.props.userLevel === "Delegate") && 
-              <div>
-                <div>
-
-                    <div className="col-md-12 bottom-pad">
-                      <h2 className="text-center">
-                        Submit an amendment to {this.props.params.name}
-                      </h2>
-
-                      <ResolutionAmender {...this.props} currentRes={currentRes} />  
-                    </div>
-                </div>
-              </div>
-            } 
-
-            { currentRes.approved &&
-
-              <div style={{'padding-left': 30, 'padding-right': 30}}>
-                  <h2 className="text-center">
-                    View amendments for {this.props.params.name}
-                  </h2>
-
-                  <AmendmentTable currentRes={currentRes} />
-              </div>
-            }
-                
-
 
           </Card>    
 
