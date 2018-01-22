@@ -11,8 +11,8 @@ export class ResolutionTextEditor extends Component {
     super(props);
   }
 
-  firepad;
-  codeMirror;
+  pad;
+  editor;
 
   checkReadOnly (currentRes, userLevel, country) {
     
@@ -33,33 +33,51 @@ export class ResolutionTextEditor extends Component {
 
     var firepadRef = firebase.database().ref('resolutions/' + resName + "/");
     const readOnlyStatus = this.checkReadOnly(currentRes, userLevel, country);
-    // Create CodeMirror (with lineWrapping on).
-    this.codeMirror = CodeMirror(document.getElementById('firepad'), {
-      lineWrapping: true,
+
+    var toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+      [{'align': []}],
+      ['link', 'image'],
+      [{'font': []}],
+      ['clean']                                         // remove formatting button
+    ];
+
+    this.editor = new Quill('#editor-container', {
+      modules: {
+        toolbar: toolbarOptions
+      },
+      theme: 'snow',  // or 'bubble',
       readOnly: readOnlyStatus
     });
 
-    // Create Firepad (with rich text toolbar and shortcuts enabled).
-    this.firepad = Firepad.fromCodeMirror(firepadRef, this.codeMirror, {
-      richTextShortcuts: true,
-      richTextToolbar: true,
-      defaultText: 'Hello, World!'
-    });
+    this.pad = Firepad.fromQuill(firepadRef, this.editor, null);
+
+    this.pad.on('ready', function () {
+      if (this.pad.isHistoryEmpty()) {
+        //setText
+      }
+    }.bind(this));
+    
   }
 
   componentWillReceiveProps(nextProps) {
     const { currentRes, country, userLevel } = nextProps;
     // debugger;
-    this.codeMirror.setOption('readOnly', this.checkReadOnly(currentRes, userLevel, country));
+    if (this.checkReadOnly(currentRes, userLevel, country)) {
+      this.editor.disable();
+    } else {
+      this.editor.enable();
+    }
   }
 
   componentWillUnmount() {
-    this.firepad.dispose();
+    this.pad.dispose();
   }
 
   render() {
     return (
-      <div id="firepad" style={{'margin': '8% 12% 0% 18%', 'width': '70%', 'height': '70%'}}>
+      <div id="editor-container">
 
       </div>
     )
