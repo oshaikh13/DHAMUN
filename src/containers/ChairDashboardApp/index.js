@@ -26,7 +26,9 @@ export class ChairDashboardApp extends Component {
           leftLinks={[
             ["Home", "/dashboard/chair/"], 
             [dataType, "/dashboard/chair/resolutions"], 
-            ["Vote", "/dashboard/chair/vote"]
+            ["Vote", "/dashboard/chair/vote"],
+            ["Attendance", "/dashboard/chair/attendance/"]
+            
           ]} 
           rightLink={["Log out", "/dashboard/logout", true]} 
         />

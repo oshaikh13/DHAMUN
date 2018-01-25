@@ -12,6 +12,7 @@ import { Login } from 'containers/Login';
 import { Logout } from 'containers/Logout';
 import { SignUp } from 'containers/SignUp';
 import { Vote } from 'containers/Vote';
+import { Attendance } from 'containers/Attendance';
 import { ChairVote } from 'containers/ChairVote';
 
 import { VoteAction } from 'containers/VoteAction';
@@ -38,8 +39,12 @@ export default (
 
     <Route path="/dashboard">
       <IndexRedirect to="/home"/>
+
+      <Route path="/dashboard/attendance" component={Attendance}/>
+
       <Route path="/dashboard/delegate" component={requireAuthentication(DelegateDashboardApp, "Delegate")}>
         <IndexRoute component={DelegateDashboardHome}/>
+        <Route path="/dashboard/delegate/attendance" component={Attendance}/>
         <Route path="/dashboard/delegate/vote" component={Vote}/>
         <Route path="/dashboard/delegate/vote/:name" component={VoteAction}/>
         <Route path="/dashboard/delegate/resolutions" component={Resolutions}/>
@@ -48,6 +53,7 @@ export default (
 
       <Route path="/dashboard/chair" component={requireAuthentication(ChairDashboardApp, "Chair")}>
         <IndexRoute component={ChairDashboardHome}/>
+        <Route path="/dashboard/chair/attendance" component={Attendance}/>
         <Route path="/dashboard/chair/vote" component={ChairVote}/>
         <Route path="/dashboard/chair/vote/:name" component={VoteAction}/>
         <Route path="/dashboard/chair/resolutions" component={Resolutions}/>

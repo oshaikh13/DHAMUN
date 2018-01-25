@@ -26,7 +26,8 @@ export class DelegateDashboardApp extends Component {
           leftLinks={[
             ["Home", "/dashboard/delegate/"], 
             [dataType, "/dashboard/delegate/resolutions"], 
-            ["Vote", "/dashboard/delegate/vote"]
+            ["Vote", "/dashboard/delegate/vote"],
+            ["Attendance", "/dashboard/delegate/attendance/"]
           ]} 
           rightLink={["Log out", "/dashboard/logout", true]} 
         />
