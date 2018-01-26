@@ -40,7 +40,7 @@ export class LoginForm extends Component {
 
   actions = [
     { label: "Cancel", onClick: this.handleToggle },
-    { label: "Create", onClick: this.sendReset}
+    { label: "Send", onClick: this.sendReset}
   ];
 
 
@@ -99,7 +99,7 @@ export class LoginForm extends Component {
     return (
 
       <div className={styles}>
-        <form  onSubmit={this.onAdd}>
+        <form  onSubmit={(e) => this.onSubmit(e)}>
 
           <Card className="card">
 
@@ -119,7 +119,7 @@ export class LoginForm extends Component {
             </div>
 
             <div className="form-group">
-              <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
+              <Button className="btn" type="submit" disabled={this.props.isAuthenticating} raised primary>
                 Login
               </Button>
             </div>

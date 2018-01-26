@@ -67,7 +67,7 @@ export class SignUpForm extends Component {
     return (
 
       <div className={styles}>
-        <form  onSubmit={this.onAdd}>
+        <form  onSubmit={(e) => this.onSubmit(e)}>
 
           <Card className="card">
 
@@ -87,7 +87,7 @@ export class SignUpForm extends Component {
             </div>
 
             <div className="form-group">
-              <Button className="btn" onClick={(e) => this.onSubmit(e)} disabled={this.props.isAuthenticating} raised primary>
+              <Button className="btn" type="submit" disabled={this.props.isAuthenticating} raised primary>
                 Login
               </Button>
             </div>

@@ -38,7 +38,8 @@ const metaData = {
     token: state.auth.token,
     resolutions: state.resolutions.items,
     country: state.auth.country,
-    userLevel: state.auth.userLevel
+    userLevel: state.auth.userLevel,
+    committee: state.auth.committee
   }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
