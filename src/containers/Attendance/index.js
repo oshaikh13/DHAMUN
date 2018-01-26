@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { socket } from '../../utils/socket.js';
 import { Button } from 'react-toolbox/lib/button';
+import Input from 'react-toolbox/lib/input';
 
 /* material UI components */
 import { Card } from 'react-toolbox/lib/card';
@@ -35,9 +36,14 @@ export class Attendance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countriesPresent: {}
+      countriesPresent: {},
+      inputtedVerificationID: ''
     }
   }
+
+  handleChange = (name, value) => {
+    this.setState({...this.state, [name]: value});
+  };
 
   componentDidMount () {
     console.log("mounted af")
@@ -52,14 +58,16 @@ export class Attendance extends Component {
   }
 
   markPresent() {
-    socket.emit("attendance present", {token: this.props.token});
+    socket.emit("attendance present", {token: this.props.token, 
+      inputtedVerificationID: this.state.inputtedVerificationID});
   }
 
   render() {
     const isCountryPresent = this.state.countriesPresent[this.props.country];
     const filterPresence = (elem) => {return this.state.countriesPresent[elem]};
-    const filterVerificationID = (elem) => {return elem !== "verificationID"};
-    debugger
+    const filterUselessKeys = (elem) => {return elem !== "verificationID"};
+    const attendanceCode = this.state.countriesPresent.verificationID;
+
     return (
       <section className={styles}>
         <div className="container">
@@ -75,6 +83,8 @@ export class Attendance extends Component {
 
             { this.props.userLevel == "Delegate" && 
               <Card className="card">
+                <Input type="text" value={this.state.inputtedVerificationID} 
+                  onChange={this.handleChange.bind(this, 'inputtedVerificationID')} placeholder="Attendance Code (case sensitive)"/>
                 <Button disabled={isCountryPresent} onClick={() => { this.markPresent() }} style={{"marginBottom": "4%"}} raised primary>
                   Present
                 </Button>
@@ -84,14 +94,15 @@ export class Attendance extends Component {
               </Card>
             }
 
-            { this.props.userLevel !== "Delegate" && 
+            { this.props.userLevel != "Delegate" && 
               <Card className="card">
+                <h3>Attendance Code: {attendanceCode}</h3>
                 <table className="table table-hover">
                   <h3>Present</h3>
                   <tbody>
 
                     {
-                      Object.keys(this.state.countriesPresent).filter(filterVerificationID).filter(filterPresence)
+                      Object.keys(this.state.countriesPresent).filter(filterUselessKeys).filter(filterPresence)
                         .map((item, index) => 
                         {
                           return <tr key={index}><td className="col-md-10">{item}</td></tr>
@@ -108,7 +119,7 @@ export class Attendance extends Component {
                   <tbody>
 
                     {
-                      Object.keys(this.state.countriesPresent).filter(filterVerificationID).filter((elem) => {return !filterPresence(elem)})
+                      Object.keys(this.state.countriesPresent).filter(filterUselessKeys).filter((elem) => {return !filterPresence(elem)})
                         .map((item, index) => 
                         {
                           return <tr key={index}><td className="col-md-10">{item}</td></tr>
