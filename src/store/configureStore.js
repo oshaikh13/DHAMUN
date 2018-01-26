@@ -13,7 +13,7 @@ export default function configureStore(initialState) {
 
   const middleware = applyMiddleware(thunkMiddleware, logger);
 
-  const store = middleware(createStore)(rootReducer, initialState, autoRehydrate());
+  const store = middleware(createStore)(rootReducer, initialState);
   persistStore(store, {blacklist: ['form']});
 
   if (module.hot) {
