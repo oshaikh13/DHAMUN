@@ -26,12 +26,22 @@ export class ResolutionTextEditor extends Component {
     
     return (isAffiliatedChair || isAffiliatedUser) ? undefined : 'nocursor';
   }
+  
+  makeFirebaseSafeRef (currentRef) {
+    const prohibited = [".", "#", "$", "[", "]"];
+    var newRef = "";
+    for (var i = 0; i < currentRef.length; i++) {
+      if (prohibited.indexOf(currentRef.charAt(i)) > -1) newRef += " ";
+      else newRef += currentRef.charAt(i);
+    }
+    return newRef;
+  }
 
   componentDidMount () {
+    debugger;
     const { currentRes, country, userLevel } = this.props;
-    const resName = decodeURIComponent(this.props.params.name);
-
-    var firepadRef = firebase.database().ref('resolutions/' + resName + "/");
+    const resName = this.makeFirebaseSafeRef(decodeURIComponent(this.props.params.name));
+    var firepadRef = firebase.database().ref('resolutions/' + this.props.committee + " " + resName + "/");
     const readOnlyStatus = this.checkReadOnly(currentRes, userLevel, country);
 
     var toolbarOptions = [
