@@ -39,6 +39,13 @@ export function auth(state = initialState, action) {
       }
 
       if (incoming && incoming.token) {
+
+        var currentUserToken = jwtDecode(incoming.token);
+        if (!(currentUserToken && currentUserToken.issuedAt 
+          && (Date.now() - currentUserToken.issuedAt < 432000000 /* 5 days*/))) {
+            return state;
+        }
+
         getFbaseToken(incoming.token, (fbaseToken) => { firebase.auth().signInWithCustomToken(fbaseToken); })
         socket.emit("subscribe", {token: incoming.token});
         return {...state, ...incoming}
