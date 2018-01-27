@@ -113,13 +113,13 @@ export class ResolutionPicker extends Component {
       <div className={styles}>
         <div className="buttons res-input">
           <div>
-            <TooltipButton label='Signator' tooltip='Request to be a signator' type="button" className="btn" onClick={() => this.selector('signat', true)} disabled={this.state.signat} raised primary/>
-          </div>
-          <div>
-            <TooltipButton label="Main submittor" tooltip="Request to be a main submittor" type="button" className="btn" onClick={() => this.selector('mainsub', true)} disabled={this.state.mainsub}raised primary/>
+            <TooltipButton label='Signatory' tooltip='Request to be a signatory' type="button" className="btn" onClick={() => this.selector('signat', true)} disabled={this.state.signat} raised primary/>
           </div>
           <div>
             <TooltipButton label="Co submittor" tooltip="Request to be a co submittor" type="button" className="btn" onClick={() => this.selector('cosub', true)} disabled={this.state.cosub}raised primary/>
+          </div>
+          <div>
+            <TooltipButton label="Main submittor" tooltip="Request to be a main submittor" type="button" className="btn" onClick={() => this.selector('mainsub', true)} disabled={this.state.mainsub}raised primary/>
           </div>
         </div>
 
