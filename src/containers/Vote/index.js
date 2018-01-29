@@ -17,16 +17,10 @@ import { Card } from 'react-toolbox/lib/card';
 import { styles } from './styles/styles.scss';
 
 const metaData = {
-  title: 'DHAMUN',
-  description: 'Get started here',
-  canonical: 'http://example.com/path/to/page',
-  meta: {
-    charset: 'utf-8',
-    name: {
-      keywords: 'react,meta,document,html,tags',
-    },
-  },
+  title: 'Vote',
+  description: 'Vote on stuff',
 };
+
 
 @connect(
   (state) => ({
@@ -44,6 +38,7 @@ export class Vote extends Component {
   render() {
     return (
       <section className={styles}>
+        <DocumentMeta {...metaData} />
         <Socket {...this.props} />
         <div className="container">
 

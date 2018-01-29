@@ -13,16 +13,10 @@ import { Card } from 'react-toolbox/lib/card';
 import { styles } from '../Vote/styles/styles.scss';
 
 const metaData = {
-  title: 'DHAMUN',
-  description: 'Get started here',
-  canonical: 'http://example.com/path/to/page',
-  meta: {
-    charset: 'utf-8',
-    name: {
-      keywords: 'react,meta,document,html,tags',
-    },
-  },
+  title: 'Attendance',
+  description: 'Take Attendance',
 };
+
 
 @connect(
   (state) => ({
@@ -74,6 +68,7 @@ export class Attendance extends Component {
 
     return (
       <section className={styles}>
+        <DocumentMeta {...metaData} />
         <div className="container">
 
 
