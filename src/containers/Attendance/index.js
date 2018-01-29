@@ -62,6 +62,10 @@ export class Attendance extends Component {
       inputtedVerificationID: this.state.inputtedVerificationID});
   }
 
+  resetAttendance() {
+    socket.emit("attendance reset", {token: this.props.token});
+  }
+
   render() {
     const isCountryPresent = this.state.countriesPresent[this.props.country];
     const filterPresence = (elem) => {return this.state.countriesPresent[elem]};
@@ -130,6 +134,10 @@ export class Attendance extends Component {
 
                   </tbody>
                 </table>
+
+                <Button onClick={() => { this.resetAttendance() }} raised primary>
+                  Reset Attendance
+                </Button>
 
               </Card>
             }
