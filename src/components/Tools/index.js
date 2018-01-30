@@ -28,7 +28,12 @@ export class Tools extends Component {
                 You're probably here because you need something. 
               </p>
               <p>
-                This is a concept portal, to address all your MUN needs
+                Click "Login" in the Header, and log in with your email and password. 
+                You might remember registering through an email we sent.
+              </p>
+              <p>
+                Remember: if something goes wrong, refresh. If that doesn't fix the problem, 
+                call someone for help!
               </p>
             </div>
             <div className="col-xs-6 col-sm-4"></div>

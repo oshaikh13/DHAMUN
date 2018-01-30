@@ -22,7 +22,7 @@ export class Home extends Component {
     return (
       <section>
         <DocumentMeta {...metaData} />
-        <TopImage imgType="outsideun" header="DHAMUN" subtitle="A portal for all your needs" />
+        <TopImage imgType="outsideun" header="DHAMUN" subtitle="Web Portal" />
         <Tools />
       </section>
     );
