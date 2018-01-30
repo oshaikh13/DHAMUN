@@ -9,7 +9,7 @@ export class Footer extends Component {
     return (
       <footer className={`${styles}`}>
         <div className="container">
-          {this.props.text}
+          {this.props.children}
         </div>
       </footer>
     );

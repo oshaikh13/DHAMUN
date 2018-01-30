@@ -21,7 +21,7 @@ export class HomeApp extends Component {
           rightLink={["Dashboard", "/home/login/", true]} 
         />
         {this.props.children}
-        <Footer text="This is DHAMUN Portal" />
+        <Footer>Powered by <a href="https://github.com/Referendum">Referendum</a></Footer>
       </section>
     );
   }

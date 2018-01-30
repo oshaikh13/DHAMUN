@@ -37,7 +37,7 @@ export class DelegateDashboardApp extends Component {
             lastName: this.props.lastName 
           }) 
         }
-        <Footer text="This is DHAMUN Portal" />
+        <Footer>Powered by <a href="https://github.com/Referendum">Referendum</a></Footer>
       </section>
     );
   }
