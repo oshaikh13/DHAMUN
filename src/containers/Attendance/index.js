@@ -13,16 +13,10 @@ import { Card } from 'react-toolbox/lib/card';
 import { styles } from '../Vote/styles/styles.scss';
 
 const metaData = {
-  title: 'DHAMUN',
-  description: 'Get started here',
-  canonical: 'http://example.com/path/to/page',
-  meta: {
-    charset: 'utf-8',
-    name: {
-      keywords: 'react,meta,document,html,tags',
-    },
-  },
+  title: 'Attendance',
+  description: 'Take Attendance',
 };
+
 
 @connect(
   (state) => ({
@@ -62,6 +56,10 @@ export class Attendance extends Component {
       inputtedVerificationID: this.state.inputtedVerificationID});
   }
 
+  resetAttendance() {
+    socket.emit("attendance reset", {token: this.props.token});
+  }
+
   render() {
     const isCountryPresent = this.state.countriesPresent[this.props.country];
     const filterPresence = (elem) => {return this.state.countriesPresent[elem]};
@@ -70,6 +68,7 @@ export class Attendance extends Component {
 
     return (
       <section className={styles}>
+        <DocumentMeta {...metaData} />
         <div className="container">
 
 
@@ -130,6 +129,10 @@ export class Attendance extends Component {
 
                   </tbody>
                 </table>
+
+                <Button onClick={() => { this.resetAttendance() }} raised primary>
+                  Reset Attendance
+                </Button>
 
               </Card>
             }

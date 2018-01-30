@@ -22,15 +22,8 @@ import { styles } from './styles/styles.scss';
 import * as actionCreators from 'actions/resolutions';
 
 const metaData = {
-  title: 'DHAMUN',
-  description: 'Get started here',
-  canonical: 'http://example.com/path/to/page',
-  meta: {
-    charset: 'utf-8',
-    name: {
-      keywords: 'react,meta,document,html,tags',
-    },
-  },
+  title: 'Edit Resolution',
+  description: 'Edit a resolution here',
 };
 
 @connect(
@@ -84,7 +77,7 @@ export class ResolutionsAction extends Component {
     return (
 
       <section className={styles}>
-
+        <DocumentMeta {...metaData} />
         <Socket {...this.props} />
         <div className="container">
 
