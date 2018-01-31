@@ -83,7 +83,7 @@ export class Attendance extends Component {
             { this.props.userLevel == "Delegate" && 
               <Card className="card">
                 <Input type="text" value={this.state.inputtedVerificationID} 
-                  onChange={this.handleChange.bind(this, 'inputtedVerificationID')} placeholder="Attendance Code (case sensitive)"/>
+                  onChange={this.handleChange.bind(this, 'inputtedVerificationID')} placeholder="Attendance Code (numbers only)"/>
                 <Button disabled={isCountryPresent} onClick={() => { this.markPresent() }} style={{"marginBottom": "4%"}} raised primary>
                   Present
                 </Button>
