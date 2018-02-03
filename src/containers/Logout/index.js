@@ -31,6 +31,7 @@ export class Logout extends Component {
 
   render () {
     this.props.logOut(this.props.token);
+    socket.removeAllListeners("reconnect");    
     return (
       <section>
         <DocumentMeta {...metaData} />

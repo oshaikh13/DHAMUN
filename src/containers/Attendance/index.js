@@ -11,6 +11,7 @@ import { Card } from 'react-toolbox/lib/card';
 
 /* container styles */
 import { styles } from '../Vote/styles/styles.scss';
+import { isContext } from 'vm';
 
 const metaData = {
   title: 'Attendance',
@@ -65,7 +66,7 @@ export class Attendance extends Component {
     const filterPresence = (elem) => {return this.state.countriesPresent[elem]};
     const filterUselessKeys = (elem) => {return elem !== "verificationID"};
     const attendanceCode = this.state.countriesPresent.verificationID;
-
+    if (isCountryPresent) alert("You've been marked present");
     return (
       <section className={styles}>
         <DocumentMeta {...metaData} />

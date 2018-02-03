@@ -17,7 +17,14 @@ export function loginFailure (status, statusText) {
 }
 
 export function loginSuccess (token) {
+
   socket.emit("subscribe", {token: token});
+
+  socket.on("reconnect", function() {
+    console.log("establishing reconnection");    
+    socket.emit("subscribe", {token: token});          
+  }.bind(this));
+
   return {
     type: "LOGIN_USER_SUCCESS",
     token

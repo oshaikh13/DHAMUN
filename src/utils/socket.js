@@ -4,8 +4,8 @@ let socket;
 
 var options = {
   'reconnection': true,
-  'reconnectionDelay': 100,
-  'reconnectionDelayMax' : 100,
+  'reconnectionDelay': 750,
+  'reconnectionDelayMax': 0,
   'reconnectionAttempts': Infinity
 }
 

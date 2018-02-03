@@ -46,6 +46,11 @@ export function auth(state = initialState, action) {
             return state;
         }
 
+        socket.on("reconnect", function() {
+          console.log("establishing reconnection");
+          socket.emit("subscribe", {token: incoming.token});          
+        }.bind(this));
+
         getFbaseToken(incoming.token, (fbaseToken) => { firebase.auth().signInWithCustomToken(fbaseToken); })
         socket.emit("subscribe", {token: incoming.token});
         return {...state, ...incoming}
